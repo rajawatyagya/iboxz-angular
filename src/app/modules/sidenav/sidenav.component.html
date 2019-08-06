@@ -1,8 +1,20 @@
 <mat-sidenav-container>
   <mat-sidenav opened=false mode="over" #sidenav>
-    drawer
+    <mat-nav-list>
+      <mat-list-item>
+        <h4 matLine routerLink="/" routerLinkActive="active-link">Home</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <h4 matLine routerLink="/dashboard" routerLinkActive="active-link">Dashboard</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <h4 matLine routerLink="/profile" routerLinkActive="active-link">Profile</h4>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
+
+    <!-- Header Toolbar -->
     <mat-toolbar>
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sideNavToggle(sidenav)">
         <mat-icon>menu</mat-icon>
@@ -11,6 +23,28 @@
       <span class="flex-spacer"></span>
       <a mat-button class="customfont" (click)="openLoginForm()"> Login </a>
     </mat-toolbar>
+    <!-- Hearer Toolbar End -->
+
     <router-outlet></router-outlet>
+
+    <!-- Footer -->
+    <div class="container footer"
+         fxLayout="row wrap"
+         fxLayout.lt-md="column"
+         fxLayoutAlign="center center"
+         fxLayoutGap="10px">
+      <div fxFlex="100" fxFlex.gt-sm="45">
+        <div style="text-align:center">
+          <a mat-icon-button class="btn-facebook" href="https://www.facebook.com/iboxz.in/"><i class="fa fa-facebook fa-lg"></i></a>
+          <a mat-icon-button class="btn-linkedin" href="https://www.linkedin.com/company/iboxz/"><i class="fa fa-linkedin fa-lg"></i></a>
+          <a mat-icon-button class="btn-twitter" href="https://twitter.com/iboxz2" title="Twitter"><i class="fa fa-twitter fa-lg"></i></a>
+          <!--<a mat-icon-button class="btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a>-->
+          <a mat-icon-button class="btn-mail" href="mailto:hiring@iboxz.in"><i class="fa fa-envelope-o fa-lg"></i></a>
+          <a mat-icon-button class="btn-phone" href="tel:18005720720"><i class="fa fa-phone fa-lg"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
   </mat-sidenav-content>
 </mat-sidenav-container>

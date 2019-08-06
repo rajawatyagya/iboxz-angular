@@ -2,15 +2,13 @@
 
 mat-sidenav-container{
   height: 100%;
+  width: 100%;
   margin: 0;
-}
-
-mat-sidenav, mat-sidenav-content {
 }
 
 mat-sidenav {
   background-color: $background-light;
-  width: 20rem;
+  width: 25rem;
 }
 
 mat-toolbar {
@@ -18,6 +16,12 @@ mat-toolbar {
   position: fixed;
   z-index: 2;
   top: 0;
+}
+
+.active-link {
+  color: blue;
+  font-weight: bold !important;
+  border: none;
 }
 
 .customfont {
@@ -44,4 +48,13 @@ mat-toolbar {
 
 .active {
   background: $background-moredark;
+}
+
+@mixin footer-margin($pad-up-down, $pad-left-right) {
+  margin: 0px auto;
+  padding: $pad-up-down $pad-left-right;
+}
+
+.footer{
+  @include footer-margin(20px, 0px);
 }

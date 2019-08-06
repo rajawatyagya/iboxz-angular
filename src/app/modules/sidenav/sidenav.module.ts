@@ -9,6 +9,7 @@ import { MatSidenavModule,
 import { RouterModule } from '@angular/router';
 
 import { LoginComponent } from '../login/login.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { LoginComponent } from '../login/login.component';
     MatIconModule,
     MatButtonModule,
     RouterModule,
-    MatListModule
+    MatListModule,
+    FlexLayoutModule
   ],
 /*  entryComponents: [
     LoginComponent  // enables to use as an overlay

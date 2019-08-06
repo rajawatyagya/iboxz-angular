@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidenavModule } from './modules/sidenav/sidenav.module';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -10,9 +13,15 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    SidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(overlayContainer: OverlayContainer){
+    overlayContainer.getContainerElement().classList.add('iboxz-angular-theme');
+  }
+}

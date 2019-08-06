@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OverviewService } from '../../services/overview.service';
-import {ContactType, Feedback} from '../../shared/feedback';
-import {TeamService} from '../../services/team.service';
-import {Overview} from '../../shared/overview';
-import {TeamMember} from '../../shared/teamMember';
+import { ContactType, Feedback } from '../../shared/feedback';
+import { TeamService } from '../../services/team.service';
+import { Overview } from '../../shared/overview';
+import { TeamMember } from '../../shared/teamMember';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   feedbackForm: FormGroup;  // form model to host reactive form
   feedback: Feedback;  // corresponding data model
   contactType = ContactType;
-  @ViewChild('fform',{ read: true, static: false }) feedbackFormDirective;  // to completely reset the value of the form
+  @ViewChild('fform', { read: true, static: false }) feedbackFormDirective;  // to completely reset the value of the form
 
 
   constructor(private overviewService: OverviewService, private teamService: TeamService, private fb: FormBuilder) {

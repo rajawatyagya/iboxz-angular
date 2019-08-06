@@ -43,7 +43,7 @@ mat-toolbar {
 
 .logo-image {
   padding-top: 0.5rem;
-  padding-left: 1rem;
+  padding-left: 2rem;
 }
 
 .active {
@@ -57,4 +57,11 @@ mat-toolbar {
 
 .footer{
   @include footer-margin(20px, 0px);
+}
+
+@media screen and (max-width: 900px) {
+  .mat-sidenav {
+    background-color: $background-light;
+    width: 12rem;
+  }
 }

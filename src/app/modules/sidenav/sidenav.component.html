@@ -2,7 +2,7 @@
   <mat-sidenav opened=false mode="over" #sidenav>
     <mat-nav-list>
       <mat-list-item>
-        <h4 matLine routerLink="/" routerLinkActive="active-link">Home</h4>
+        <h4 matLine routerLink="/home" routerLinkActive="active-link">Home</h4>
       </mat-list-item>
       <mat-list-item>
         <h4 matLine routerLink="/dashboard" routerLinkActive="active-link">Dashboard</h4>
@@ -12,6 +12,7 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
 
     <!-- Header Toolbar -->
@@ -21,7 +22,7 @@
       </button>
       <a routerLink="/home"><span><img class="logo-image" src="assets/images/logo.png"></span></a>
       <span class="flex-spacer"></span>
-      <a mat-button class="customfont" (click)="openLoginForm()"> Login </a>
+      <a mat-button class="customfont" <!--(click)="openLoginForm()"-->> Login </a>
     </mat-toolbar>
     <!-- Hearer Toolbar End -->
 

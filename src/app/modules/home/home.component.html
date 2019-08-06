@@ -1,0 +1,225 @@
+<div class="container "
+     fxLayout="column"
+     fxLayoutGap="10px">
+  <div class="home-container" fxFlex fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap="10px">
+    <div *ngFor="let overview of overviews; index as i; last as islast">
+      <div class="overview-container" fxFlex="auto" *ngIf="!islast" style="border-right: 1px solid #00478F;">
+        <h1 class="custom-color">{{overview.count}}</h1>
+        <h3>{{overview.name}}</h3>
+        <p>{{overview.description}}</p>
+      </div>
+      <div class="overview-container" fxFlex="auto" *ngIf="islast">
+        <h1 class="custom-color">{{overview.count}}</h1>
+        <h3>{{overview.name}}</h3>
+        <p>{{overview.description}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+      <div fxFlex="60">
+        <h2>Redefining Hiring</h2>
+        <li>Automated AI (Artificial Intelligence) &amp; ML(Machine Learning) driven data sourcing.</li>
+        <li>Automated pre screening hiring operations.</li>
+        <li>Automated self initiated assessments.</li>
+        <li>AI &amp; ML implemented and devised assessment window.</li>
+        <li>Zero wait time response module.</li>
+        <li>ML implemented and profile driven job suggestion module.</li>
+        <li>Zero intervention hiring procedure.</li>
+      </div>
+      <div class="container" fxFlex="40" >
+        <img src="assets/images/tie.png" height="470rem" alt="tie">
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <mat-card>
+      <blockquote>
+        <h2 fxLayoutAlign="center center">Goal to achieve !!</h2>
+        <p fxLayoutAlign="center center">'Creating an environment of opportunities &amp; zero wait response module.'</p>
+      </blockquote>
+    </mat-card>
+  </div>
+
+  <div fxFlex>
+    <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+      <div fxFlex="30" class="container" >
+        <img src="/assets/images/jobseeker.png" height="400rem" alt="jobseeker">
+      </div>
+      <div fxFlex="70">
+        <h1>Job Seekers: How iboxz can help!</h1>
+        <ul>
+          <li>Spontaneity in job application process.</li>
+          <li>Easy and simple process for applying to a job and scheduling Interviews.</li>
+          <li>Instant interview scheduling.</li>
+          <li>Interviews to be scheduled only after profile is created and resume uploaded.</li>
+          <li>Interview tips and dedicated briefing upon screening selection.</li>
+          <li>Visibility to relevant matching jobs and interview schedules.</li>
+          <li>Clarity about the job responsibilities and nature of work.</li>
+          <li>Dedicated support lines to clear any doubts by expert HR assessors and Trainers</li>
+          <li>Online mandatory qualifier assessments for every job opening</li>
+          <li>Opportunity to join us as Referral Partner for <strong class="custom-color">extra income</strong>.</li>
+          <li class="custom-link">Every candidate automatically eligible for Referral partner business. Just mail us - <a href="mailto:hiring@iboxz.in"> hiring@iboxz.in</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+      <div fxFlex="70">
+        <h1>Hiring Companies: Let's resolve your hiring woes!</h1>
+        <ul>
+          <li>Our partners is our strength, iboxz can source for any size of requirements.</li>
+          <li>iboxz gives companies to reach out to 100's and 1000's of our Referral Partners functioning as recruiters.</li>
+          <li>Recruiters / partners are from same background so referring is quick, easy and relevant.</li>
+          <li>Partner would be able to close the vacant positions quickly.</li>
+          <li>As per researches done, a referral candidate takes least amount of time for on-boarding</li>
+          <li>All interviews can be scheduled at company campus itself.</li>
+          <li>Interviewers can have access to the screening data and profiles submitted to them.</li>
+          <li>Time saving &amp; Cost effective.</li>
+          <li>Relevant sourcing results in better business punctuations in long run.</li>
+        </ul>
+      </div>
+      <div fxFlex="30" class="container" >
+        <img src="/assets/images/companies.png" height="350rem">
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+      <div fxFlex="40" class="container" >
+        <img src="/assets/images/hp.png" height="380rem">
+      </div>
+      <div fxFlex="60" >
+        <h1>Referral Business: Partner us!</h1>
+        <ul>
+          <li>Introduce Candidates and Earn.</li>
+          <li>Upto <strong  class="custom-color">80%</strong> Revenue Share.</li>
+          <li>Introduce Referral Partners and Earn.</li>
+          <li><strong  class="custom-color">5%</strong> of total Revenue done by introduced Partners.</li>
+          <li>New source of income.</li>
+          <li>Social applause from your people you introduce to iboxz.</li>
+          <li>A Referral partner has to be from Information Technology &amp; Services domain or Outsourcing domain.</li>
+          <li>A Referral partner will never charge or take any fee from any Candidate.</li>
+          <li>A Referral partner can start referring from anytime.</li>
+          <li>All paperwork and agreement signing to be completed within 7 days of onboarding.</li>
+          <li>Referral amount will always be displayed against the Job Opening.</li>
+          <li>Dedicated account manager and backend operations support team.</li>
+          <li>All the timely updates.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div fxFlex>
+    <h1>Team iboxz</h1>
+    <div  fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap="10px">
+      <div *ngFor="let member of members">
+        <div class="team-container" fxFlex="auto">
+          <img src="{{member.image}}" alt="{{member.name}}" height="200rem">
+        </div>
+        <div class="team-container" fxFlex="auto">
+          <h3 class="custom-color">{{member.name}}</h3>
+          <p>{{member.abbr}}</p>
+          <a mat-icon-button class="btn-facebook" href="{{member.facebook}}"><i class="fa fa-facebook fa-lg"></i></a>
+          <a mat-icon-button class="btn-linkedin" href="{{member.linkedin}}"><i class="fa fa-linkedin fa-lg"></i></a>
+          <a mat-icon-button class="btn-twitter" href="{{member.twitter}}" title="Twitter"><i class="fa fa-twitter fa-lg"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact" fxFlex>
+    <h1>Contact Us</h1>
+    <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+      <div fxFlex="70">
+        <h3>We'd Love to Hear From You!</h3>
+        <p>Write us an email and we'll get back to you.</p>
+        <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+          <p>
+            <mat-form-field class="half-width team-container">
+              <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+              <mat-error *ngIf="feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched">
+                First Name is required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="half-width team-container">
+              <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+              <mat-error *ngIf="feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched">
+                Last Name is required
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width team-container">
+              <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" required>
+              <mat-error *ngIf="feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched">
+                Tel Number is required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="half-width team-container">
+              <input matInput formControlName="email" placeholder="Email" type="email" required>
+              <mat-error *ngIf="feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched">
+                Email is required
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <table class="form-size team-container">   <!-- these elements are hard to position without a table -->
+            <td>
+              <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
+            </td>
+            <td>
+              <mat-select placeholder="How?" formControlName="contacttype">
+                <mat-option *ngFor="let ctype of contactType" [value]="ctype">
+                  {{ ctype }}
+                </mat-option>
+              </mat-select>
+            </td>
+          </table>
+          <p>
+            <mat-form-field class="full-width team-container">
+              <textarea matInput formControlName="message" placeholder="Your Message" rows="12"></textarea>
+            </mat-form-field>
+          </p>
+          <button mat-button type="submit" class="background-primary text-floral-white button-margin"
+                  [disabled]="feedbackForm.invalid">Submit</button>
+        </form>
+      </div>
+
+      <div fxFlex="30">
+        <h3>Location Information</h3>
+        <div>
+          <h4>Our Address</h4>
+          <address style="text-size: 80%">
+            C23, Basement<br> Shivalik, New Delhi, Delhi, 110017 <br> India<br>
+            <p class="custom-link">
+              <a href="tel:18005720720">
+                <i class="fa fa-phone"></i>: 1800-5-720-720<br>
+              </a>
+            </p>
+            <p class="custom-link">
+              <a href="mailto:hiring@iboxz.in">
+                <i class="fa fa-envelope-o"></i> : hiring@iboxz.in<br>
+              </a>
+            </p>
+          </address>
+          <p></p>
+          <div>
+            <a mat-raised-button href="tel:18005720720"><i class="fa fa-phone"></i> Call</a>
+            <a mat-raised-button href="mailto:hiring@iboxz.in"><i class="fa fa-envelope-o"></i> Email</a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

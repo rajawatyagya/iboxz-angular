@@ -1,0 +1,47 @@
+@import "../../../theming/variables";
+
+mat-sidenav-container{
+  height: 100%;
+  margin: 0;
+}
+
+mat-sidenav, mat-sidenav-content {
+}
+
+mat-sidenav {
+  background-color: $background-light;
+  width: 20rem;
+}
+
+mat-toolbar {
+  background-color: $background-grey;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+}
+
+.customfont {
+  font-size: 100%;
+}
+
+::ng-deep .mat-icon{
+  height: 2rem !important;
+  width: 2rem !important;
+  font-size: 2rem !important;
+  padding-top: 5px;
+  padding-left: 4px;
+  align-items: center;
+}
+
+.button {
+  padding: 1rem 1rem;
+}
+
+.logo-image {
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+}
+
+.active {
+  background: $background-moredark;
+}

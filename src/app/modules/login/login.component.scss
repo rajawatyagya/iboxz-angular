@@ -1,0 +1,8 @@
+@mixin myPanel()
+{
+  .my-panel .mat-dialog-container {
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 5px;
+  }
+}

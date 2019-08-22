@@ -1,24 +1,80 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+<div class="grid-container container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+  <div fxFlex>
+    <mat-grid-list cols="2" rowHeight="500px">
+      <mat-grid-tile >
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              <h3>Overview</h3>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>
+              <img src="../../../assets/images/graph3.gif" alt="Overview">
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile >
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title fxFlexAlign="center center">
+              <h3>Upcoming Interviews</h3>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <mat-list>
+              <mat-list-item>
+                First Interview
+              </mat-list-item>
+              <mat-list-item>
+                Second Interview
+              </mat-list-item>
+              <mat-list-item>
+                Third Interview
+              </mat-list-item>
+              <mat-list-item>
+                Fourth Interview
+              </mat-list-item>
+              <mat-list-item>
+                Fifth Interview
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <div fxFlex>
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          <h3>Matching Jobs</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <mat-list>
+          <mat-list-item>
+            First Interview
+          </mat-list-item>
+          <mat-list-item>
+            Second Interview
+          </mat-list-item>
+          <mat-list-item>
+            Third Interview
+          </mat-list-item>
+          <mat-list-item>
+            Fourth Interview
+          </mat-list-item>
+          <mat-list-item>
+            Fifth Interview
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
 </div>

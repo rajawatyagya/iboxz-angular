@@ -8,6 +8,11 @@ body{
   margin: 2rem;
 }
 
+mat-card {
+  min-width: 17rem;
+  min-height: 12rem;
+}
+
 .custom-color {
   color: $accent-color;
 }

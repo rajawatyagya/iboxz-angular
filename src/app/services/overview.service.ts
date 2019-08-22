@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Overview } from '../shared/overview';
 import { OVERVIEW } from '../shared/overviews';
+import { Observable, of } from 'rxjs';
+import {delay} from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +12,15 @@ export class OverviewService {
 
   constructor() { }
 
-  getOverviews(): Overview[] {
-    return OVERVIEW;
+  getOverviews(): Observable<Overview[]> {
+    return of(OVERVIEW);
   }
 
-  getOverview(id: string): Overview {
-    return OVERVIEW.filter((overview) => (overview.id === id))[0];
+  getOverview(id: string): Observable<Overview> {
+    return of(OVERVIEW.filter((overview) => (overview.id === id))[0]);
   }
 
-  getFeaturedOverview(): Overview {
-    return OVERVIEW.filter((overview) => (overview.featured))[0];
+  getFeaturedOverview(): Observable<Overview> {
+    return of(OVERVIEW.filter((overview) => (overview.featured))[0]);
   }
 }

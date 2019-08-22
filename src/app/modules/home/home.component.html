@@ -3,7 +3,7 @@
      fxLayoutGap="10px">
   <div class="home-container" fxFlex fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap="10px">
     <div *ngFor="let overview of overviews; index as i; last as islast">
-      <mat-card>
+      <mat-card class="card-layout" fxLayoutAlign="center center">
         <div class="overview-container" fxFlex="auto">  <!--*ngIf="!islast" style="border-right: 1px solid #00478F;"-->
           <h1 fxLayoutAlign="center center" class="custom-color">{{overview.count}}</h1>
           <h3 fxLayoutAlign="center center">{{overview.name}}</h3>
@@ -120,18 +120,25 @@
 
   <div fxFlex>
     <h1>Team iboxz</h1>
-    <div  fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap="10px">
-      <div *ngFor="let member of members">
-        <div class="team-container" fxFlex="auto">
-          <img src="{{member.image}}" alt="{{member.name}}" height="200rem">
+    <div *ngIf="members">
+      <div  fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap="10px">
+        <div *ngFor="let member of members">
+          <div class="team-container" fxFlex="auto">
+            <img src="{{member.image}}" alt="{{member.name}}" height="200rem">
+          </div>
+          <div class="team-container" fxFlex="auto">
+            <h3 class="custom-color">{{member.name}}</h3>
+            <p>{{member.abbr}}</p>
+            <a mat-icon-button class="btn-facebook" href="{{member.facebook}}"><i class="fa fa-facebook fa-lg"></i></a>
+            <a mat-icon-button class="btn-linkedin" href="{{member.linkedin}}"><i class="fa fa-linkedin fa-lg"></i></a>
+            <a mat-icon-button class="btn-twitter" href="{{member.twitter}}" title="Twitter"><i class="fa fa-twitter fa-lg"></i></a>
+          </div>
         </div>
-        <div class="team-container" fxFlex="auto">
-          <h3 class="custom-color">{{member.name}}</h3>
-          <p>{{member.abbr}}</p>
-          <a mat-icon-button class="btn-facebook" href="{{member.facebook}}"><i class="fa fa-facebook fa-lg"></i></a>
-          <a mat-icon-button class="btn-linkedin" href="{{member.linkedin}}"><i class="fa fa-linkedin fa-lg"></i></a>
-          <a mat-icon-button class="btn-twitter" href="{{member.twitter}}" title="Twitter"><i class="fa fa-twitter fa-lg"></i></a>
-        </div>
+      </div>
+    </div>
+    <div [hidden]="members">
+      <div fxLayoutAlign="center center">
+        <mat-spinner color="accent"></mat-spinner><h3>Loading . . . . .</h3>
       </div>
     </div>
   </div>

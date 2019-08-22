@@ -9,7 +9,7 @@ import { MatSidenavModule,
 import { RouterModule } from '@angular/router';
 
 import { LoginComponent } from '../login/login.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -27,9 +27,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatListModule,
     FlexLayoutModule
   ],
-/*  entryComponents: [
-    LoginComponent  // enables to use as an overlay
-  ],
-  bootstrap: [SidenavComponent]*/
+  bootstrap: [SidenavComponent]
 })
 export class SidenavModule { }

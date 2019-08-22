@@ -7,7 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavModule } from './modules/sidenav/sidenav.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { HttpClientModule } from '@angular/common/http';
+
 import { LoginComponent } from './modules/login/login.component';
+import { LoginModule } from './modules/login/login.module';
 
 
 @NgModule({
@@ -17,15 +20,20 @@ import { LoginComponent } from './modules/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    SidenavModule
+    SidenavModule,
+    LoginModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    LoginComponent  // enables to use as an overlay
+  ],
 })
 export class AppModule {
-  constructor(overlayContainer: OverlayContainer){
+  constructor(overlayContainer: OverlayContainer) {
     overlayContainer.getContainerElement().classList.add('iboxz-angular-theme');
   }
 }

@@ -9,6 +9,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
+import {FlexModule} from '@angular/flex-layout';
+import {MatListModule} from '@angular/material';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    LayoutModule
+    LayoutModule,
+    FlexModule,
+    MatListModule
   ]
 })
 export class DashboardModule { }

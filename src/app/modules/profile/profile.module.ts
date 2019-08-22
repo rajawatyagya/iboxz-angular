@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {MatCardModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatListModule, MatProgressSpinnerModule} from '@angular/material';
 
 
 @NgModule({
@@ -13,7 +13,10 @@ import {MatCardModule} from '@angular/material';
     CommonModule,
     ProfileRoutingModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatListModule
   ]
 })
 export class ProfileModule { }

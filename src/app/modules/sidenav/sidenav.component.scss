@@ -7,25 +7,47 @@ mat-sidenav-container{
 }
 
 mat-sidenav {
-  background-color: $background-light;
+  background-color: $navbar-color;
   width: 25rem;
 }
 
+mat-sidenav-content {
+  padding-top: 3rem;
+}
+
 mat-toolbar {
-  background-color: $background-grey;
+  background-color: $navbar-color;
   position: fixed;
   z-index: 2;
   top: 0;
+  height: 6rem;
+}
+
+mat-icon {
+  padding-left: 0;
+  padding-top: 7px;
+  color: white;
+}
+
+mat-list-item {
+  color: white;
+}
+
+.sidenav-link {
+  text-decoration: none;
+  color: white;
+  font-size: 125%;
 }
 
 .active-link {
-  color: blue;
+  background-color: black;
   font-weight: bold !important;
   border: none;
 }
 
 .customfont {
   font-size: 100%;
+  color: white;
 }
 
 ::ng-deep .mat-icon{
@@ -42,8 +64,11 @@ mat-toolbar {
 }
 
 .logo-image {
-  padding-top: 0.5rem;
+  padding-top: 0.4rem;
   padding-left: 2rem;
+  padding-right: 2rem;
+  height: 35%;
+  width: 35%;
 }
 
 .active {
@@ -61,7 +86,30 @@ mat-toolbar {
 
 @media screen and (max-width: 900px) {
   .mat-sidenav {
-    background-color: $background-light;
+    background-color: #696969;
     width: 12rem;
+    color: white;
+  }
+
+  mat-toolbar {
+    background-color: #696969;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    height: 4rem;
+  }
+
+  .logo-image {
+    padding-top: 0.6rem;
+    padding-left: 0.8rem;
+    padding-right: 2rem;
+    height: 45%;
+    width: 45%;
+  }
+
+  .sidenav-link {
+    text-decoration: none;
+    color: white;
+    font-size: 115%;
   }
 }

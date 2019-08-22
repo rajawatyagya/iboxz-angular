@@ -5,11 +5,20 @@ import { ContactType, Feedback } from '../../shared/feedback';
 import { TeamService } from '../../services/team.service';
 import { Overview } from '../../shared/overview';
 import { TeamMember } from '../../shared/teamMember';
+import { flyInOut } from '../../animations/app.animation';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  // tslint:disable-next-line:no-host-metadata-property
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [
+    flyInOut()
+  ]
 })
 export class HomeComponent implements OnInit {
 
@@ -28,8 +37,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.overviews = this.overviewService.getOverviews();
-    this.members = this.teamService.getMembers();
+    this.overviewService.getOverviews()
+      .subscribe((overviews) => this.overviews = overviews);
+    this.teamService.getMembers()
+      .subscribe((members) => this.members = members);
   }
 
   createForm() {

@@ -1,4 +1,12 @@
+@import "../../../theming/variables";
+
 .container {
-  margin: 20px;
+  margin-top: 80px;
   display: flex;
+  height: 100%;
 }
+
+.div-container {
+  padding: 1rem 1rem;
+}
+

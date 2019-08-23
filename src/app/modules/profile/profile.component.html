@@ -3,14 +3,14 @@
     <mat-card>
       <mat-card-header>
         <mat-card-title>
-          <h2>{{profile.name}}</h2>
+          <h2>{{profile.firstname}} {{profile.lastname}}</h2>
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div *ngIf="profile">
           <div fxFlex fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start top"  fxLayoutGap="10px">
             <div class="div-container">
-              <img src="{{profile.image}}" alt="{{profile.name}}">
+              <img src="{{profile.image}}" alt="{{profile.firstname}}">
             </div>
             <div class="div-container">
               <h2 class="div-container">{{profile.designation}}</h2>

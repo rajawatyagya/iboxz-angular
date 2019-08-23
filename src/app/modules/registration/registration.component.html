@@ -1,0 +1,211 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <h1>Registration</h1>
+  <div class="custom-container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+
+    <div fxFlex="30">
+      <div>
+        <img src="">
+        <div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div fxFlex="70">
+      <h3>User Details</h3>
+      <p>Please fill these details as per government documents</p>
+      <form novalidate [formGroup]="registrationForm" #rform="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+            <mat-error *ngIf="registrationForm.get('firstname').hasError('required') && registrationForm.get('firstname').touched">
+              First Name is required
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+            <mat-error *ngIf="registrationForm.get('lastname').hasError('required') && registrationForm.get('lastname').touched">
+              Last Name is required
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="mobile" placeholder="Mobile Number" type="tel" required>
+            <mat-error *ngIf="registrationForm.get('mobile').hasError('required') && registrationForm.get('mobile').touched">
+              Tel Number is required
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="email" placeholder="Email" type="email" required>
+            <mat-error *ngIf="registrationForm.get('email').hasError('required') && registrationForm.get('email').touched">
+              Email is required
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-select placeholder="Gender" class="half-width reg-container" formControlName="gender">
+            <mat-option *ngFor="let gen of genderType" [value]="gen">
+              {{ gen }}
+            </mat-option>
+          </mat-select>
+        </p>
+        <p>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Date of Birth" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            <mat-error *ngIf="registrationForm.get('dob').hasError('required') && registrationForm.get('dob').touched">
+              Date of birth is required
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="currentSalary" placeholder="Current Salary" type="number" required>
+            <mat-error *ngIf="registrationForm.get('currentSalary').hasError('required') && registrationForm.get('currentSalary').touched">
+              Current Salary is required
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="expectedSalary" placeholder="Expected Salary" type="number" required>
+            <mat-error *ngIf="registrationForm.get('expectedSalary').hasError('required') && registrationForm.get('expectedSalary').touched">
+              Expected Salary is required
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <div formGroupName="address">
+          <h3>Address</h3>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="street" placeholder="Street" type="text">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="city" placeholder="City" type="text">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="state" placeholder="State" type="text" >
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="zipcode" placeholder="zipcode" type="text">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="country" placeholder="Country" type="text">
+            </mat-form-field>
+          </p>
+        </div>
+
+        <h3>Education</h3>
+        <div formArrayName="education">
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="institute" placeholder="Institute" type="text">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="department" placeholder="Department" type="text">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="degree" placeholder="Degree" type="text" >
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="duration" placeholder="Duration" type="text">
+            </mat-form-field>
+          </p>
+        </div>
+
+        <h3>Experience</h3>
+        <div formGroupName="experience">
+          <table class="form-size reg-container">
+            <td>
+              <p>
+                <mat-form-field class="half-width reg-container">
+                  <input matInput formControlName="title" placeholder="Title" type="text">
+                </mat-form-field>
+              </p>
+
+              <p>
+                <mat-form-field class="half-width reg-container">
+                  <input matInput formControlName="company" placeholder="Company Name" type="text">
+                </mat-form-field>
+              </p>
+
+              <p>
+                <mat-form-field class="half-width reg-container">
+                  <input matInput formControlName="skillSet" placeholder="Skill-Sets required for the Role" type="text" >
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field class="half-width reg-container">
+                  <input matInput formControlName="duration" placeholder="Duration" type="text">
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field class="half-width reg-container">
+                  <textarea matInput formControlName="summary" placeholder="Describe your Role" type="text" rows="12"></textarea>
+                </mat-form-field>
+              </p>
+            </td>
+            <td>
+              <mat-slide-toggle formControlName="current">Current?</mat-slide-toggle>
+            </td>
+          </table>
+        </div>
+
+        <h3>Additional Details</h3>
+
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="resume" placeholder="Resume" type="text">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="facebook" placeholder="Facebook Link" type="text">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="twitter" placeholder="Twitter Link" type="text">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="linkedin" placeholder="LinkedIn Link" type="text">
+          </mat-form-field>
+        </p>
+
+        <button mat-button type="submit" class="background-primary text-floral-white button-custom"
+                routerLink="/dashboard">Submit</button>
+
+      </form>
+    </div>
+  </div>
+</div>

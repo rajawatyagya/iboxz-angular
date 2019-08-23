@@ -1,14 +1,29 @@
 <mat-sidenav-container>
-  <mat-sidenav opened=false mode="over" #sidenav>
+  <mat-sidenav opened=false mode="over" #sidenav fixedInViewport>
     <mat-nav-list>
       <mat-list-item class="sidenav-link" routerLinkActive="active-link">
-        <h4 matLine routerLink="/home" (click)="sideNavToggle(sidenav)"><i class="fa fa-home"></i> Home</h4>
+        <h4 matLine routerLink="/home" (click)="sideNavToggle(sidenav)"><i class="fa fa-home" aria-hidden="true"></i> About Us</h4>
       </mat-list-item>
       <mat-list-item class="sidenav-link" routerLinkActive="active-link">
-        <h4 matLine routerLink="/dashboard" (click)="sideNavToggle(sidenav)"><i class="fa fa-pie-chart"></i>Dashboard</h4>
+        <h4 matLine routerLink="/dashboard" (click)="sideNavToggle(sidenav)"><i class="fa fa-line-chart" aria-hidden="true"></i>  Dashboard</h4>
       </mat-list-item>
       <mat-list-item class="sidenav-link" routerLinkActive="active-link">
-        <h4 matLine routerLink="/profile" (click)="sideNavToggle(sidenav)"> <i class="fa fa-user"></i> Profile</h4>
+        <h4 matLine routerLink="/assessment" (click)="sideNavToggle(sidenav)"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Assessment</h4>
+      </mat-list-item>
+      <mat-list-item class="sidenav-link" routerLinkActive="active-link">
+        <h4 matLine routerLink="/interviews" (click)="sideNavToggle(sidenav)"> <i class="fa fa-black-tie" aria-hidden="true"></i> Interviews</h4>
+      </mat-list-item>
+      <mat-list-item class="sidenav-link" routerLinkActive="active-link">
+        <h4 matLine routerLink="/jobs" (click)="sideNavToggle(sidenav)"> <i class="fa fa-briefcase" aria-hidden="true"></i> Jobs</h4>
+      </mat-list-item>
+      <mat-list-item class="sidenav-link" routerLinkActive="active-link">
+        <h4 matLine routerLink="/refer" (click)="sideNavToggle(sidenav)"> <i class="fa fa-handshake-o" aria-hidden="true"></i> Refer a Friend</h4>
+      </mat-list-item>
+      <mat-list-item class="sidenav-link" routerLinkActive="active-link">
+        <h4 matLine routerLink="/wallet" (click)="sideNavToggle(sidenav)"> <i class="fa fa-google-wallet" aria-hidden="true"></i> iboxz Wallet</h4>
+      </mat-list-item>
+      <mat-list-item class="sidenav-link" routerLinkActive="active-link">
+        <h4 matLine routerLink="/profile" (click)="sideNavToggle(sidenav)"> <i class="fa fa-user-o"></i> Profile</h4>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
@@ -22,7 +37,7 @@
       </button>
       <a routerLink="/home"><span><img class="logo-image" src="assets/images/logo.png"></span></a>
       <span class="flex-spacer"></span>
-      <a mat-button class="customfont"><i class="fa fa-user" aria-hidden="true" (click)="openLoginForm()"></i></a>
+      <a mat-button class="customfont"><i class="fa fa-user-o" aria-hidden="true" (click)="openLoginForm()"></i></a>
     </mat-toolbar>
     <!-- Hearer Toolbar End -->
 

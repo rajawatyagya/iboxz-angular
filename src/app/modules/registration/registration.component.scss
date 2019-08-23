@@ -1,0 +1,42 @@
+@import "../../../theming/variables";
+
+body{
+  margin: 2rem;
+}
+
+.custom-color {
+  color: $accent-color;
+}
+
+.custom-container{
+  margin: 20px;
+  display: flex;
+}
+
+.custom-container>div {
+  flex: 0 50%;
+}
+
+.reg-container {
+  padding: 1rem 1rem;
+}
+
+.full-width {
+  width: 95%;
+}
+
+.half-width {
+  width: 45%;
+}
+
+.form-size {
+  width: 75%;
+}
+
+.button-custom {
+  margin-left: 1rem;
+  width: 15rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 160%;
+}

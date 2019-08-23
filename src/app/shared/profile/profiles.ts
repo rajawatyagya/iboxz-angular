@@ -3,7 +3,8 @@ import { Profile } from './profile';
 export const PROFILES: Profile[] = [
   {
     id: '1',
-    name: 'Sumegha Thakur',
+    firstname: 'Sumegha',
+    lastname: 'Thakur',
     image: '/assets/images/sumegha.jpg',
     designation: 'Associate / Sr. Associate',
     mobile: '(989) 933-7908',

@@ -16,6 +16,30 @@ const routes: Routes = [
     loadChildren: './modules/profile/profile.module#ProfileModule'
   },
   {
+    path: 'assessment',
+    loadChildren: './modules/assessment/assessment.module#AssessmentModule'
+  },
+  {
+    path: 'interviews',
+    loadChildren: './modules/interviews/interviews.module#InterviewsModule'
+  },
+  {
+    path: 'jobs',
+    loadChildren: './modules/jobs/jobs.module#JobsModule'
+  },
+  {
+    path: 'refer',
+    loadChildren: './modules/refer/refer.module#ReferModule'
+  },
+  {
+    path: 'wallet',
+    loadChildren: './modules/wallet/wallet.module#WalletModule'
+  },
+  {
+    path: 'registration',
+    loadChildren: './modules/registration/registration.module#RegistrationModule'
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'

@@ -4,7 +4,8 @@ import { Address } from './address';
 
 export class Profile {
   id: string;
-  name: string;
+  firstname: string;
+  lastname: string;
   image: string;
   designation: string;
   description: string;
@@ -23,3 +24,5 @@ export class Profile {
   twitter: string;
   linkedin: string;
 }
+
+export const Gender = ['Male', 'Female', 'Other'];

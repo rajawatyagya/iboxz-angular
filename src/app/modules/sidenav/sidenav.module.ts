@@ -8,7 +8,6 @@ import { MatSidenavModule,
         MatListModule} from '@angular/material';
 import { RouterModule } from '@angular/router';
 
-import { LoginComponent } from '../login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 

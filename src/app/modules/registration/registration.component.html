@@ -1,6 +1,6 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
   <h1>Registration</h1>
-  <div class="custom-container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+  <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
 
     <div fxFlex="30">
       <div>
@@ -82,7 +82,7 @@
           </mat-form-field>
         </p>
 
-        <div formGroupName="address">
+        <div formGroupName="address" >
           <h3>Address</h3>
           <p>
             <mat-form-field class="half-width reg-container">
@@ -114,34 +114,54 @@
         </div>
 
         <h3>Education</h3>
-        <div formArrayName="education">
-          <p>
-            <mat-form-field class="half-width reg-container">
-              <input matInput formControlName="institute" placeholder="Institute" type="text">
-            </mat-form-field>
-          </p>
+        <div formArrayName="education" *ngFor="let item of education.controls; let i = index;">
+          <div [formGroupName]="i">
+            <table>
+              <td>
+                <p>Education details {{i +1}}</p>
+              </td>
+              <td>
+                <button mat-button class="background-primary flex-spacer text-floral-white" (click)="deleteEducationGroup(i)">Delete</button>
+              </td>
+            </table>
+            <p>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="institute" placeholder="Institute" type="text">
+              </mat-form-field>
+            </p>
 
-          <p>
-            <mat-form-field class="half-width reg-container">
-              <input matInput formControlName="department" placeholder="Department" type="text">
-            </mat-form-field>
-          </p>
+            <p>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="department" placeholder="Department" type="text">
+              </mat-form-field>
+            </p>
 
-          <p>
-            <mat-form-field class="half-width reg-container">
-              <input matInput formControlName="degree" placeholder="Degree" type="text" >
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field class="half-width reg-container">
-              <input matInput formControlName="duration" placeholder="Duration" type="text">
-            </mat-form-field>
-          </p>
+            <p>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="degree" placeholder="Degree" type="text" >
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="duration" placeholder="Duration" type="text">
+              </mat-form-field>
+            </p>
+          </div>
         </div>
 
+        <button mat-button class="background-primary text-floral-white" (click)="addEducation()">Add Education</button>
+
         <h3>Experience</h3>
-        <div formGroupName="experience">
-          <table class="form-size reg-container">
+        <div formArrayName="experience" *ngFor="let item of experience.controls; let i = index;">
+          <table>
+            <td>
+              <p>Experience details {{i +1}}</p>
+            </td>
+            <td>
+              <button mat-button class="background-primary flex-spacer text-floral-white" (click)="deleteExperienceGroup(i)">Delete</button>
+            </td>
+          </table>
+          <table [formGroupName]="i" class="form-size reg-container">
             <td>
               <p>
                 <mat-form-field class="half-width reg-container">
@@ -177,6 +197,8 @@
           </table>
         </div>
 
+        <button mat-button class="background-primary text-floral-white" (click)="addExperience()">Add Experience</button>
+
         <h3>Additional Details</h3>
 
         <p>
@@ -204,7 +226,6 @@
 
         <button mat-button type="submit" class="background-primary text-floral-white button-custom"
                 routerLink="/dashboard">Submit</button>
-
       </form>
     </div>
   </div>

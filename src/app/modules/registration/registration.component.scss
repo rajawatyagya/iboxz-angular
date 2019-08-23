@@ -13,10 +13,6 @@ body{
   display: flex;
 }
 
-.custom-container>div {
-  flex: 0 50%;
-}
-
 .reg-container {
   padding: 1rem 1rem;
 }
@@ -26,11 +22,11 @@ body{
 }
 
 .half-width {
-  width: 45%;
+  width: 65%;
 }
 
 .form-size {
-  width: 75%;
+  width: 85%;
 }
 
 .button-custom {

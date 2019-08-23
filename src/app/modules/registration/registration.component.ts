@@ -20,18 +20,24 @@ export class RegistrationComponent implements OnInit {
 
   registrationForm: FormGroup;
   registrationData: Profile;
-  education: FormArray;
-  experience: FormArray;
   genderType = Gender;
   @ViewChild('rform', { read: true, static: false }) registrationFormDirective;
 
   startDate = new Date(1994, 3, 14);
 
   constructor(private fb: FormBuilder) {
-    this.createForm();
   }
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  get education(): FormArray {
+    return this.registrationForm.get('education') as FormArray;
+  }
+
+  get experience(): FormArray {
+    return this.registrationForm.get('experience') as FormArray;
   }
 
   createForm() {
@@ -39,14 +45,7 @@ export class RegistrationComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       education: this.fb.array([this.createEducationGroup()]),
-      experience: this.fb.array([this.fb.group({
-        title: ['', Validators.required],
-        company: ['', Validators.required],
-        summary: ['', Validators.required],
-        skillSet: ['', Validators.required],
-        duration: ['', Validators.required],
-        current: false
-      })]),
+      experience: this.fb.array([this.createExperienceGroup()]),
       email: ['', Validators.required],
       mobile: ['', Validators.required],
       dob: ['', Validators.required],
@@ -71,12 +70,14 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
     this.registrationData = this.registrationForm.value;
     console.log(this.registrationData);
-    this.registrationFormDirective.resetForm();
   }
 
   addEducation(): void {
-    this.education = this.registrationForm.get('education') as FormArray;
     this.education.push(this.createEducationGroup());
+  }
+
+  addExperience(): void {
+    this.experience.push(this.createExperienceGroup());
   }
 
   createEducationGroup(): FormGroup {
@@ -86,5 +87,24 @@ export class RegistrationComponent implements OnInit {
       degree: ['', Validators.required],
       duration: ['', Validators.required]
     });
+  }
+
+  createExperienceGroup(): FormGroup {
+    return this.fb.group({
+      title: ['', Validators.required],
+      company: ['', Validators.required],
+      summary: ['', Validators.required],
+      skillSet: ['', Validators.required],
+      duration: ['', Validators.required],
+      current: false
+    });
+  }
+
+  deleteEducationGroup(index: number): void {
+    this.education.removeAt(index);
+  }
+
+  deleteExperienceGroup(index: number): void {
+    this.experience.removeAt(index);
   }
 }

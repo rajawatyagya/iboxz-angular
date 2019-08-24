@@ -2,7 +2,7 @@ import { Profile } from './profile';
 
 export const PROFILES: Profile[] = [
   {
-    id: '1',
+    id: 1,
     firstname: 'Sumegha',
     lastname: 'Thakur',
     image: '/assets/images/sumegha.jpg',

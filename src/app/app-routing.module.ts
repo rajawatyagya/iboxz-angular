@@ -36,8 +36,12 @@ const routes: Routes = [
     loadChildren: './modules/wallet/wallet.module#WalletModule'
   },
   {
-    path: 'registration',
-    loadChildren: './modules/registration/registration.module#RegistrationModule'
+    path: 'candidateRegistration',
+    loadChildren: './modules/registration/candidateRegistration/candidateRegistration.module#CandidateRegistrationModule'
+  },
+  {
+    path: 'employerRegistration',
+    loadChildren: './modules/registration/employer-registration/employer-registration.module#EmployerRegistrationModule'
   },
   {
     path: '',

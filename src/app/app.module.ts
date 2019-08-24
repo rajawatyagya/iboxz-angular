@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './modules/login/login.component';
 import { LoginModule } from './modules/login/login.module';
 import { RegisterModule } from './modules/register/register.module';
-import {RegisterComponent} from './modules/register/register.component';
+import { RegisterComponent } from './modules/register/register.component';
 
 
 @NgModule({

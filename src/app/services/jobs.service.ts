@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { JOBS } from '../shared/jobs';
 import { Job } from '../shared/job';
 import { Observable, of } from 'rxjs';
 import {delay} from 'rxjs/operators';
@@ -11,7 +10,7 @@ export class JobsService {
 
   constructor() { }
 
-  getJobs(): Observable<Job[]> {
+  /*getJobs(): Observable<Job[]> {
     return of(JOBS);
   }
 
@@ -21,5 +20,5 @@ export class JobsService {
 
   getFeaturedJob(): Observable<Job> {
     return of(JOBS.filter((job) => (job.featured))[0]);
-  }
+  }*/
 }

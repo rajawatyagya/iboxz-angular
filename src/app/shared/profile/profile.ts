@@ -1,9 +1,9 @@
 import { Education } from './education';
 import { Experience } from './experience';
-import { Address } from './address';
+import { Address } from '../address';
 
 export class Profile {
-  id: string;
+  id: number;
   firstname: string;
   lastname: string;
   image: string;

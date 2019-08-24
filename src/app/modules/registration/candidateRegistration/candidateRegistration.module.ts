@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RegistrationRoutingModule } from './registration-routing.module';
-import { RegistrationComponent } from './registration.component';
+import { CandidateRegistrationRoutingModule } from './candidateRegistration-routing.module';
+import { CandidateRegistrationComponent } from './candidateRegistration.component';
 import {FlexModule} from '@angular/flex-layout';
 import {ReactiveFormsModule} from '@angular/forms';
 import {
@@ -17,10 +17,10 @@ import {
 
 
 @NgModule({
-  declarations: [RegistrationComponent],
+  declarations: [CandidateRegistrationComponent],
   imports: [
     CommonModule,
-    RegistrationRoutingModule,
+    CandidateRegistrationRoutingModule,
     FlexModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -32,4 +32,4 @@ import {
     MatNativeDateModule
   ]
 })
-export class RegistrationModule { }
+export class CandidateRegistrationModule { }

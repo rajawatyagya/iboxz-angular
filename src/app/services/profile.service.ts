@@ -15,7 +15,7 @@ export class ProfileService {
     return of(PROFILES);
   }
 
-  getProfile(id: string): Observable<Profile> {
+  getProfile(id: number): Observable<Profile> {
     return of(PROFILES.filter((profile) => profile.id === id)[0]);
   }
 

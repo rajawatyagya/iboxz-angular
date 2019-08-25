@@ -1,6 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Profile, Gender } from '../../../shared/profile/profile';
+import {Profile,
+        Gender,
+        NameTitle,
+        HigherSecTitle,
+        DiplomaTitle,
+        GradTitle,
+        PostGradTitle,
+        OtherQualTitle} from '../../../shared/profile/profile';
 import { flyInOut } from '../../../animations/app.animation';
 
 @Component({
@@ -10,7 +17,7 @@ import { flyInOut } from '../../../animations/app.animation';
   // tslint:disable-next-line:no-host-metadata-property
   host: {
     '[@flyInOut]': 'true',
-    'style': 'display: block;'
+    style: 'display: block;'
   },
   animations: [
     flyInOut()
@@ -21,6 +28,12 @@ export class CandidateRegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   registrationData: Profile;
   genderType = Gender;
+  nameTitle = NameTitle;
+  higherSecTitle = HigherSecTitle;
+  diplomaTitle = DiplomaTitle;
+  gradTitle = GradTitle;
+  postGradTitle = PostGradTitle;
+  otherQualTitle = OtherQualTitle;
   @ViewChild('rform', { read: true, static: false }) registrationFormDirective;
 
   startDate = new Date(1994, 3, 14);
@@ -32,38 +45,50 @@ export class CandidateRegistrationComponent implements OnInit {
     this.createForm();
   }
 
-  get education(): FormArray {
-    return this.registrationForm.get('education') as FormArray;
-  }
-
   get experience(): FormArray {
     return this.registrationForm.get('experience') as FormArray;
   }
 
   createForm() {
     this.registrationForm = this.fb.group({
-      firstname:      ['', Validators.required],
-      lastname:       ['', Validators.required],
-      education:      this.fb.array([this.createEducationGroup()]),
-      experience:     this.fb.array([this.createExperienceGroup()]),
-      email:          ['', Validators.required],
-      mobile:         ['', Validators.required],
-      dob:            ['', Validators.required],
-      currentSalary:  ['', Validators.required],
-      expectedSalary: ['', Validators.required],
-      address:        this.fb.group({
-        street:       ['', Validators.required],
-        city:         ['', Validators.required],
-        state:        ['', Validators.required],
-        zipcode:      ['', Validators.required],
-        country:      ['', Validators.required],
+      title:              ['', Validators.required],
+      firstname:          ['', Validators.required],
+      middlename:         '',
+      lastname:           ['', Validators.required],
+      fatherfirstname:    '',
+      fathermiddlename:   '',
+      fatherlastname:     '',
+      highschool:         [this.createEducationGroup()],
+      highersecondary:    [this.createEducationGroup()],
+      higherseceqdiploma: [this.createEducationGroup()],
+      graduation:         [this.createEducationGroup()],
+      postgraduation:     [this.createEducationGroup()],
+      otherdiploma:       [this.createEducationGroup()],
+      otherqualification: [this.createEducationGroup()],
+      experience:         this.fb.array([this.createExperienceGroup()]),
+      email:              ['', Validators.required],
+      mobile:             ['', Validators.required],
+      dob:                ['', Validators.required],
+      currentSalary:      ['', Validators.required],
+      expectedSalary:     ['', Validators.required],
+      pannumber:          ['', Validators.required],
+      aadharnumber:       ['', Validators.required],
+      languages:          '',
+      address:            this.fb.group({
+        addressline1:                   ['', Validators.required],
+        addressline2:                   ['', Validators.required],
+        city:                           ['', Validators.required],
+        state:                          ['', Validators.required],
+        zipcode:                        ['', Validators.required],
+        country:                        ['', Validators.required],
       }),
-      gender:         '',
-      message:        '',
-      resume:         '',
-      facebook:       '',
-      twitter:        '',
-      linkedin:       ''
+      image:              '',
+      gender:             '',
+      message:            '',
+      resume:             '',
+      facebook:           '',
+      twitter:            '',
+      linkedin:           ''
     });
   }
 
@@ -72,8 +97,8 @@ export class CandidateRegistrationComponent implements OnInit {
     console.log(this.registrationData);
   }
 
-  addEducation(): void {
-    this.education.push(this.createEducationGroup());
+  get highschool() {
+    return this.registrationForm.get('highschool');
   }
 
   addExperience(): void {
@@ -82,26 +107,27 @@ export class CandidateRegistrationComponent implements OnInit {
 
   createEducationGroup(): FormGroup {
     return this.fb.group({
+                coursetitle:  ['10th', Validators.required],
                 institute:    ['', Validators.required],
+                college:      ['', Validators.required],
                 department:   ['', Validators.required],
                 degree:       ['', Validators.required],
-                duration:     ['', Validators.required]
+                startdate:    ['', Validators.required],
+                enddate:      ['', Validators.required],
+                type:         ['', Validators.required],
+                percentage:   ['', Validators.required]
     });
   }
 
   createExperienceGroup(): FormGroup {
     return this.fb.group({
-                title:    ['', Validators.required],
-                company:  ['', Validators.required],
-                summary:  ['', Validators.required],
-                skillSet: ['', Validators.required],
-                duration: ['', Validators.required],
-                current:  false
+                title:        ['', Validators.required],
+                company:      ['', Validators.required],
+                summary:      ['', Validators.required],
+                skillSet:     ['', Validators.required],
+                duration:     ['', Validators.required],
+                current:      false
     });
-  }
-
-  deleteEducationGroup(index: number): void {
-    this.education.removeAt(index);
   }
 
   deleteExperienceGroup(index: number): void {

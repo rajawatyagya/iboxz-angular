@@ -22,11 +22,25 @@ body{
 }
 
 .half-width {
-  width: 65%;
+  width: 40%;
+}
+
+.min-width {
+  width: 18.5%;
+}
+
+mat-card, .mat-button {
+  margin-top: 1rem;
 }
 
 .form-size {
   width: 85%;
+}
+
+.fa {
+  font-size: 2000%;
+  color: dimgrey;
+  padding: 1rem 1rem;
 }
 
 .button-custom {

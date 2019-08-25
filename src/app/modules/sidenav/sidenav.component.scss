@@ -8,11 +8,12 @@ mat-sidenav-container{
 
 mat-sidenav {
   background-color: $navbar-color;
-  width: 25rem;
+  width: 18rem;
+  margin-top: 6rem;
 }
 
 mat-sidenav-content {
-  padding-top: 3rem;
+  padding-top: 5rem;
 }
 
 mat-toolbar {
@@ -44,6 +45,10 @@ mat-list-item {
   background-color: black;
   font-weight: bold !important;
   border: none;
+
+  i {
+    color: $accent-color;
+  }
 }
 
 .customfont {
@@ -86,10 +91,11 @@ mat-list-item {
 }
 
 @media screen and (max-width: 900px) {
-  .mat-sidenav {
+  mat-sidenav {
     background-color: #696969;
     width: 12rem;
     color: white;
+    margin-top: 4rem;
   }
 
   mat-toolbar {

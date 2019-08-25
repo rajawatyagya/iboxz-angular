@@ -22,4 +22,9 @@ export class SidenavComponent implements OnInit {
     sidenav.toggle();
   }
 
+  isLargeScreen(): boolean {
+    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    return width > 720;
+  }
+
 }

@@ -2,18 +2,13 @@
      fxLayout="column"
      fxLayoutGap="10px">
   <div class="home-container" fxFlex fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap="10px">
-    <div *ngFor="let overview of overviews; index as i; last as islast">
+    <div *ngFor="let overview of overviews">
       <mat-card class="card-layout" fxLayoutAlign="center center">
-        <div class="overview-container" fxFlex="auto">  <!--*ngIf="!islast" style="border-right: 1px solid #00478F;"-->
+        <div class="overview-container" fxFlex="auto">
           <h1 fxLayoutAlign="center center" class="custom-color">{{overview.count}}</h1>
           <h3 fxLayoutAlign="center center">{{overview.name}}</h3>
           <p fxLayoutAlign="center center">{{overview.description}}</p>
         </div>
-        <!--<div class="overview-container" fxFlex="auto" *ngIf="islast">
-          <h1 class="custom-color">{{overview.count}}</h1>
-          <h3>{{overview.name}}</h3>
-          <p>{{overview.description}}</p>
-        </div>-->
       </mat-card>
     </div>
   </div>
@@ -217,18 +212,8 @@
               </a>
             </p>
           </address>
-          <p></p>
-          <div>
-            <a mat-raised-button href="tel:18005720720"><i class="fa fa-phone"></i> Call</a>
-            <a mat-raised-button href="mailto:hiring@iboxz.in"><i class="fa fa-envelope-o"></i> Email</a>
-          </div>
-
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </div>

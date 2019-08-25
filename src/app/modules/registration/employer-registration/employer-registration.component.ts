@@ -9,8 +9,8 @@ import {Profile} from '../../../shared/profile/profile';
   styleUrls: ['./employer-registration.component.scss'],
   // tslint:disable-next-line:no-host-metadata-property
   host: {
-    '[@flyInOut]': 'true',
-    'style': 'display: block;'
+    style: 'display: block;',
+    '[@flyInOut]': 'true'
   },
   animations: [
     flyInOut()

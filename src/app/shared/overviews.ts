@@ -40,7 +40,7 @@ export const OVERVIEW: Overview[] = [
     id: '5',
     name: 'Timeline',
     count: 'In 3 hrs',
-    description: 'candidateRegistration got a job',
+    description: 'candidates got a job',
     featured: false
   },
 ];

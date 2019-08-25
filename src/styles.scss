@@ -7,14 +7,24 @@ html, body { height: 100%; }
 
 body{
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding-top: 0;
   padding-bottom: 0;
   background-color: $background-light;
 }
 
+input,
+button,
+mat-card,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
 @mixin zero-margin($pad-up-down, $pad-left-right) {
-  margin: 0px auto;
+  margin: 0 auto;
   padding: $pad-up-down $pad-left-right;
 }
 

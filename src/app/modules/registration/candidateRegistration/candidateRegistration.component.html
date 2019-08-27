@@ -1,513 +1,539 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
-      <form novalidate [formGroup]="registrationForm" #rform="ngForm" (ngSubmit)="onSubmit()">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>
-              <h3>Personal Details</h3>
-            </mat-card-title>
-            <mat-card-subtitle>
-              <p>Please fill these details as per government documents</p>
-            </mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+  <form novalidate [formGroup]="registrationForm" #rform="ngForm" (ngSubmit)="onSubmit()">
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3>Personal Details</h3>
+          </mat-panel-title>
+          <mat-panel-description>
+            <p>Please fill these details as per government documents</p>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
 
-              <div fxFlex="30">
-                <div>
-                  <i class="fa fa-user-o"></i>
-                  <div>
-                    <table>
-                      <td>
-                        <button mat-button class="background-primary flex-spacer text-floral-white">Upload Image</button>
-                      </td>
-                      <td>
-                        <button mat-button class="background-primary flex-spacer text-floral-white">Delete</button>
-                      </td>
-                    </table>
-                  </div>
-                </div>
-              </div>
-
-              <div fxFlex="70">
-                <p>
-                  <mat-select placeholder="Title" class="half-width reg-container" formControlName="title">
-                    <mat-option *ngFor="let title of nameTitle" [value]="title">
-                      {{ title }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
-                    <mat-error *ngIf="registrationForm.get('firstname').hasError('required') && registrationForm.get('firstname').touched">
-                      First Name is required
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput formControlName="middlename" placeholder="Middle Name" type="text">
-                  </mat-form-field>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
-                    <mat-error *ngIf="registrationForm.get('lastname').hasError('required') && registrationForm.get('lastname').touched">
-                      Last Name is required
-                    </mat-error>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="mobile" placeholder="Mobile Number" type="tel" required>
-                    <mat-error *ngIf="registrationForm.get('mobile').hasError('required') && registrationForm.get('mobile').touched">
-                      Tel Number is required
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="email" placeholder="Email" type="email" required>
-                    <mat-error *ngIf="registrationForm.get('email').hasError('required') && registrationForm.get('email').touched">
-                      Email is required
-                    </mat-error>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-select placeholder="Gender" class="half-width reg-container" formControlName="gender">
-                    <mat-option *ngFor="let gen of genderType" [value]="gen">
-                      {{ gen }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Date of Birth" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-                    <mat-error *ngIf="registrationForm.get('dob').hasError('required') && registrationForm.get('dob').touched">
-                      Date of birth is required
-                    </mat-error>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="currentSalary" placeholder="Current Salary" type="number" required>
-                    <mat-error *ngIf="registrationForm.get('currentSalary').hasError('required') && registrationForm.get('currentSalary').touched">
-                      Current Salary is required
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="expectedSalary" placeholder="Expected Salary" type="number" required>
-                    <mat-error *ngIf="registrationForm.get('expectedSalary').hasError('required') && registrationForm.get('expectedSalary').touched">
-                      Expected Salary is required
-                    </mat-error>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-select placeholder="Title" class="min-width reg-container" formControlName="title">
-                    <mat-option *ngFor="let title of nameTitle" [value]="title">
-                      {{ title }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-form-field class=" min-width reg-container">
-                    <input matInput formControlName="fatherfirstname" placeholder="Father's First Name" type="text">
-                  </mat-form-field>
-                  <mat-form-field class=" min-width reg-container">
-                    <input matInput formControlName="fathermiddlename" placeholder="Father's Middle Name" type="text">
-                  </mat-form-field>
-                  <mat-form-field class=" min-width reg-container">
-                    <input matInput formControlName="fatherlastname" placeholder="Father's Last Name" type="text">
-                  </mat-form-field>
-                </p>
+          <div fxFlex="30">
+            <div>
+              <i class="fa fa-user-o"></i>
+              <div>
+                <table>
+                  <td>
+                    <button mat-button class="background-primary flex-spacer text-floral-white">Upload Image</button>
+                  </td>
+                  <td>
+                    <button mat-button class="background-primary flex-spacer text-floral-white">Delete</button>
+                  </td>
+                </table>
               </div>
             </div>
+          </div>
+
+          <div fxFlex="70">
             <p>
-              <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="pannumber" placeholder="PAN Number" type="text">
+              <mat-select placeholder="Title" class="half-width reg-container" formControlName="title">
+                <mat-option *ngFor="let title of nameTitle" [value]="title">
+                  {{ title }}
+                </mat-option>
+              </mat-select>
+              <mat-form-field class=" half-width reg-container">
+                <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+                <mat-error *ngIf="registrationForm.get('firstname').hasError('required') && registrationForm.get('firstname').touched">
+                  First Name is required
+                </mat-error>
               </mat-form-field>
-              <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="aadharnumber" placeholder="Aadhar Number" type="text">
+              <mat-form-field class=" half-width reg-container">
+                <input matInput formControlName="middlename" placeholder="Middle Name" type="text">
+              </mat-form-field>
+              <mat-form-field class=" half-width reg-container">
+                <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+                <mat-error *ngIf="registrationForm.get('lastname').hasError('required') && registrationForm.get('lastname').touched">
+                  Last Name is required
+                </mat-error>
               </mat-form-field>
             </p>
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="languages" placeholder="Languages Known" type="text">
+                <input matInput formControlName="mobile" placeholder="Mobile Number" type="tel" required>
+                <mat-error *ngIf="registrationForm.get('mobile').hasError('required') && registrationForm.get('mobile').touched">
+                  Tel Number is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="email" placeholder="Email" type="email" required>
+                <mat-error *ngIf="registrationForm.get('email').hasError('required') && registrationForm.get('email').touched">
+                  Email is required
+                </mat-error>
               </mat-form-field>
             </p>
-          </mat-card-content>
-        </mat-card>
+            <p>
+              <mat-select placeholder="Gender" class="half-width reg-container" formControlName="gender">
+                <mat-option *ngFor="let gen of genderType" [value]="gen">
+                  {{ gen }}
+                </mat-option>
+              </mat-select>
+              <mat-form-field class=" half-width reg-container">
+                <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Date of Birth" type="text" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-error *ngIf="registrationForm.get('dob').hasError('required') && registrationForm.get('dob').touched">
+                  Date of birth is required
+                </mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="currentSalary" placeholder="Current Salary" type="number" required>
+                <mat-error *ngIf="registrationForm.get('currentSalary').hasError('required') && registrationForm.get('currentSalary').touched">
+                  Current Salary is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="expectedSalary" placeholder="Expected Salary" type="number" required>
+                <mat-error *ngIf="registrationForm.get('expectedSalary').hasError('required') && registrationForm.get('expectedSalary').touched">
+                  Expected Salary is required
+                </mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-select placeholder="Title" class="min-width reg-container" formControlName="title">
+                <mat-option *ngFor="let title of nameTitle" [value]="title">
+                  {{ title }}
+                </mat-option>
+              </mat-select>
+              <mat-form-field class=" min-width reg-container">
+                <input matInput formControlName="fatherfirstname" placeholder="Father's First Name" type="text">
+              </mat-form-field>
+              <mat-form-field class=" min-width reg-container">
+                <input matInput formControlName="fathermiddlename" placeholder="Father's Middle Name" type="text">
+              </mat-form-field>
+              <mat-form-field class=" min-width reg-container">
+                <input matInput formControlName="fatherlastname" placeholder="Father's Last Name" type="text">
+              </mat-form-field>
+            </p>
+          </div>
+        </div>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="pannumber" placeholder="PAN Number" type="text">
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="aadharnumber" placeholder="Aadhar Number" type="text">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="languages" placeholder="Languages Known" type="text">
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
 
-        <div formGroupName="address">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>
-                <h3>Present Postal Address</h3>
-              </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="addressline1" placeholder="Address Line 1" type="text">
-                </mat-form-field>
-              <p>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="addressline2" placeholder="Address Line 2" type="text">
-                </mat-form-field>
-              </p>
+      <mat-expansion-panel formGroupName="address" [expanded]="step === 1" (opened)="setStep(1)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3>Present Postal Address</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="addressline1" placeholder="Address Line 1" type="text">
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="addressline2" placeholder="Address Line 2" type="text">
+          </mat-form-field>
+        </p>
 
-              <p>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="city" placeholder="City" type="text">
-                </mat-form-field>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="state" placeholder="State" type="text" >
-                </mat-form-field>
-              </p>
-              <p>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="zipcode" placeholder="Pin Code" type="text">
-                </mat-form-field>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="country" placeholder="Country" type="text">
-                </mat-form-field>
-              </p>
-            </mat-card-content>
-          </mat-card>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="city" placeholder="City" type="text">
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="state" placeholder="State" type="text" >
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="zipcode" placeholder="Pin Code" type="text">
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="country" placeholder="Country" type="text">
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3>Education Details</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div formGroupName="highschool">
+          <h3 class="reg-container">High School</h3>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="coursetitle" placeholder="Course Title" type="text" required>
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="college" placeholder="College" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <span class="reg-container">Duration</span><br>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerFrom" formControlName="startdate" placeholder="Start Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFrom startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerTo" formControlName="enddate" placeholder="End Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+              <mat-datepicker #pickerTo startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </p>
         </div>
 
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>
-                <h3>Education Details</h3>
-              </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <div formGroupName="highschool">
-                <h3 class="reg-container">High School</h3>
-                <p>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="coursetitle" placeholder="Course Title" type="text" value="10th" required disabled>
-                  </mat-form-field>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
-                  </mat-form-field>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="College" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <span class="reg-container">Duration</span><br>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerFrom" formControlName="startdate" placeholder="Start Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerFrom startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerTo" formControlName="startdate" placeholder="End Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerTo startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                </p>
-              </div>
+        <div formGroupName="highersecondary">
+          <h3 class="reg-container">Higher Secondary</h3>
+          <p>
+            <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
+              <mat-option *ngFor="let title of higherSecTitle" [value]="title">
+                {{ title }}
+              </mat-option>
+            </mat-select>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="college" placeholder="College" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <span class="reg-container">Duration</span><br>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerFrom1" formControlName="startdate" placeholder="Start Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerFrom1"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFrom1 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerTo1" formControlName="enddate" placeholder="End Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerTo1"></mat-datepicker-toggle>
+              <mat-datepicker #pickerTo1 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </p>
+        </div>
 
-              <div formGroupName="highersecondary">
-                <h3 class="reg-container">Higher Secondary</h3>
-                <p>
-                  <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
-                    <mat-option *ngFor="let title of higherSecTitle" [value]="title">
-                      {{ title }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
-                  </mat-form-field>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="College" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <span class="reg-container">Duration</span><br>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerFrom1" formControlName="startdate" placeholder="Start Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerFrom1"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerFrom1 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerTo1" formControlName="startdate" placeholder="End Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerTo1"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerTo1 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                </p>
-              </div>
+        <div formGroupName="higherseceqdiploma">
+          <h3 class="reg-container">Equivalent Diploma</h3>
+          <p>
+            <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
+              <mat-option *ngFor="let title of diplomaTitle" [value]="title">
+                {{ title }}
+              </mat-option>
+            </mat-select>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="college" placeholder="College" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <span class="reg-container">Duration</span><br>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerFrom2" formControlName="startdate" placeholder="Start Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerFrom2"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFrom2 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerTo2" formControlName="enddate" placeholder="End Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerTo2"></mat-datepicker-toggle>
+              <mat-datepicker #pickerTo2 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </p>
+        </div>
 
-              <div formGroupName="higherseceqdiploma">
-                <h3 class="reg-container">Equivalent Diploma</h3>
-                <p>
-                  <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
-                    <mat-option *ngFor="let title of diplomaTitle" [value]="title">
-                      {{ title }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
-                  </mat-form-field>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="College" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <span class="reg-container">Duration</span><br>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerFrom2" formControlName="startdate" placeholder="Start Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerFrom2"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerFrom2 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerTo2" formControlName="startdate" placeholder="End Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerTo2"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerTo2 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                </p>
-              </div>
+        <div formGroupName="graduation">
+          <h3 class="reg-container">Graduation</h3>
+          <p>
+            <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
+              <mat-option *ngFor="let title of gradTitle" [value]="title">
+                {{ title }}
+              </mat-option>
+            </mat-select>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="college" placeholder="College" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <span class="reg-container">Duration</span><br>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerFrom3" formControlName="startdate" placeholder="Start Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerFrom3"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFrom3 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerTo3" formControlName="enddate" placeholder="End Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerTo3"></mat-datepicker-toggle>
+              <mat-datepicker #pickerTo3 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </p>
+        </div>
 
-              <div formGroupName="graduation">
-                <h3 class="reg-container">Graduation</h3>
-                <p>
-                  <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
-                    <mat-option *ngFor="let title of gradTitle" [value]="title">
-                      {{ title }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
-                  </mat-form-field>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="College" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <span class="reg-container">Duration</span><br>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerFrom3" formControlName="startdate" placeholder="Start Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerFrom3"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerFrom3 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerTo3" formControlName="startdate" placeholder="End Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerTo3"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerTo3 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                </p>
-              </div>
+        <div formGroupName="postgraduation">
+          <h3 class="reg-container">Post Graduation</h3>
+          <p>
+            <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
+              <mat-option *ngFor="let title of postGradTitle" [value]="title">
+                {{ title }}
+              </mat-option>
+            </mat-select>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="college" placeholder="College" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <span class="reg-container">Duration</span><br>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerFrom4" formControlName="startdate" placeholder="Start Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerFrom4"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFrom4 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerTo4" formControlName="enddate" placeholder="End Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerTo4"></mat-datepicker-toggle>
+              <mat-datepicker #pickerTo4 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </p>
+        </div>
 
-              <div formGroupName="postgraduation">
-                <h3 class="reg-container">Post Graduation</h3>
-                <p>
-                  <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
-                    <mat-option *ngFor="let title of postGradTitle" [value]="title">
-                      {{ title }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
-                  </mat-form-field>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="College" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <span class="reg-container">Duration</span><br>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerFrom4" formControlName="startdate" placeholder="Start Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerFrom4"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerFrom4 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerTo4" formControlName="startdate" placeholder="End Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerTo4"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerTo4 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                </p>
-              </div>
+        <div formGroupName="otherdiploma">
+          <h3 class="reg-container">Other Diploma Qualification</h3>
+          <p>
+            <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
+              <mat-option *ngFor="let title of diplomaTitle" [value]="title">
+                {{ title }}
+              </mat-option>
+            </mat-select>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="college" placeholder="College" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <span class="reg-container">Duration</span><br>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerFrom5" formControlName="startdate" placeholder="Start Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerFrom5"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFrom5 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerTo5" formControlName="enddate" placeholder="End Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerTo5"></mat-datepicker-toggle>
+              <mat-datepicker #pickerTo5 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </p>
+        </div>
 
-              <div formGroupName="otherdiploma">
-                <h3 class="reg-container">Other Diploma Qualification</h3>
-                <p>
-                  <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
-                    <mat-option *ngFor="let title of diplomaTitle" [value]="title">
-                      {{ title }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
-                  </mat-form-field>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="College" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <span class="reg-container">Duration</span><br>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerFrom5" formControlName="startdate" placeholder="Start Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerFrom5"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerFrom5 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerTo5" formControlName="startdate" placeholder="End Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerTo5"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerTo5 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                </p>
-              </div>
+        <div formGroupName="otherqualification">
+          <h3 class="reg-container">Any Other Qualification</h3>
+          <p>
+            <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
+              <mat-option *ngFor="let title of otherQualTitle" [value]="title">
+                {{ title }}
+              </mat-option>
+            </mat-select>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="college" placeholder="College" type="text" required>
+            </mat-form-field>
+          </p>
+          <p>
+            <span class="reg-container">Duration</span><br>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerFrom6" formControlName="startdate" placeholder="Start Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerFrom6"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFrom6 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class=" half-width reg-container">
+              <input matInput [matDatepicker]="pickerTo6" formControlName="enddate" placeholder="End Date" type="text" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerTo6"></mat-datepicker-toggle>
+              <mat-datepicker #pickerTo6 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </p>
+        </div>
+        <mat-action-row>
+          <button mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
 
-              <div formGroupName="otherqualification">
-                <h3 class="reg-container">Any Other Qualification</h3>
-                <p>
-                  <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="coursetitle">
-                    <mat-option *ngFor="let title of otherQualTitle" [value]="title">
-                      {{ title }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
-                  </mat-form-field>
-                  <mat-form-field class="half-width reg-container">
-                    <input matInput formControlName="institute" placeholder="College" type="text" required>
-                  </mat-form-field>
-                </p>
-                <p>
-                  <span class="reg-container">Duration</span><br>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerFrom6" formControlName="startdate" placeholder="Start Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerFrom6"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerFrom6 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                  <mat-form-field class=" half-width reg-container">
-                    <input matInput [matDatepicker]="pickerTo6" formControlName="startdate" placeholder="End Date" type="text" required>
-                    <mat-datepicker-toggle matSuffix [for]="pickerTo6"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerTo6 startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
-                </p>
-              </div>
-            </mat-card-content>
-          </mat-card>
-
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>
-              <h3>Experience</h3>
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <div formArrayName="experience" *ngFor="let item of experience.controls; let i = index;">
-              <table>
-                <td>
-                  <mat-card-subtitle class="reg-container">
-                    <p>Experience details {{i +1}}</p>
-                  </mat-card-subtitle>
-                </td>
-                <td>
-                  <button mat-button class="background-primary flex-spacer text-floral-white" (click)="deleteExperienceGroup(i)">Delete</button>
-                </td>
-              </table>
-              <table [formGroupName]="i" class="form-size reg-container">
-                <td>
-                  <p>
-                    <mat-form-field class="half-width reg-container">
-                      <input matInput formControlName="title" placeholder="Title" type="text">
-                    </mat-form-field>
-                  </p>
-
-                  <p>
-                    <mat-form-field class="half-width reg-container">
-                      <input matInput formControlName="company" placeholder="Company Name" type="text">
-                    </mat-form-field>
-                  </p>
-
-                  <p>
-                    <mat-form-field class="half-width reg-container">
-                      <input matInput formControlName="skillSet" placeholder="Skill-Sets required for the Role" type="text" >
-                    </mat-form-field>
-                  </p>
-                  <p>
-                    <mat-form-field class="half-width reg-container">
-                      <input matInput formControlName="duration" placeholder="Duration" type="text">
-                    </mat-form-field>
-                  </p>
-                  <p>
-                    <mat-form-field class="half-width reg-container">
-                      <textarea matInput formControlName="summary" placeholder="Describe your Role" type="text" rows="12"></textarea>
-                    </mat-form-field>
-                  </p>
-                </td>
-                <td>
-                  <mat-slide-toggle formControlName="current">Current?</mat-slide-toggle>
-                </td>
-              </table>
-            </div>
-            <button mat-button class="background-primary text-floral-white" (click)="addExperience()">Add Experience</button>
-          </mat-card-content>
-        </mat-card>
-
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>
-              <h3>Additional Details</h3>
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
+      <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3>Experience</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div formArrayName="experience" *ngFor="let item of experience.controls; let i = index;">
+          <table class="full-width reg-container" [formGroupName]="i">
+            <td>
+              <h3 class="reg-container">Experience {{i +1}} details</h3>
+            </td>
+            <td>
+              <mat-slide-toggle formControlName="current">Current?</mat-slide-toggle>
+            </td>
+            <td>
+              <button mat-button class="background-primary flex-spacer text-floral-white" (click)="deleteExperienceGroup(i)">Delete</button>
+            </td>
+          </table>
+          <div [formGroupName]="i" class="reg-container">
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="resume" placeholder="Resume" type="text">
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="facebook" placeholder="Facebook Link" type="text">
+                <input matInput formControlName="title" placeholder="Title" type="text">
               </mat-form-field>
             </p>
 
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="twitter" placeholder="Twitter Link" type="text">
+                <input matInput formControlName="company" placeholder="Company Name" type="text">
               </mat-form-field>
             </p>
 
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="linkedin" placeholder="LinkedIn Link" type="text">
+                <input matInput formControlName="skillSet" placeholder="Skill-Sets required for the Role" type="text" >
               </mat-form-field>
             </p>
-          </mat-card-content>
-        </mat-card>
+            <p>
+              <span class="reg-container">Duration</span><br>
+              <mat-form-field class=" half-width reg-container">
+                <input matInput [matDatepicker]="pickerFrom8" formControlName="startdate" placeholder="Start Date" type="text" required>
+                <mat-datepicker-toggle matSuffix [for]="pickerFrom8"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFrom8 startView="year" [startAt]="startDate"></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class=" half-width reg-container">
+                <input matInput [matDatepicker]="pickerTo8" formControlName="enddate" placeholder="End Date" type="text" required>
+                <mat-datepicker-toggle matSuffix [for]="pickerTo8"></mat-datepicker-toggle>
+                <mat-datepicker #pickerTo8 startView="year" [startAt]="startDate"></mat-datepicker>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="full-width reg-container">
+                <textarea matInput formControlName="summary" placeholder="Describe your Role" type="text" rows="12"></textarea>
+              </mat-form-field>
+            </p>
+          </div>
+        </div>
+        <button mat-button class="custom-button background-primary text-floral-white" (click)="addExperience()">Add Experience</button>
+        <mat-action-row>
+          <button mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
 
-        <button mat-button type="submit" class="background-primary text-floral-white button-custom"
-                routerLink="/dashboard">Submit</button>
-      </form>
+      <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3>Additional Details</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="resume" placeholder="Resume" type="text">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="facebook" placeholder="Facebook Link" type="text">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="twitter" placeholder="Twitter Link" type="text">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="linkedin" placeholder="LinkedIn Link" type="text">
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <button mat-button type="submit" class="background-primary text-floral-white button-custom"
+              routerLink="/dashboard">Submit</button>
+    </mat-accordion>
+  </form>
 </div>

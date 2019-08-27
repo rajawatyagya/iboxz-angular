@@ -34,6 +34,7 @@ export class CandidateRegistrationComponent implements OnInit {
   gradTitle = GradTitle;
   postGradTitle = PostGradTitle;
   otherQualTitle = OtherQualTitle;
+  step = 0;
   @ViewChild('rform', { read: true, static: false }) registrationFormDirective;
 
   startDate = new Date(1994, 3, 14);
@@ -58,13 +59,13 @@ export class CandidateRegistrationComponent implements OnInit {
       fatherfirstname:    '',
       fathermiddlename:   '',
       fatherlastname:     '',
-      highschool:         [this.createEducationGroup()],
-      highersecondary:    [this.createEducationGroup()],
-      higherseceqdiploma: [this.createEducationGroup()],
-      graduation:         [this.createEducationGroup()],
-      postgraduation:     [this.createEducationGroup()],
-      otherdiploma:       [this.createEducationGroup()],
-      otherqualification: [this.createEducationGroup()],
+      highschool:         this.createHighschoolGroup(),
+      highersecondary:    this.createEducationGroup(),
+      higherseceqdiploma: this.createEducationGroup(),
+      graduation:         this.createEducationGroup(),
+      postgraduation:     this.createEducationGroup(),
+      otherdiploma:       this.createEducationGroup(),
+      otherqualification: this.createEducationGroup(),
       experience:         this.fb.array([this.createExperienceGroup()]),
       email:              ['', Validators.required],
       mobile:             ['', Validators.required],
@@ -107,7 +108,7 @@ export class CandidateRegistrationComponent implements OnInit {
 
   createEducationGroup(): FormGroup {
     return this.fb.group({
-                coursetitle:  ['10th', Validators.required],
+                coursetitle:  ['', Validators.required],
                 institute:    ['', Validators.required],
                 college:      ['', Validators.required],
                 department:   ['', Validators.required],
@@ -119,18 +120,45 @@ export class CandidateRegistrationComponent implements OnInit {
     });
   }
 
+  createHighschoolGroup(): FormGroup {
+    return this.fb.group({
+      coursetitle:  [{ value: '10th', disabled: true}, Validators.required],
+      institute:    ['', Validators.required],
+      college:      ['', Validators.required],
+      department:   ['', Validators.required],
+      degree:       ['', Validators.required],
+      startdate:    ['', Validators.required],
+      enddate:      ['', Validators.required],
+      type:         ['', Validators.required],
+      percentage:   ['', Validators.required]
+    });
+  }
+
   createExperienceGroup(): FormGroup {
     return this.fb.group({
                 title:        ['', Validators.required],
                 company:      ['', Validators.required],
                 summary:      ['', Validators.required],
                 skillSet:     ['', Validators.required],
-                duration:     ['', Validators.required],
+                startdate:     ['', Validators.required],
+                enddate:     ['', Validators.required],
                 current:      false
     });
   }
 
   deleteExperienceGroup(index: number): void {
     this.experience.removeAt(index);
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 }

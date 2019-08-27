@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
-import { MatButtonModule,
-        MatCheckboxModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatToolbarModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule, MatRadioModule,
+  MatToolbarModule
+} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 
 
@@ -23,7 +25,8 @@ import {FormsModule} from '@angular/forms';
     MatFormFieldModule,
     FormsModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    MatRadioModule
   ]
 })
 export class RegisterModule { }

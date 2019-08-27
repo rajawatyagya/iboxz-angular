@@ -8,7 +8,10 @@ import { MatDialogRef } from '@angular/material';
 })
 export class RegisterComponent implements OnInit {
 
-  user = { username: '', password: '', otp: '', remember: false};
+  user = { username: '',
+          password: '',
+          otp: '',
+          type: ''};
 
   constructor(public dialogRef: MatDialogRef<RegisterComponent>) { }
 

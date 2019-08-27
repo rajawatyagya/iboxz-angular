@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   openRegisterForm() {
-    this.dialog.open(RegisterComponent, {width: '600px', height: '500px'});   // the component is supplied to act as the view of the dialog
+    this.dialog.open(RegisterComponent, {width: '650px', height: '550px'});   // the component is supplied to act as the view of the dialog
   }
 
 }

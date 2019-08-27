@@ -22,15 +22,11 @@ body{
 }
 
 .half-width {
-  width: 40%;
+  width: 45%;
 }
 
 .min-width {
-  width: 18.5%;
-}
-
-mat-card, .mat-button {
-  margin-top: 1rem;
+  width: 20.9%;
 }
 
 .form-size {
@@ -43,7 +39,12 @@ mat-card, .mat-button {
   padding: 1rem 1rem;
 }
 
+.custom-button {
+  margin: 1rem 1rem;
+}
+
 .button-custom {
+  margin-top: 1rem  ;
   margin-left: 1rem;
   width: 15rem;
   height: 4.5rem;

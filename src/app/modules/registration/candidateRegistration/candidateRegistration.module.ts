@@ -12,7 +12,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatSlideToggleModule, MatCardModule
+  MatSlideToggleModule, MatCardModule, MatExpansionModule
 } from '@angular/material';
 
 
@@ -30,7 +30,8 @@ import {
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule
   ]
 })
 export class CandidateRegistrationModule { }

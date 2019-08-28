@@ -1,16 +1,24 @@
-<Chat-bot class="chat-window"
-          [token]="accessToken"
-          [msg]="message"
-          [msgTemplate]='message'
-          [inputTemplate]='input'
-          (onMsgReceive)="onMsgReceive($event)">
-  <ng-template #window>
-  </ng-template>
-</Chat-bot>
+<div class="chat chat-container">
+  <div class="chat-title">
+    <h1>Jarvis</h1>
+    <h2>Virtual Assistant</h2>
+    <figure class="avatar">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>
+  </div>
+  <div style="overflow: auto; height: 400px;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <ng-container *ngFor="let message of messages | async">
 
-<ng-template #message let-text="text" let-object="object" let-sendBy="sendBy">
-  <chat-msg [msg]="{text: text,sendBy: sendBy}" ></chat-msg>
-</ng-template>
-<ng-template #input>
-  <chat-input (change)="onChange($event.target);"></chat-input>
-</ng-template>
+      <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
+                                        'to':   message.sentBy === 'user' }">
+        {{ message.content }}
+      </div>
+
+    </ng-container>
+  </div>
+  <div class="message-box">
+    <textarea [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text" class="message-input" placeholder="Type message..."></textarea>
+    <button (click)="sendMessage()" type="submit" class="message-submit">Send</button>
+  </div>
+
+</div>
+<div class="bg"></div>

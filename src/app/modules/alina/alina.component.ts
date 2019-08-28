@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatService } from '../../services/chat.service';
-import { ChatBot } from 'angular-ai-chat-bot';
-import { Subject, Observable } from 'rxjs';
 
 import { Environment } from '../../shared/environment';
+import { ChatService, Message} from '../../services/chat.service';
+import { Observable } from 'rxjs';
+import { scan } from 'rxjs/operators';
 
 
 @Component({
@@ -14,19 +14,21 @@ import { Environment } from '../../shared/environment';
 export class AlinaComponent implements OnInit {
 
   public accessToken = Environment.dialogFlow.angularBot;
-  public msg: Subject<any> = new Subject();
-  public msgArray: Observable<Array<any>> = new Observable<Array<any>>();
 
-  constructor() {
+  messages: Observable<Message[]>;
+  formValue: string;
+  scroller: any;
+
+  constructor(private chat: ChatService) {
   }
-
-  public onChange(target: any) {
-    this.msg.next(target.value);
-    target.value = '';
-  }
-
-  public onMsgReceive(msg: string) { }
 
   ngOnInit() {
+    this.messages = this.chat.conversation.asObservable()
+      .pipe(scan((acc, val) => acc.concat(val)));
+  }
+
+  sendMessage() {
+    this.chat.converse(this.formValue).then(r => r);
+    this.formValue = '';
   }
 }

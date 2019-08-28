@@ -13,8 +13,6 @@ import { scan } from 'rxjs/operators';
 })
 export class AlinaComponent implements OnInit {
 
-  public accessToken = Environment.dialogFlow.angularBot;
-
   messages: Observable<Message[]>;
   formValue: string;
   scroller: any;

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Profile,
         Gender,
@@ -35,11 +35,12 @@ export class CandidateRegistrationComponent implements OnInit {
   postGradTitle = PostGradTitle;
   otherQualTitle = OtherQualTitle;
   step = 0;
+  last = 0;
   @ViewChild('rform', { read: true, static: false }) registrationFormDirective;
 
   startDate = new Date(1994, 3, 14);
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -104,6 +105,7 @@ export class CandidateRegistrationComponent implements OnInit {
 
   addExperience(): void {
     this.experience.push(this.createExperienceGroup());
+    this.changeDetectorRef.detectChanges();
   }
 
   createEducationGroup(): FormGroup {
@@ -140,8 +142,8 @@ export class CandidateRegistrationComponent implements OnInit {
                 company:      ['', Validators.required],
                 summary:      ['', Validators.required],
                 skillSet:     ['', Validators.required],
-                startdate:     ['', Validators.required],
-                enddate:     ['', Validators.required],
+                startdate:    ['', Validators.required],
+                enddate:      ['', Validators.required],
                 current:      false
     });
   }

@@ -1,0 +1,20 @@
+.chat-window {
+  display: flex;
+  min-height: 48rem;
+  max-height: 50rem;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  height: 200px;
+  width: 100px;
+}
+
+.message {
+  display: flex;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+}

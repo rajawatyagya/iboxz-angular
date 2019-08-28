@@ -44,6 +44,10 @@ const routes: Routes = [
     loadChildren: './modules/registration/employer-registration/employer-registration.module#EmployerRegistrationModule'
   },
   {
+    path: 'alina',
+    loadChildren: './modules/alina/alina.module#AlinaModule'
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'

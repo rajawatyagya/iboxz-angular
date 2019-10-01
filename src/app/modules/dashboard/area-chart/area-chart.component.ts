@@ -22,6 +22,7 @@ export class AreaChartComponent implements OnInit {
 
   ngOnInit() {
     this.testData = this.createTestData(4.5);
+    console.log(this.testData);
     this.chart = this.createChart();
   }
 
@@ -30,7 +31,7 @@ export class AreaChartComponent implements OnInit {
     for (let i = 0; i <= 4; i++) {
       if (i > 0 && i !== 3) {
         test.push(
-          initialSalary * angularMath.powerOfNumber((1 + 0.08) , i)
+          test[i - 1] + test[i - 1] * 0.08
         );
       } else if (i === 0) {
         test.push(
@@ -38,7 +39,7 @@ export class AreaChartComponent implements OnInit {
         );
       } else {
         test.push(
-          initialSalary * angularMath.powerOfNumber((1 + 0.3) , i)
+          test[i - 1] + test[i - 1] * 0.3
         );
       }
     }

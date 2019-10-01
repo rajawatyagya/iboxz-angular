@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material';
+
+import {AssessmentDialogComponent} from './assessment-dialog/assessment-dialog.component';
 
 @Component({
   selector: 'app-assessment',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssessmentComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  openAssessmentDialog() {
+    this.dialog.open(AssessmentDialogComponent, {width: '1200px', height: '900px'});
+    // the component is supplied to act as the view of the dialog
   }
 
 }

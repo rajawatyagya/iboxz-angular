@@ -1,0 +1,23 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <mat-grid-list [cols]="breakpoint" cols="2" rowHeight="1:1.5" (window:resize)="onResize($event)" gutterSize="1rem">
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Assessment
+          </mat-card-title>
+          <mat-card-subtitle>
+            -- By Alina
+          </mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-content>
+          <app-chatbot></app-chatbot>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

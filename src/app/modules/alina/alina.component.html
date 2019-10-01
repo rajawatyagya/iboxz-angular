@@ -6,17 +6,22 @@
       <img src="assets/images/alina.png" /></figure>
   </div>
   <div style="overflow: auto; height: 650px;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-    <div *ngFor="let message of messages | async">
+    <div *ngFor="let message of messages | async ; let i = index">
 
-      <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
+      <div *ngIf="i !== 0" class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
                                         'to':   message.sentBy === 'user' }">
         {{ message.content }}
       </div>
     </div>
   </div>
-  <div class="message-box">
+  <!--<div class="message-box">
     <textarea [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text" class="message-input" placeholder="Type message..."></textarea>
     <button (click)="sendMessage()" type="submit" class="message-submit">Send</button>
+  </div>-->
+
+  <div class="message-box">
+
+    <button (click)="sendStartMessage()" type="submit" class="message-submit">Start my assessment</button>
   </div>
 
 </div>

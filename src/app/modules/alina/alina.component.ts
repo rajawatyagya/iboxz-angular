@@ -28,4 +28,10 @@ export class AlinaComponent implements OnInit {
     this.chat.converse(this.formValue).then(r => r);
     this.formValue = '';
   }
+
+  sendStartMessage() {
+    this.formValue = 'start';
+    this.chat.converse(this.formValue).then(r => r);
+    this.formValue = '';
+  }
 }

@@ -1,19 +1,18 @@
 <div class="chat chat-container">
   <div class="chat-title">
-    <h1>Jarvis</h1>
+    <h1>Alina</h1>
     <h2>Virtual Assistant</h2>
     <figure class="avatar">
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>
+      <img src="assets/images/alina.png" /></figure>
   </div>
-  <div style="overflow: auto; height: 400px;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-    <ng-container *ngFor="let message of messages | async">
+  <div style="overflow: auto; height: 650px;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <div *ngFor="let message of messages | async">
 
       <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
                                         'to':   message.sentBy === 'user' }">
         {{ message.content }}
       </div>
-
-    </ng-container>
+    </div>
   </div>
   <div class="message-box">
     <textarea [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text" class="message-input" placeholder="Type message..."></textarea>

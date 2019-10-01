@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CandidateRegistrationRoutingModule } from './candidateRegistration-routing.module';
 import { CandidateRegistrationComponent } from './candidateRegistration.component';
 import {FlexModule} from '@angular/flex-layout';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule,
   MatDatepickerModule,
@@ -12,7 +12,10 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatSlideToggleModule, MatCardModule, MatExpansionModule
+  MatSlideToggleModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatCheckboxModule, MatDividerModule, MatAutocompleteModule
 } from '@angular/material';
 
 
@@ -31,7 +34,11 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCardModule,
-    MatExpansionModule
-  ]
-})
+    MatExpansionModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatDividerModule,
+    MatAutocompleteModule
+  ],
+ })
 export class CandidateRegistrationModule { }

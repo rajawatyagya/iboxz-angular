@@ -1,51 +1,69 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent} from './modules/home/home.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { ProfileComponent } from './modules/profile/profile.component';
+import { AssessmentComponent } from './modules/assessment/assessment.component';
+import { InterviewsComponent } from './modules/interviews/interviews.component';
+import { JobsComponent } from './modules/jobs/jobs.component';
+import { ReferComponent } from './modules/refer/refer.component';
+import { WalletComponent } from './modules/wallet/wallet.component';
+import { CandidateRegistrationComponent } from './modules/registration/candidateRegistration/candidateRegistration.component';
+import { EmployerRegistrationComponent } from './modules/registration/employer-registration/employer-registration.component';
+import { AlinaComponent } from './modules/alina/alina.component';
+import {JobPostingComponent} from './modules/jobs/job-posting/job-posting.component';
 
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: './modules/home/home.module#HomeModule'
+    component: HomeComponent
   },
   {
     path: 'dashboard',
-    loadChildren: './modules/dashboard/dashboard.module#DashboardModule'
+    component: DashboardComponent
   },
   {
     path: 'profile',
-    loadChildren: './modules/profile/profile.module#ProfileModule'
+    component: ProfileComponent
   },
   {
     path: 'assessment',
-    loadChildren: './modules/assessment/assessment.module#AssessmentModule'
+    component: AssessmentComponent
   },
   {
     path: 'interviews',
-    loadChildren: './modules/interviews/interviews.module#InterviewsModule'
+    component: InterviewsComponent
   },
   {
     path: 'jobs',
-    loadChildren: './modules/jobs/jobs.module#JobsModule'
+    component: JobsComponent,
+    children: [
+    {
+      path: 'jobposting',
+      component: JobPostingComponent
+    }
+]
   },
   {
     path: 'refer',
-    loadChildren: './modules/refer/refer.module#ReferModule'
+    component: ReferComponent
   },
   {
     path: 'wallet',
-    loadChildren: './modules/wallet/wallet.module#WalletModule'
+    component: WalletComponent
   },
   {
     path: 'candidateRegistration',
-    loadChildren: './modules/registration/candidateRegistration/candidateRegistration.module#CandidateRegistrationModule'
+    component: CandidateRegistrationComponent
   },
   {
     path: 'employerRegistration',
-    loadChildren: './modules/registration/employer-registration/employer-registration.module#EmployerRegistrationModule'
+    component: EmployerRegistrationComponent
   },
   {
     path: 'alina',
-    loadChildren: './modules/alina/alina.module#AlinaModule'
+    component: AlinaComponent
   },
   {
     path: '',

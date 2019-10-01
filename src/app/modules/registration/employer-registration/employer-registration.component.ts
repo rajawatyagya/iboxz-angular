@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { flyInOut } from '../../../animations/app.animation';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Profile} from '../../../shared/profile/profile';
@@ -21,7 +21,9 @@ export class EmployerRegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   registrationData: Profile;
 
-  startDate = new Date(1994, 3, 14);
+  @ViewChild('employerForm', { read: true, static: false }) registrationFormDirective;
+
+  startDate = new Date(2000, 1, 1);
 
   constructor(private fb: FormBuilder) { }
 
@@ -29,22 +31,43 @@ export class EmployerRegistrationComponent implements OnInit {
     this.createForm();
   }
 
+  onSubmit() {
+    this.registrationData = this.registrationForm.value;
+    console.log(this.registrationData);
+  }
+
   createForm() {
     this.registrationForm = this.fb.group({
-      name:           ['', Validators.required],
-      contact:        ['', Validators.required],
-      fax:            ['', Validators.required],
-      accountManager: ['', Validators.required],
-      website:        ['', Validators.required],
-      industry:       ['', Validators.required],
-      about: '',
-      billingAddress: this.fb.group({
-                      street: ['', Validators.required],
-                      city: ['', Validators.required],
-                      state: ['', Validators.required],
-                      zipcode: ['', Validators.required],
-                      country: ['', Validators.required],
-      }),
+      companyName:            ['', Validators.required],
+      recruiterName:          ['', Validators.required],
+      designation:            ['', Validators.required],
+      industry:               ['', Validators.required],
+      department:             ['', Validators.required],
+      functionalarea:         ['', Validators.required],
+      role:                   ['', Validators.required],
+      email:                  [{value: 'test@iboxz.in', disabled: true}],
+      accountType:            '',
+      mobileNumber:           ['', Validators.required],
+      landLine:               ['', Validators.required],
+      website:                ['', Validators.required],
+      about:                  '',
+      address:                this.fb.group({
+                              billingAddress:       this.fb.group({
+                                                    addressline1:       ['', Validators.required],
+                                                    addressline2:       ['', Validators.required],
+                                                    city:               ['', Validators.required],
+                                                    state:              ['', Validators.required],
+                                                    zipcode:            ['', Validators.required],
+                                                    country:            ['', Validators.required]}),
+                              companyAddress:       this.fb.group({
+                                                    addressline1:       ['', Validators.required],
+                                                    addressline2:       ['', Validators.required],
+                                                    city:               ['', Validators.required],
+                                                    state:              ['', Validators.required],
+                                                    zipcode:            ['', Validators.required],
+                                                    country:            ['', Validators.required]}),
+                              checked:              ''
+      })
     });
   }
 }

@@ -1,5 +1,5 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
-  <form novalidate [formGroup]="registrationForm" #rform="ngForm" (ngSubmit)="onSubmit()">
+  <form novalidate [formGroup]="registrationForm" #candidateForm="ngForm" (ngSubmit)="onSubmit()">
     <mat-accordion class="accordion-container">
       <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
         <mat-expansion-panel-header>
@@ -14,7 +14,7 @@
 
           <div fxFlex="30">
             <div>
-              <i class="fa fa-user-o"></i>
+              <i class="image-holder fa fa-user-o"></i>
               <div>
                 <table>
                   <td>
@@ -81,20 +81,6 @@
               </mat-form-field>
             </p>
             <p>
-              <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="currentSalary" placeholder="Current Salary" type="number" required>
-                <mat-error *ngIf="registrationForm.get('currentSalary').hasError('required') && registrationForm.get('currentSalary').touched">
-                  Current Salary is required
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="expectedSalary" placeholder="Expected Salary" type="number" required>
-                <mat-error *ngIf="registrationForm.get('expectedSalary').hasError('required') && registrationForm.get('expectedSalary').touched">
-                  Expected Salary is required
-                </mat-error>
-              </mat-form-field>
-            </p>
-            <p>
               <mat-select placeholder="Title" class="min-width reg-container" formControlName="title">
                 <mat-option *ngFor="let title of nameTitle" [value]="title">
                   {{ title }}
@@ -120,11 +106,42 @@
             <input matInput formControlName="aadharnumber" placeholder="Aadhar Number" type="text">
           </mat-form-field>
         </p>
-        <p>
-          <mat-form-field class="half-width reg-container">
-            <input matInput formControlName="languages" placeholder="Languages Known" type="text">
-          </mat-form-field>
-        </p>
+        <div class="full-width lang-container" formArrayName="languages">
+          <div class="selector">
+            <mat-select placeholder="Languages Known (max 10)" class="full-width reg-container" formControlName="name">
+              <mat-option *ngFor="let lang of languages" (click)="addLanguage(lang)" [disabled]="language.length >= 10">
+                {{ lang }}
+              </mat-option>
+            </mat-select>
+          </div>
+          <div class="selector">
+            <div class="lang-container" *ngFor="let lang of language.controls; let i = index;"
+                 [formGroupName]="i">
+              <span *ngIf="lang.value.name" class="selector lang-checkbox lang-container">
+                <span class="selector">
+                  {{lang.value.name}}
+                </span>
+                <span>
+                  <button class="icon-button" (click)="deleteLanguage(i)"><i class="fa fa-minus-square-o"></i></button>
+                </span>
+              </span>
+              <span *ngIf="lang.value.name" >
+                <label>Read
+                  <input class="lang-checkbox" type="checkbox" formControlName="read">
+                </label>
+                <label>Write
+                  <input class="lang-checkbox" type="checkbox" formControlName="write">
+                </label>
+                <label>Speak
+                  <input class="lang-checkbox" type="checkbox" formControlName="speak">
+                </label>
+                <label>Native
+                  <input class="lang-checkbox" type="checkbox" formControlName="native">
+                </label>
+              </span>
+            </div>
+          </div>
+        </div>
         <mat-action-row>
           <button mat-button class="custom-button background-primary text-floral-white">Save</button>
           <button mat-button class="custom-button background-primary text-floral-white">Reset</button>
@@ -139,34 +156,71 @@
       <mat-expansion-panel formGroupName="address" [expanded]="step === 1" (opened)="setStep(1)">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <h3>Present Postal Address</h3>
+            <h3>Address Details</h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>
-          <mat-form-field class="half-width reg-container">
-            <input matInput formControlName="addressline1" placeholder="Address Line 1" type="text">
-          </mat-form-field>
-          <mat-form-field class="half-width reg-container">
-            <input matInput formControlName="addressline2" placeholder="Address Line 2" type="text">
-          </mat-form-field>
-        </p>
+        <div formGroupName="presentaddress">
+          <h3>Present Address</h3>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="addressline1" placeholder="Address Line 1" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="addressline2" placeholder="Address Line 2" type="text">
+            </mat-form-field>
+          </p>
 
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="city" placeholder="City" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="state" placeholder="State" type="text" >
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="zipcode" placeholder="Pin Code" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="country" placeholder="Country" type="text">
+            </mat-form-field>
+          </p>
+        </div>
         <p>
-          <mat-form-field class="half-width reg-container">
-            <input matInput formControlName="city" placeholder="City" type="text">
-          </mat-form-field>
-          <mat-form-field class="half-width reg-container">
-            <input matInput formControlName="state" placeholder="State" type="text" >
-          </mat-form-field>
+          <label>
+            <input type="checkbox" formControlName="checked"> Present Address is Permanent Address Also?
+          </label>
+          <!--<mat-checkbox  (click)="checkedOn()" class="half-width reg-container">Present Address is Permanent Address Also?</mat-checkbox>-->
         </p>
-        <p>
-          <mat-form-field class="half-width reg-container">
-            <input matInput formControlName="zipcode" placeholder="Pin Code" type="text">
-          </mat-form-field>
-          <mat-form-field class="half-width reg-container">
-            <input matInput formControlName="country" placeholder="Country" type="text">
-          </mat-form-field>
-        </p>
+        <div formGroupName="permanentaddress" *ngIf="!registrationForm.controls['address'].value.checked">
+          <h3>Permanent Address</h3>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="addressline1" placeholder="Address Line 1" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="addressline2" placeholder="Address Line 2" type="text">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="city" placeholder="City" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="state" placeholder="State" type="text" >
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="zipcode" placeholder="Pin Code" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="country" placeholder="Country" type="text">
+            </mat-form-field>
+          </p>
+        </div>
         <mat-action-row>
           <button mat-button class="custom-button background-primary text-floral-white">Save</button>
           <button mat-button class="custom-button background-primary text-floral-white">Reset</button>
@@ -212,16 +266,16 @@
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerFrom" formControlName="startdate" placeholder="Start Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-                <mat-datepicker #pickerFrom startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerFrom startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerTo" formControlName="enddate" placeholder="End Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-                <mat-datepicker #pickerTo startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerTo startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
             </p>
             <mat-action-row>
-              <button mat-button class="custom-button background-primary text-floral-white">Save</button>
+              <button mat-button class="custom-button background-primary text-floral-white" >Save</button>
               <button mat-button class="custom-button background-primary text-floral-white">Reset</button>
               <span class="flex-spacer"></span>
               <button mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
@@ -259,12 +313,12 @@
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerFrom1" formControlName="startdate" placeholder="Start Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerFrom1"></mat-datepicker-toggle>
-                <mat-datepicker #pickerFrom1 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerFrom1 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerTo1" formControlName="enddate" placeholder="End Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerTo1"></mat-datepicker-toggle>
-                <mat-datepicker #pickerTo1 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerTo1 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
             </p>
             <mat-action-row>
@@ -295,7 +349,12 @@
             </p>
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+                <input matInput formControlName="institute" placeholder="Institute / University" type="text" [matAutocomplete]="auto2" required>
+                <mat-autocomplete #auto2="matAutocomplete">
+                  <mat-option *ngFor="let institute of filteredHigherSecInstitute | async" [value]="institute">
+                    <span>{{institute}}</span>
+                  </mat-option>
+                </mat-autocomplete>
               </mat-form-field>
               <mat-form-field class="half-width reg-container">
                 <input matInput formControlName="college" placeholder="College" type="text" required>
@@ -306,12 +365,12 @@
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerFrom2" formControlName="startdate" placeholder="Start Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerFrom2"></mat-datepicker-toggle>
-                <mat-datepicker #pickerFrom2 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerFrom2 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerTo2" formControlName="enddate" placeholder="End Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerTo2"></mat-datepicker-toggle>
-                <mat-datepicker #pickerTo2 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerTo2 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
             </p>
             <mat-action-row>
@@ -342,7 +401,12 @@
             </p>
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+                <input matInput formControlName="institute" placeholder="Institute / University" type="text" [matAutocomplete]="auto1" required>
+                <mat-autocomplete #auto1="matAutocomplete">
+                  <mat-option *ngFor="let institute of filteredGradInstitute | async" [value]="institute">
+                    <span>{{institute}}</span>
+                  </mat-option>
+                </mat-autocomplete>
               </mat-form-field>
               <mat-form-field class="half-width reg-container">
                 <input matInput formControlName="college" placeholder="College" type="text" required>
@@ -353,12 +417,12 @@
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerFrom3" formControlName="startdate" placeholder="Start Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerFrom3"></mat-datepicker-toggle>
-                <mat-datepicker #pickerFrom3 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerFrom3 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerTo3" formControlName="enddate" placeholder="End Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerTo3"></mat-datepicker-toggle>
-                <mat-datepicker #pickerTo3 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerTo3 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
             </p>
             <mat-action-row>
@@ -389,7 +453,12 @@
             </p>
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+                <input matInput formControlName="institute" placeholder="Institute / University" type="text" [matAutocomplete]="auto3" required>
+                <mat-autocomplete #auto3="matAutocomplete">
+                  <mat-option *ngFor="let institute of filteredPostGradInstitute | async" [value]="institute">
+                    <span>{{institute}}</span>
+                  </mat-option>
+                </mat-autocomplete>
               </mat-form-field>
               <mat-form-field class="half-width reg-container">
                 <input matInput formControlName="college" placeholder="College" type="text" required>
@@ -400,12 +469,12 @@
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerFrom4" formControlName="startdate" placeholder="Start Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerFrom4"></mat-datepicker-toggle>
-                <mat-datepicker #pickerFrom4 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerFrom4 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerTo4" formControlName="enddate" placeholder="End Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerTo4"></mat-datepicker-toggle>
-                <mat-datepicker #pickerTo4 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerTo4 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
             </p>
             <mat-action-row>
@@ -436,7 +505,12 @@
             </p>
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+                <input matInput formControlName="institute" placeholder="Institute / University" type="text" [matAutocomplete]="auto4" required>
+                <mat-autocomplete #auto4="matAutocomplete">
+                  <mat-option *ngFor="let institute of filteredOtherDiplomaInstitute | async" [value]="institute">
+                    <span>{{institute}}</span>
+                  </mat-option>
+                </mat-autocomplete>
               </mat-form-field>
               <mat-form-field class="half-width reg-container">
                 <input matInput formControlName="college" placeholder="College" type="text" required>
@@ -447,12 +521,12 @@
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerFrom5" formControlName="startdate" placeholder="Start Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerFrom5"></mat-datepicker-toggle>
-                <mat-datepicker #pickerFrom5 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerFrom5 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerTo5" formControlName="enddate" placeholder="End Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerTo5"></mat-datepicker-toggle>
-                <mat-datepicker #pickerTo5 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerTo5 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
             </p>
             <mat-action-row>
@@ -483,7 +557,12 @@
             </p>
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+                <input matInput formControlName="institute" placeholder="Institute / University" type="text" [matAutocomplete]="auto5" required>
+                <mat-autocomplete #auto5="matAutocomplete">
+                  <mat-option *ngFor="let institute of filteredOtherQualInstitute | async" [value]="institute">
+                    <span>{{institute}}</span>
+                  </mat-option>
+                </mat-autocomplete>
               </mat-form-field>
               <mat-form-field class="half-width reg-container">
                 <input matInput formControlName="college" placeholder="College" type="text" required>
@@ -494,12 +573,12 @@
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerFrom6" formControlName="startdate" placeholder="Start Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerFrom6"></mat-datepicker-toggle>
-                <mat-datepicker #pickerFrom6 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerFrom6 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
               <mat-form-field class=" half-width reg-container">
                 <input matInput [matDatepicker]="pickerTo6" formControlName="enddate" placeholder="End Date" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerTo6"></mat-datepicker-toggle>
-                <mat-datepicker #pickerTo6 startView="year" [startAt]="startDate"></mat-datepicker>
+                <mat-datepicker #pickerTo6 startView="multi-year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
             </p>
             <mat-action-row>
@@ -517,41 +596,119 @@
     <mat-card class="accordion-container-custom">
       <mat-card-header>
         <mat-card-title>
-          <h3>Experience</h3>
+          <h3>Experience -- {{totalYears}} Years {{totalMonth}} Months</h3>
         </mat-card-title>
       </mat-card-header>
       <mat-card-content >
         <mat-accordion formArrayName="experience" class="accordion-container">
           <mat-expansion-panel *ngFor="let item of experience.controls; let i = index;"
                                [formGroupName]="i" [expanded]="step === i + 9" (opened)="setStep(i + 9)">
-            <table class="full-width reg-container">
-              <td>
-                <h3 class="reg-container">Experience {{i +1}} details</h3>
-              </td>
-              <td>
-                <mat-slide-toggle formControlName="current">Current?</mat-slide-toggle>
-              </td>
-              <td>
-                <button mat-button class="background-primary text-floral-white" (click)="deleteExperienceGroup(i)">Delete</button>
-              </td>
-            </table>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h3 *ngIf="item.value.company" class="reg-container">{{item.value.company}} ({{item.value.startdate | date}} - {{item.value.enddate | date}})
+                  {{ item.value.duration}} Months</h3>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="title" placeholder="Title" type="text">
+                <input matInput formControlName="title" placeholder="Designation" type="text">
               </mat-form-field>
             </p>
-
             <p>
               <mat-form-field class="half-width reg-container">
                 <input matInput formControlName="company" placeholder="Company Name" type="text">
               </mat-form-field>
             </p>
-
+            <p>
+              <mat-slide-toggle class=" half-width reg-container" formControlName="current" (toggleChange)="currentExp(i)">Current?</mat-slide-toggle>
+            </p>
             <p>
               <mat-form-field class="half-width reg-container">
-                <input matInput formControlName="skillSet" placeholder="Skill-Sets required for the Role" type="text" >
+                <input matInput formControlName="industry" placeholder="Industry" type="text">
               </mat-form-field>
             </p>
+            <p>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="department" placeholder="Department" type="text">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="functionalarea" placeholder="Functional Area" type="text">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="role" placeholder="Role" type="text">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="scope" placeholder="Scope" type="text">
+              </mat-form-field>
+            </p>
+
+            <div formGroupName="skillSet">
+              <div formArrayName="implemented">
+                <mat-form-field class="half-width reg-container">
+                  <input #implementedSkill matInput placeholder="Skill-Sets implemented" type="text">
+                </mat-form-field>
+                <button class="icon-button" (click)="addImplementedSkillSet(implementedSkill.value, i); implementedSkill.value = '';"><i class="fa fa-plus-square-o"></i></button>
+                <div class="lang-container reg-container full-width" *ngFor="let skill of implementedSkillsArray(i).controls; let j = index;"
+                     [formGroupName]="j">
+                <span *ngIf="skill.value.name" class="selector lang-checkbox lang-container">
+                  <span class="selector">
+                    {{skill.value.name}}
+                  </span>
+                  <span>
+                    <button class="icon-button" (click)="deleteImpSkill(i , j)"><i class="fa fa-minus-square-o"></i></button>
+                  </span>
+                </span>
+                  <span *ngIf="skill.value.name" >
+                  <label>Beginner
+                    <input class="lang-checkbox" type="radio" [value]="true" formControlName="beginner">
+                  </label>
+                  <label>Intermediate
+                    <input class="lang-checkbox" type="radio" [value]="true" formControlName="intermediate">
+                  </label>
+                  <label>Advanced
+                    <input class="lang-checkbox" type="radio" [value]="true" formControlName="advanced">
+                  </label>
+                </span>
+                </div>
+              </div>
+
+              <div formArrayName="acquired">
+                <mat-form-field class="half-width reg-container">
+                  <input #acquiredSkill matInput placeholder="Skill-Sets acquired" type="text">
+                </mat-form-field>
+                <button class="icon-button" (click)="addAcquiredSkillSet(acquiredSkill.value, i); acquiredSkill.value = '';"><i class="fa fa-plus-square-o"></i></button>
+                <div class="lang-container reg-container full-width" *ngFor="let skill of acquiredSkillsArray(i).controls; let k = index;"
+                     [formGroupName]="k">
+                <span *ngIf="skill.value.name" class="selector lang-checkbox lang-container">
+                  <!--<mat-divider *ngIf="k===0"></mat-divider>-->
+                  <span class="selector">
+                    {{skill.value.name}}
+                  </span>
+                  <span>
+                    <button class="icon-button" (click)="deleteAcqSkill(i , k)"><i class="fa fa-minus-square-o"></i></button>
+                  </span>
+                </span>
+                  <span *ngIf="skill.value.name" >
+                  <label>Beginner
+                    <input class="lang-checkbox" type="radio" [value]="true" formControlName="beginner">
+                  </label>
+                  <label>Intermediate
+                    <input class="lang-checkbox" type="radio" [value]="true" formControlName="intermediate">
+                  </label>
+                  <label>Advanced
+                    <input class="lang-checkbox" type="radio" [value]="true" formControlName="advanced">
+                  </label>
+                </span>
+                </div>
+              </div>
+            </div>
             <p>
               <span class="reg-container">Duration</span><br>
               <mat-form-field class=" half-width reg-container">
@@ -559,17 +716,45 @@
                 <mat-datepicker-toggle matSuffix [for]="pickerFrom8"></mat-datepicker-toggle>
                 <mat-datepicker #pickerFrom8 startView="year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
-              <mat-form-field class=" half-width reg-container">
-                <input matInput [matDatepicker]="pickerTo8" formControlName="enddate" placeholder="End Date" type="text" required>
+              <mat-form-field *ngIf="!item.value.current" class=" half-width reg-container">
+                <input matInput [matDatepicker]="pickerTo8" formControlName="enddate" placeholder="End Date" type="text" required
+                       (dateInput)="calculateDuration(item)">
                 <mat-datepicker-toggle matSuffix [for]="pickerTo8"></mat-datepicker-toggle>
                 <mat-datepicker #pickerTo8 startView="year" [startAt]="startDate"></mat-datepicker>
               </mat-form-field>
+              <mat-form-field *ngIf="item.value.current" class=" half-width reg-container">
+                <input matInput formControlName="noticeperiod" placeholder="Notice Period" type="text">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="half-width reg-container">
+                <input matInput formControlName="salary" placeholder="Annual Salary INR (₹)" type="number" pattern="\d*" min=50000 step=1000>
+              </mat-form-field>
+            </p>
+            <p class="full-width reg-container" formGroupName="docsAvailable">
+              <span>Documents Available</span><br>
+              <label>Offer Letter
+                <input class="lang-checkbox" type="checkbox" formControlName="offerLetter">
+              </label>
+              <label>Last three months Salary Slip
+                <input class="lang-checkbox" type="checkbox" formControlName="salarySlip">
+              </label>
+              <label>Experience or Relieving Letter
+                <input class="lang-checkbox" type="checkbox" formControlName="expOrRelLetter">
+              </label>
+              <label>Resignation Acceptance Letter
+                <input class="lang-checkbox" type="checkbox" formControlName="resignAccept">
+              </label>
+              <label>Promotion Letter
+                <input class="lang-checkbox" type="checkbox" formControlName="promotion">
+              </label>
             </p>
             <p>
               <mat-form-field class="full-width reg-container">
                 <textarea matInput formControlName="summary" placeholder="Describe your Role" type="text" rows="12"></textarea>
               </mat-form-field>
             </p>
+            <button mat-button class="background-primary text-floral-white" (click)="deleteExperienceGroup(i)">Delete</button>
             <mat-action-row>
               <button mat-button class="custom-button background-primary text-floral-white">Save</button>
               <button mat-button class="custom-button background-primary text-floral-white">Reset</button>

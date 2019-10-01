@@ -6,10 +6,23 @@
   min-height: 27rem;
 }
 
-.mat-card {
+mat-card {
   justify-content: center;
+  text-align: center !important;
 }
 
 .dashboard-card-content {
   text-align: center;
+}
+
+#salaryProjection {
+  max-height: 25rem;
+}
+
+mat-grid-tile mat-card {
+  height: 90%;
+  width: 90%;
+  margin-bottom: 3rem;
+  margin-top: 2.5rem;
+  padding: 1rem 1rem;
 }

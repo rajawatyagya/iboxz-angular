@@ -11,10 +11,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import {FlexModule} from '@angular/flex-layout';
 import {MatListModule} from '@angular/material';
+import { LineChartComponent } from './line-chart/line-chart.component';
+import { AreaChartComponent } from './area-chart/area-chart.component';
+import { DonutChartComponent } from './donut-chart/donut-chart.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, LineChartComponent, AreaChartComponent, DonutChartComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

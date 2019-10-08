@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {ChangeDetectorRef, Injectable} from '@angular/core';
 import { Environment } from '../shared/environment';
 
 import { ApiAiClient } from 'api-ai-javascript/es6/ApiAiClient';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import {SpeechSynthesisService, SpeechSynthesisUtteranceFactoryService} from '@kamiazya/ngx-speech-synthesis';
 
 export class Message {
   constructor(public content: string, public sentBy: string) {}
@@ -18,10 +19,16 @@ export class ChatService {
 
   conversation: BehaviorSubject<Message[]> = new BehaviorSubject<Message[]>([]);
 
-  constructor() { }
+  constructor(public f: SpeechSynthesisUtteranceFactoryService,
+              public svc: SpeechSynthesisService,
+              ) { }
 
   update(msg: Message) {
     this.conversation.next([msg]);
+  }
+
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log('fired'));
   }
 
   // Adds message to source
@@ -32,8 +39,13 @@ export class ChatService {
     return this.client.textRequest(msg)
       .then(res => {
         const speech = res.result.fulfillment.speech;
-        const botMessage = new Message(speech, 'bot');
-        this.update(botMessage);
+        this.svc.speak(this.f.text('')); // to initialize speech-services synthesiser (it takes 1 sec )
+        this.delay(1090).then(() => {
+          console.log(speech);
+          this.svc.speak(this.f.text(speech));
+          const botMessage = new Message(speech, 'bot');
+          this.update(botMessage);
+        });
       });
   }
 }

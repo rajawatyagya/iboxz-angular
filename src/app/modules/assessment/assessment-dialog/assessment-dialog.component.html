@@ -1,7 +1,7 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
   <mat-grid-list [cols]="breakpoint" cols="2" rowHeight="1:1.5" (window:resize)="onResize($event)" gutterSize="1rem">
     <mat-grid-tile>
-      <mat-card>
+      <mat-card class="mat-elevation-z8">
         <mat-card-header>
           <mat-card-title>
             Assessment
@@ -10,14 +10,14 @@
             -- By Alina
           </mat-card-subtitle>
         </mat-card-header>
+        <mat-card-content>
+          <cd-timer *ngIf="recording" class="timer" countdown="true" #basicTimer format="intelli" [startTime]="10"
+                    (onComplete)="stopRecording()"></cd-timer>
+        </mat-card-content>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
-      <mat-card>
-        <mat-card-content>
-          <app-chatbot></app-chatbot>
-        </mat-card-content>
-      </mat-card>
+      <app-chatbot (startTimeEvent)="setRecordingStatus($event)"></app-chatbot>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

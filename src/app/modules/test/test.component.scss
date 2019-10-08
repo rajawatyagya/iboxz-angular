@@ -1,0 +1,79 @@
+.speech-result-width {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+mat-card {
+  margin: 1rem 1rem;
+  width: 100%;
+}
+
+.card-headers {
+  /*  not needed styles to reflect it */
+  padding: 10px;
+  width: 100%;
+
+  /* needed styles below */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row wrap;
+}
+
+.instructions {
+  background-color: lightgrey;
+}
+
+.start-button {
+  margin: 1rem 1rem;
+  font-size: 2.5rem;
+  padding: 0.5rem 0.5rem;
+}
+
+.custom-button {
+  margin: 1rem 1rem;
+}
+
+.timer {
+  color: #303030;
+  background-color: #eee;
+  padding: 10px 15px;
+  border: 1px solid #c9c9c9;
+  border-radius: 8px;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.question {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.center {
+  margin-top: 3rem;
+  padding: 10px;
+  text-align: center;
+}
+
+::ng-deep .mat-fab .mat-button-wrapper {
+  padding: 0 0;
+}
+
+.center-1 {
+  padding: 10px;
+  text-align: center;
+}
+
+mat-icon {
+  padding: 0 0;
+}
+
+.mat-input-element:disabled {
+  color: rgba(0,0,0,.9);
+}
+
+.notification {
+  margin-left: 20px;
+  margin-right: 20px;
+}

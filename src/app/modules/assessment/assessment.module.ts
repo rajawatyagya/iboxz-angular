@@ -7,6 +7,7 @@ import {MatButtonModule, MatCardModule, MatGridListModule} from '@angular/materi
 import {FlexModule} from '@angular/flex-layout';
 import { AssessmentDialogComponent } from './assessment-dialog/assessment-dialog.component';
 import {AlinaModule} from '../alina/alina.module';
+import {CdTimerModule} from 'angular-cd-timer';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {AlinaModule} from '../alina/alina.module';
     FlexModule,
     MatButtonModule,
     MatGridListModule,
-    AlinaModule
+    AlinaModule,
+    CdTimerModule
   ],
   entryComponents: [AssessmentDialogComponent]
 })

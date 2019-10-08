@@ -14,7 +14,7 @@ import { flyInOut } from '../../animations/app.animation';
   // tslint:disable-next-line:no-host-metadata-property
   host: {
     '[@flyInOut]': 'true',
-    'style': 'display: block;'
+    style: 'display: block;'
   },
   animations: [
     flyInOut()
@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit {
   members: TeamMember[];
 
 
-  feedbackForm: FormGroup;  // form model to host reactive form
-  feedback: Feedback;  // corresponding data model
+  feedbackForm: FormGroup;  // form speech-services to host reactive form
+  feedback: Feedback;  // corresponding data speech-services
   contactType = ContactType;
   @ViewChild('fform', { read: true, static: false }) feedbackFormDirective;  // to completely reset the value of the form
 
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
       contacttype: 'None',
       message: ''
     });
-    /* bcz the data model and form model have same structure hence,
+    /* bcz the data speech-services and form speech-services have same structure hence,
      we can quickly load the current state of form via value, when user submits the form,
      if they are diff, then we need to map every single property within the function*/
     this.feedbackFormDirective.resetForm();

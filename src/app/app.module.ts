@@ -18,7 +18,7 @@ import { RegisterComponent } from './modules/register/register.component';
 import { AssessmentModule } from './modules/assessment/assessment.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { HomeModule } from './modules/home/home.module';
-import { InterviewsModule } from './modules/interviews/interviews.module';
+import { TestModule } from './modules/test/test.module';
 import { JobsModule } from './modules/jobs/jobs.module';
 import { CandidateRegistrationModule } from './modules/registration/candidateRegistration/candidateRegistration.module';
 import { EmployerRegistrationModule } from './modules/registration/employer-registration/employer-registration.module';
@@ -49,7 +49,7 @@ import { ReferModule } from './modules/refer/refer.module';
     AssessmentModule,
     DashboardModule,
     HomeModule,
-    InterviewsModule,
+    TestModule,
     JobsModule,
     ProfileModule,
     CandidateRegistrationModule,

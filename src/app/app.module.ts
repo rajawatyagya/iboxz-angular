@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 import 'hammerjs';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,8 +26,8 @@ import { EmployerRegistrationModule } from './modules/registration/employer-regi
 import { WalletModule } from './modules/wallet/wallet.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { ReferModule } from './modules/refer/refer.module';
-
-
+import { VideoChatModule } from './modules/video-chat/video-chat.module';
+import { PronunciationModule } from './modules/pronunciation/pronunciation.module';
 
 
 @NgModule({
@@ -36,6 +37,12 @@ import { ReferModule } from './modules/refer/refer.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 7000,
+        positionClass: 'toast-bottom-right'
+      }
+    ),
     AlinaModule,
     FontAwesomeModule,
     HttpClientModule,
@@ -54,7 +61,9 @@ import { ReferModule } from './modules/refer/refer.module';
     ProfileModule,
     CandidateRegistrationModule,
     EmployerRegistrationModule,
-    WalletModule
+    VideoChatModule,
+    WalletModule,
+    PronunciationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

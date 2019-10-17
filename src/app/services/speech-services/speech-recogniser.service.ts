@@ -19,7 +19,7 @@ export class SpeechRecogniserService {
 
   initialize(language: string): void {
     this.recognition = new webkitSpeechRecognition();
-    this.recognition.continuous = false;
+    this.recognition.continuous = true;
     this.recognition.interimResults = true;
     this.recognition.lang = language;
   }

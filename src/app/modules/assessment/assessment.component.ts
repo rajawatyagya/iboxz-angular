@@ -16,7 +16,7 @@ export class AssessmentComponent implements OnInit {
   }
 
   openAssessmentDialog() {
-    this.dialog.open(AssessmentDialogComponent, {width: '1200px', height: '900px'});
+    this.dialog.open(AssessmentDialogComponent, {width: '1360px', height: '670px'});
     // the component is supplied to act as the view of the dialog
   }
 

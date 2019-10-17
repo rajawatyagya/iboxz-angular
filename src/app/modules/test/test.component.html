@@ -1,6 +1,5 @@
-<div class="container" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
-
-  <mat-card class="instructions">
+<div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+  <mat-card *ngIf="!questionNumber" class="instructions">
     <mat-card-header >
       <div class="card-headers">
         <mat-card-title class="card-headers-child">
@@ -9,11 +8,12 @@
           </h3>
         </mat-card-title>
         <mat-card-title class="card-headers-child">
-          <mat-form-field>
+          <mat-form-field class="lang-select">
             <mat-select placeholder="Select your language"
                         [(ngModel)]="currentLanguage" [disabled]="recognizing">
+              <mat-option disabled>Select a suitable language</mat-option>
               <mat-option *ngFor="let language of languages" [value]="language" (click)="onSelectLanguage(language)">
-                {{language}}
+                {{language.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -25,53 +25,81 @@
     </mat-card-header>
 
     <mat-card-content>
-      <ul>There are 10 questions in total.</ul>
-      <ul>You'll be given 20 minutes to complete this assessment.</ul>
-      <ul>Per question 15 seconds are provided for reading and preparing for the answer.</ul>
-      <ul>After the preparation time, the recorder will start, you'll be notified below as "I'm listening..."</ul>
-      <ul>You'll be provided with 45 seconds to answer each question.</ul>
+      <ul>There will be total of 3 sections to be answered in a total time span of 20 mins.</ul>
+      <ul>First section will be having 3 different Questions.</ul>
+      <ul>Second section will be having 10 different general HR based questions.</ul>
+      <ul>Third  section will be having 10 different profile and skills related Questions.</ul>
+      <ul>For the first section you will be given 1 min for each question.</ul>
+      <ul>For the second and third section you will be given 45 seconds for each question.</ul>
+      <ul>Once the question is spoken by Alina, the recorder will start, you'll be notified below as "I'm listening..."</ul>
       <ul>If you are done with your answer before 45 seconds, just click next, your answer will be saved.</ul>
-      <ul>The pause button can be used to pause the recording but the timer will continue.</ul>
+      <ul>The stop button will stop the recording and it'll be taken as your final answer.</ul>
+      <ul>Please use the stop button if you are done with your answer before 45 seconds.</ul>
       <ul>After answering all the questions submit your assessment without fail.</ul>
       <ul></ul>
     </mat-card-content>
   </mat-card>
-
-  <mat-card *ngIf="questionNumber || questionNumber === 0">
+  <mat-card *ngIf="questionNumber">
     <mat-card-header>
-      <div class="card-headers">
-        <mat-card-title>
-          <h2>Question</h2>
-        </mat-card-title>
-        <mat-card-title>
-          <button mat-fab (click)="startButton()">
-            <mat-icon *ngIf="!recognizing">mic</mat-icon>
-            <mat-icon *ngIf="recognizing">stop</mat-icon>
-          </button>
-        </mat-card-title>
-      </div>
+      <cd-timer class="timer" countdown="true" #universalTimer format="intelli"
+                [startTime]="1200"
+                (onComplete)="submitResponse()"></cd-timer>
     </mat-card-header>
     <mat-card-content>
-      <mat-grid-list cols="6" rowHeight="1:1" class="question">
-        <mat-grid-tile colspan="5">
-          {{questions[questionNumber]}}
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1">
-          <cd-timer class="timer" countdown="true" #basicTimer format="intelli" [startTime]="15" [autoStart]="false"
-                    (onComplete)="stopRecording()"></cd-timer>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <div fxFlex>
+        <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+          <div fxFlex="40">
+            <img class="responsive" src="assets/images/alina.png" height="500rem" alt="tie">
+          </div>
+          <div fxFlex="60" class="bubble-box">
+            <div class="box sb2">
+              <mat-card class="alina-bubble" *ngIf="(questionNumber || questionNumber === 0) && responseSet.length < 15">
+                <!--<mat-card-header>
+                  <div class="card-headers">
+                    <mat-card-title>
+                      <h2>Question</h2>
+                    </mat-card-title>
+                    <mat-card-title>
+
+                    </mat-card-title>
+                  </div>
+                </mat-card-header>-->
+                <mat-card-content>
+                  <mat-grid-list cols="6" rowHeight="1:1" class="question">
+                    <mat-grid-tile colspan="5">
+                      {{questions[questionNumber]}}
+                    </mat-grid-tile>
+                    <mat-grid-tile class="timer-tile" colspan="1">
+                      <cd-timer *ngIf="!timerCompleted" class="timer" countdown="true" #basicTimer format="intelli"
+                                [startTime]="15"
+                                [autoStart]="false"
+                                (onComplete)="stopRecording()"></cd-timer>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+                </mat-card-content>
+                <mat-card-actions class="custom-button">
+                  <button mat-fab [disabled]="!recognizing" (click)="stopRecording()">
+                    <mat-icon *ngIf="!recognizing">mic</mat-icon>
+                    <mat-icon *ngIf="recognizing">stop</mat-icon>
+                  </button>
+                  <div fxFlex></div>
+                  <button mat-button class="custom-button next-button background-primary text-floral-white" [disabled]="buttonBool"
+                          (click)="askQuestion()">Next</button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
     </mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-button class="custom-button background-primary text-floral-white"
-              (click)="askQuestion()">Next</button>
-    </mat-card-actions>
   </mat-card>
 
   <span>
     <button mat-button class="start-button background-primary text-floral-white"
             *ngIf="! questionNumber || questionNumber === 0" (click)="askQuestion()">Start</button>
+    <button mat-button class="start-button background-primary text-floral-white"
+            *ngIf="responseSet.length === 15" type="submit" mat-dialog-close (submit)="submitResponse()">Submit</button>
   </span>
 
-  <mat-card *ngIf="notification" class="notification">{{notification}}</mat-card>
+  <span *ngIf="notification" class="notification">{{notification}}</span>
 </div>

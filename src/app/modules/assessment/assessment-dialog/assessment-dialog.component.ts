@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AlinaComponent} from '../../alina/alina.component';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-assessment-dialog',
@@ -8,14 +9,13 @@ import {AlinaComponent} from '../../alina/alina.component';
 })
 export class AssessmentDialogComponent implements OnInit {
 
-  @ViewChild('basicTimer', {static: false}) basicTimer;
   @ViewChild(AlinaComponent, {static: false}) alina: AlinaComponent;
-
-  recording = false;
 
   private breakpoint: number;
 
-  constructor() {}
+  constructor(private dialogRef: MatDialogRef<AssessmentDialogComponent>) {
+    dialogRef.disableClose = true;
+  }
 
   ngOnInit() {
     this.breakpoint = (window.innerWidth <= 600) ? 1 : 2;
@@ -23,16 +23,5 @@ export class AssessmentDialogComponent implements OnInit {
 
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 600) ? 1 : 2;
-  }
-
-  setRecordingStatus(recording: boolean): void {
-    this.recording = recording;
-    this.basicTimer.start();
-  }
-
-  stopRecording() {
-    this.recording = false;
-    this.alina.stopRecoding();
-    this.basicTimer.reset();
   }
 }

@@ -11,7 +11,9 @@ import { WalletComponent } from './modules/wallet/wallet.component';
 import { CandidateRegistrationComponent } from './modules/registration/candidateRegistration/candidateRegistration.component';
 import { EmployerRegistrationComponent } from './modules/registration/employer-registration/employer-registration.component';
 import { AlinaComponent } from './modules/alina/alina.component';
-import {JobPostingComponent} from './modules/jobs/job-posting/job-posting.component';
+import { JobPostingComponent } from './modules/jobs/job-posting/job-posting.component';
+import { VideoChatComponent } from './modules/video-chat/video-chat.component';
+import {PronunciationComponent} from './modules/pronunciation/pronunciation.component';
 
 
 const routes: Routes = [
@@ -39,11 +41,11 @@ const routes: Routes = [
     path: 'jobs',
     component: JobsComponent,
     children: [
-    {
-      path: 'jobposting',
-      component: JobPostingComponent
-    }
-]
+        {
+          path: 'jobposting',
+          component: JobPostingComponent
+        }
+    ]
   },
   {
     path: 'refer',
@@ -64,6 +66,14 @@ const routes: Routes = [
   {
     path: 'alina',
     component: AlinaComponent
+  },
+  {
+    path: 'videoChat',
+    component: VideoChatComponent
+  },
+  {
+    path: 'pronunciation',
+    component: PronunciationComponent
   },
   {
     path: '',

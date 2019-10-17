@@ -8,7 +8,7 @@ import {RxSpeechRecognitionService} from '@kamiazya/ngx-speech-recognition';
 import {SpeechSynthesisModule} from '@kamiazya/ngx-speech-synthesis';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDialogModule,
   MatFormFieldModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
@@ -18,6 +18,7 @@ import {
 import {AlinaModule} from '../alina/alina.module';
 import {CdTimerModule} from 'angular-cd-timer';
 import {FlexModule} from '@angular/flex-layout';
+import {TranslatorModule} from 'angular-translator';
 
 
 @NgModule({
@@ -43,6 +44,15 @@ import {FlexModule} from '@angular/flex-layout';
     CdTimerModule,
     MatGridListModule,
     FlexModule,
+    TranslatorModule.forRoot({
+      defaultLanguage: 'ru',
+      providedLanguages: ['de', 'en', 'ru'],
+      detectLanguage: false
+    }),
+    MatDialogModule,
+  ],
+  exports: [
+    TestComponent
   ],
   providers: [RxSpeechRecognitionService]
 })

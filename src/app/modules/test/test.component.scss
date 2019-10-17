@@ -1,10 +1,57 @@
+@import "../../../theming/variables";
+
 .speech-result-width {
   padding-left: 20px;
   padding-right: 20px;
 }
 
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+.bubble-box {
+  width: inherit;
+  height: inherit;
+}
+
+.box {
+  width: inherit;
+  margin: auto auto;
+  border-radius: 0.5rem;
+  background: $primary-color;
+  padding: 20px;
+  text-align: center;
+  font-weight: 900;
+  color: #fff;
+  position:relative;
+}
+
+// TODO box mobile view
+
+.sb2:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 15px solid $primary-color;
+  border-top: 15px solid $primary-color;
+  border-bottom: 15px solid transparent;
+  left: -19px;
+  top: 0px;
+}
+
+.alina-bubble {
+  width: inherit;
+}
+
+.next-button {
+  max-height: 2.25rem;
+  margin-top: 0.75rem;
+}
+
 mat-card {
-  margin: 1rem 1rem;
   width: 100%;
 }
 
@@ -20,6 +67,14 @@ mat-card {
   flex-flow: row wrap;
 }
 
+::ng-deep .mat-card-header-text {
+  margin: 0 0;
+}
+
+.lang-select {
+  font-size: 0.9rem;
+}
+
 .instructions {
   background-color: lightgrey;
 }
@@ -31,7 +86,12 @@ mat-card {
 }
 
 .custom-button {
-  margin: 1rem 1rem;
+  padding: 0 0.7rem;
+}
+
+.custom-button:disabled {
+  background-color: dimgrey !important;
+  cursor: wait;
 }
 
 .timer {
@@ -42,12 +102,16 @@ mat-card {
   border-radius: 8px;
   display: inline-block;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+::ng-deep .timer-tile .mat-figure {
+  justify-content: flex-end !important;
 }
 
 .question {
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .center {
@@ -67,10 +131,6 @@ mat-card {
 
 mat-icon {
   padding: 0 0;
-}
-
-.mat-input-element:disabled {
-  color: rgba(0,0,0,.9);
 }
 
 .notification {

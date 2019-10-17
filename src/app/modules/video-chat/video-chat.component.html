@@ -1,0 +1,14 @@
+<div class="container video-chat"
+     fxLayout="column"
+     fxLayoutGap="10px">
+  <p>video-chat works!</p>
+
+  <div id="agora_local">
+  </div>
+  <div class="remote-containers">
+    <div class="remote_calls" *ngFor="let remote of remoteCalls;" [id]="remote">
+    </div>
+  </div>
+  <button (click)="startCall()">Start Call</button>
+
+</div>

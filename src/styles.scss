@@ -1,6 +1,7 @@
 @import "theming/iboxz_theme";
 @import "theming/variables";
 @import '../node_modules/font-awesome/scss/font-awesome';
+@import '~ngx-toastr/toastr.css';
 
 
 html, body { height: 100%; }

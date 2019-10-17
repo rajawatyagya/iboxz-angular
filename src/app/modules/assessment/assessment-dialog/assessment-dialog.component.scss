@@ -1,28 +1,3 @@
-mat-grid-tile mat-card {
-  height: 90%;
-  width: 90%;
-  margin-bottom: 3rem;
-  margin-top: 2.5rem;
-  padding: 1rem 1rem;
-}
-
-.timer {
-  color: #303030;
-  background-color: #eee;
-  padding: 10px 15px;
-  margin-bottom: 20px;
-  border: 1px solid #c9c9c9;
-  border-radius: 8px;
-  display: inline-block;
-  font-weight: 700;
-  font-size: 2rem;
-}
-
-::ng-deep mat-grid-tile .mat-figure {
-  align-items: start !important;
-}
-
-app-chatbot {
-  height: 90%;
-  width: 90%;
+.test-app-container {
+  margin: 1rem 1rem;
 }

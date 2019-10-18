@@ -17,7 +17,7 @@ import { flyInOut } from '../../animations/app.animation';
   ]
 })
 export class DashboardComponent implements OnInit {
-  private breakpoint: number;
+  breakpoint: number;
 
   constructor() {}
 

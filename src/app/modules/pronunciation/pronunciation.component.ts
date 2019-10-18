@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AudioRecordingService} from '../../services/audio-recording.service';
-import {DomSanitizer} from '@angular/platform-browser';
+import {JavascriptLoaderService} from '../../services/javascript-loader.service';
 
 
 @Component({
@@ -10,9 +9,22 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class PronunciationComponent implements OnInit {
 
-  constructor() { }
+  jsFiles = [
+    '../../../assets/js/jquery-3.2.1.min.js',
+    '../../../assets/js/recorder.js',
+    '../../../assets/js/callbackmanager.js',
+    '../../../assets/js/volumemeter.js',
+    '../../../assets/js/constants.js',
+    '../../../assets/js/common.js',
+    '../../../assets/js/recognizer.js',
+    '../../../assets/js/proneval.js',
+    '../../../assets/js/keras.js'
+  ];
+
+  constructor(private jsLoader: JavascriptLoaderService) { }
 
   ngOnInit() {
+    this.jsLoader.loadScripts(this.jsFiles);
   }
 
 }

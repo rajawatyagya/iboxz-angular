@@ -35,7 +35,7 @@ export const QUESTIONS = [
   'tasks by the end of the day, and there was no conceivable way that you could finish them. ',
   'What salary are you seeking?',
   'What\'s your salary history?',
-    'If I were to give you this salary you requested but let you write your job description for the next year, what would it say?',
+  'If I were to give you this salary you requested but let you write your job description for the next year, what would it say?',
   'What are you looking for in terms of career development? ',
   'How do you want to improve yourself in the next year?',
   'What kind of goals would you have in mind if you got this job? ',
@@ -64,7 +64,7 @@ export const QUESTIONS = [
   'What negative thing would your last boss say about you? ',
   'What three character traits would your friends use to describe you? ',
   'What are three positive character traits you don\'t have?  ',
-    'If you were interviewing someone for this position, what traits would you look for?  ',
+  'If you were interviewing someone for this position, what traits would you look for?  ',
   'List five words that describe your character.   ',
   'Who has impacted you most in your career and how? ',
   'What is your greatest fear? ',
@@ -103,4 +103,13 @@ export const QUESTIONS = [
   'What do you mean by BSoD?',
   'What is APIPA?',
   'What do you mean by data binding?'
+];
+
+export const LANG_ASSESS_PARA = [
+  'As the pen fell far to the floor, Amy watched it hit the linoleum. She knew she couldn\'t have caught that pen if Brian threw it to her' +
+  ' from his greasy old hands. But she picked it up and wrote the directions to her house. She cleared her throat, but her words still ' +
+  'sounded hoarse.',
+  'Amy handed the pen back to Brian. She wanted to wash her hands immediately, but settled on wiping them on her jeans. The look on Brian\'s ' +
+  'face when she did this sent a pin-pricking sensation through her. She knew she shouldn\'t be so hard on him. After all, she thought, ' +
+  'he is my brother. I shouldn\'t be so angry all the time. And he is doing us a great service by helping us out this summer.',
 ];

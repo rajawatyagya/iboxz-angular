@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import { SpeechNotification } from '../../services/speech-services/speech-notification';
@@ -15,11 +15,11 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+  selector: 'app-domain-test',
+  templateUrl: './domain-test.component.html',
+  styleUrls: ['./domain-test.component.scss']
 })
-export class TestComponent implements OnInit {
+export class DomainTestComponent implements OnInit {
 
   @ViewChild('basicTimer', {static: false}) basicTimer;
   @ViewChild('universalTimer', {static: false}) universalTimer;
@@ -34,6 +34,7 @@ export class TestComponent implements OnInit {
   responseSet = [];
   buttonBool = false;
   timerCompleted = false;
+  nextTest = ''
 
   constructor(private changeDetector: ChangeDetectorRef,
               private speechRecognizer: SpeechRecogniserService,
@@ -181,6 +182,7 @@ export class TestComponent implements OnInit {
     this.buttonBool = disabled;
   }
 
+  @HostListener('click', ['$event.target'])
   submitResponse() {
     // TODO implementation of submit
     console.log(this.responseSet);

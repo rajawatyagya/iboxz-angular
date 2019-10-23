@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TestRoutingModule } from './test-routing.module';
-import { TestComponent } from './test.component';
+import { DomainTestRoutingModule } from './domain-test-routing.module';
+import { DomainTestComponent } from './domain-test.component';
 import {FormsModule} from '@angular/forms';
 import {RxSpeechRecognitionService} from '@kamiazya/ngx-speech-recognition';
 import {SpeechSynthesisModule} from '@kamiazya/ngx-speech-synthesis';
@@ -22,10 +22,10 @@ import {TranslatorModule} from 'angular-translator';
 
 
 @NgModule({
-  declarations: [TestComponent],
+  declarations: [DomainTestComponent],
   imports: [
     CommonModule,
-    TestRoutingModule,
+    DomainTestRoutingModule,
     FormsModule,
     SpeechSynthesisModule.forRoot({
       lang: 'en-US',
@@ -52,8 +52,8 @@ import {TranslatorModule} from 'angular-translator';
     MatDialogModule,
   ],
   exports: [
-    TestComponent
+    DomainTestComponent
   ],
   providers: [RxSpeechRecognitionService]
 })
-export class TestModule { }
+export class DomainTestModule { }

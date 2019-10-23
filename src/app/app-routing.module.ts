@@ -4,7 +4,7 @@ import { HomeComponent} from './modules/home/home.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { AssessmentComponent } from './modules/assessment/assessment.component';
-import { TestComponent } from './modules/test/test.component';
+import { DomainTestComponent } from './modules/domain-test/domain-test.component';
 import { JobsComponent } from './modules/jobs/jobs.component';
 import { ReferComponent } from './modules/refer/refer.component';
 import { WalletComponent } from './modules/wallet/wallet.component';
@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'test',
-    component: TestComponent
+    component: DomainTestComponent
   },
   {
     path: 'jobs',

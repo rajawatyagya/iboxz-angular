@@ -1,0 +1,63 @@
+<div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+  <mat-card *ngIf="questionNumber">
+    <mat-card-header>
+      <cd-timer class="timer" countdown="true" #universalTimer format="intelli"
+                [startTime]="1200"
+                (onComplete)="submitResponse()"></cd-timer>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxFlex>
+        <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+          <div fxFlex="40">
+            <img class="responsive" src="assets/images/alina.png" height="500rem" alt="tie">
+          </div>
+          <div fxFlex="60" class="bubble-box">
+            <div class="box sb2">
+              <mat-card class="alina-bubble" *ngIf="(questionNumber || questionNumber === 0) && responseSet.length < 15">
+                <!--<mat-card-header>
+                  <div class="card-headers">
+                    <mat-card-title>
+                      <h2>Question</h2>
+                    </mat-card-title>
+                    <mat-card-title>
+
+                    </mat-card-title>
+                  </div>
+                </mat-card-header>-->
+                <mat-card-content>
+                  <mat-grid-list cols="6" rowHeight="1:1" class="question">
+                    <mat-grid-tile colspan="5">
+                      {{questions[questionNumber]}}
+                    </mat-grid-tile>
+                    <mat-grid-tile class="timer-tile" colspan="1">
+                      <cd-timer *ngIf="!timerCompleted" class="timer" countdown="true" #basicTimer format="intelli"
+                                [startTime]="15"
+                                [autoStart]="false"
+                                (onComplete)="stopRecording()"></cd-timer>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+                </mat-card-content>
+                <mat-card-actions class="custom-button">
+                  <button mat-fab [disabled]="!recognizing" (click)="stopRecording()">
+                    <mat-icon *ngIf="!recognizing">mic</mat-icon>
+                    <mat-icon *ngIf="recognizing">stop</mat-icon>
+                  </button>
+                  <div fxFlex></div>
+                  <button mat-button class="custom-button next-button background-primary text-floral-white" [disabled]="buttonBool"
+                          (click)="askQuestion()">Next</button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <span>
+    <button mat-button class="start-button background-primary text-floral-white"
+            *ngIf="! questionNumber || questionNumber === 0" (click)="askQuestion()">Start</button>
+    <button mat-button class="start-button background-primary text-floral-white"
+            *ngIf="responseSet.length === 15" type="submit" mat-dialog-close (submit)="submitResponse()">Submit</button>
+  </span>
+</div>

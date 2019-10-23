@@ -8,11 +8,13 @@ import {FlexModule} from '@angular/flex-layout';
 import { AssessmentDialogComponent } from './assessment-dialog/assessment-dialog.component';
 import {AlinaModule} from '../alina/alina.module';
 import {CdTimerModule} from 'angular-cd-timer';
-import {TestModule} from '../test/test.module';
+import {DomainTestModule} from '../domain-test/domain-test.module';
+import {LanguageAssessmentModule} from '../language-assessment/language-assessment.module';
+import {AssessmentDialogModule} from './assessment-dialog/assessment-dialog.module';
 
 
 @NgModule({
-  declarations: [AssessmentComponent, AssessmentDialogComponent],
+  declarations: [AssessmentComponent],
   imports: [
     CommonModule,
     AssessmentRoutingModule,
@@ -23,7 +25,9 @@ import {TestModule} from '../test/test.module';
     AlinaModule,
     CdTimerModule,
     MatDialogModule,
-    TestModule
+    DomainTestModule,
+    LanguageAssessmentModule,
+    AssessmentDialogModule
   ],
   entryComponents: [AssessmentDialogComponent]
 })

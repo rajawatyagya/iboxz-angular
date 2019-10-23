@@ -45,7 +45,7 @@ export class EmployerRegistrationComponent implements OnInit {
       department:             ['', Validators.required],
       functionalarea:         ['', Validators.required],
       role:                   ['', Validators.required],
-      email:                  [{value: 'test@iboxz.in', disabled: true}],
+      email:                  [{value: 'domain-test@iboxz.in', disabled: true}],
       accountType:            '',
       mobileNumber:           ['', Validators.required],
       landLine:               ['', Validators.required],

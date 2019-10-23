@@ -44,4 +44,18 @@ export class ApiService {
       Authorization: `Token ${token}`
     });
   }
+
+  getAuthHead() {
+    const token = this.cookieService.get('auth-token');
+    return new HttpHeaders({
+      Authorization: `Token ${token}`
+    });
+  }
+
+  saveAudioFile(data) {
+    return this.httpClient.post(
+      `${this.baseUrl}api/evaluation/save_audio/`, data,
+      {headers: this.getAuthHead()}
+    );
+  }
 }

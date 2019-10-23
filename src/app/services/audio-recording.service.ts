@@ -57,7 +57,10 @@ export class AudioRecordingService {
 
     this.recorder = new RecordRTC.StereoAudioRecorder(this.stream, {
       type: 'audio',
-      mimeType: 'audio/ogg'
+      mimeType: 'audio/wav',
+      // audioBitsPerSecond: 19200,
+      // desiredSampRate: 48 * 1000,
+      // bufferSize: 4096
     });
 
     this.recorder.record();
@@ -89,9 +92,9 @@ export class AudioRecordingService {
     if (this.recorder) {
       this.recorder.stop((blob) => {
         if (this.startTime) {
-          const mp3Name = encodeURIComponent('audio_' + new Date().getTime() + '.mp3');
+          const wavName = encodeURIComponent('audio_' + new Date().getTime() + '.wav');
           this.stopMedia();
-          this.recorded.next({ blob, title: mp3Name });
+          this.recorded.next({ blob, title: wavName });
         }
       }, () => {
         this.stopMedia();

@@ -1,0 +1,95 @@
+<div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+  <mat-card *ngIf="!start" class="instructions">
+    <mat-card-header >
+      <div class="card-headers">
+        <mat-card-title class="card-headers-child">
+          <h3>
+            Instructions
+          </h3>
+        </mat-card-title>
+        <mat-card-title class="card-headers-child">
+          <mat-form-field class="lang-select">
+            <mat-select placeholder="Select your language"
+                        [(ngModel)]="currentLanguage" [disabled]="true">
+              <mat-option disabled>Select a suitable language</mat-option>
+              <mat-option *ngFor="let language of languages" [value]="language" (click)="onSelectLanguage(language)">
+                {{language.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-title>
+        <mat-card-subtitle>
+          Please read these instructions carefully before starting.
+        </mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <ul>There will be total of 3 sections to be answered in a total time span of 20 mins.</ul>
+      <ul>First section will be having 3 different Questions.</ul>
+      <ul>Second section will be having 10 different general HR based questions.</ul>
+      <ul>Third  section will be having 10 different profile and skills related Questions.</ul>
+      <ul>For the first section you will be given 1 min for each question.</ul>
+      <ul>For the second and third section you will be given 45 seconds for each question.</ul>
+      <ul>Once the question is spoken by Alina, the recorder will start, you'll be notified below as "I'm listening..."</ul>
+      <ul>If you are done with your answer before 45 seconds, just click next, your answer will be saved.</ul>
+      <ul>The stop button will stop the recording and it'll be taken as your final answer.</ul>
+      <ul>Please use the stop button if you are done with your answer before 45 seconds.</ul>
+      <ul>After answering all the questions submit your assessment without fail.</ul>
+      <ul></ul>
+    </mat-card-content>
+  </mat-card>
+
+  <span *ngIf="!start">
+    <button mat-button class="start-button background-primary text-floral-white"
+             (click)="startAssessment()">Start</button>
+  </span>
+
+  <mat-card *ngIf="start">
+    <mat-card-header>
+      <div class="card-headers">
+        <mat-card-title>
+          <cd-timer class="timer" countdown="true" #universalTimer format="intelli"
+                    [startTime]="6"
+                    [autoStart]="false"
+                    (onComplete)="submitResponse()">
+          </cd-timer>
+        </mat-card-title>
+        <mat-card-title>
+          <button mat-fab>
+            <mat-icon *ngIf="!recording">mic</mat-icon>
+            <mat-icon *ngIf="recording" >stop</mat-icon>
+          </button>
+        </mat-card-title>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxFlex>
+        <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+          <div fxFlex="40">
+            <img class="responsive" src="assets/images/alina.png" height="500rem" alt="tie">
+          </div>
+          <div fxFlex="60" class="bubble-box">
+            <div class="box sb2">
+              <mat-card class="alina-bubble">
+                <mat-card-content>
+                  <p class="assessment-para" *ngFor="let para of assessmentParas">
+                    {{para}}
+                  </p>
+                </mat-card-content>
+                <!--<mat-card-actions class="custom-button">
+                  <button mat-fab >
+                    <mat-icon *ngIf="!recognizing">mic</mat-icon>
+                    <mat-icon *ngIf="recognizing">stop</mat-icon>
+                  </button>
+                  <div fxFlex></div>
+                  <button mat-button class="custom-button next-button background-primary text-floral-white"
+                          >Next</button>
+                </mat-card-actions>-->
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

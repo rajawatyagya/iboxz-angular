@@ -6,6 +6,9 @@ import { TeamService } from '../../services/team.service';
 import { Overview } from '../../shared/overview';
 import { TeamMember } from '../../shared/teamMember';
 import { flyInOut } from '../../animations/app.animation';
+import {LoginComponent} from './login/login.component';
+import {MatDialog} from '@angular/material';
+import {RegisterComponent} from './register/register.component';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +35,12 @@ export class HomeComponent implements OnInit {
   @ViewChild('fform', { read: true, static: false }) feedbackFormDirective;  // to completely reset the value of the form
 
 
-  constructor(private overviewService: OverviewService, private teamService: TeamService, private fb: FormBuilder) {
+  constructor(
+    private overviewService: OverviewService,
+    private teamService: TeamService,
+    private fb: FormBuilder,
+    public dialog: MatDialog
+  ) {
     this.createForm();
   }
 
@@ -43,10 +51,18 @@ export class HomeComponent implements OnInit {
       .subscribe((members) => this.members = members);
   }
 
+  openLoginForm() {
+    this.dialog.open(LoginComponent, {width: '550px', height: '350px'});   // the component is supplied to act as the view of the dialog
+  }
+
+  openRegisterForm() {
+    this.dialog.open(RegisterComponent, {width: '650px', height: '550px'});   // the component is supplied to act as the view of the dialog
+  }
+
   createForm() {
     this.feedbackForm = this.fb.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       telnum: ['', Validators.required],
       email: ['', Validators.required],
       agree: false,
@@ -59,8 +75,8 @@ export class HomeComponent implements OnInit {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
     this.feedbackForm.reset({  // resetting the form object to original
-      firstname: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
       telnum: '',
       email: '',
       agree: false,

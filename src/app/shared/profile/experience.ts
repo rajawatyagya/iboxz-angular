@@ -2,7 +2,8 @@ export class Experience {
   title: string;
   company: string;
   summary: string;
-  skillSet: string;
+  implementedSkills: string;
+  acquiredSkills: string;
   duration: string;
   current: boolean;
 }

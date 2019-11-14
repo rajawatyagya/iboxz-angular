@@ -13,24 +13,25 @@ import { NgxdModule } from '@ngxd/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidenavModule } from './modules/sidenav/sidenav.module';
-import { AlinaModule } from './modules/alina/alina.module';
-import { LoginComponent } from './modules/login/login.component';
-import { LoginModule } from './modules/login/login.module';
-import { RegisterModule } from './modules/register/register.module';
-import { RegisterComponent } from './modules/register/register.component';
-import { AssessmentModule } from './modules/assessment/assessment.module';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { AlinaModule } from './modules/sidenav/alina/alina.module';
+import { LoginComponent } from './modules/home/login/login.component';
+import { LoginModule } from './modules/home/login/login.module';
+import { RegisterModule } from './modules/home/register/register.module';
+import { RegisterComponent } from './modules/home/register/register.component';
+import { AssessmentModule } from './modules/sidenav/assessment/assessment.module';
+import { DashboardModule } from './modules/sidenav/dashboard/dashboard.module';
 import { HomeModule } from './modules/home/home.module';
-import { DomainTestModule } from './modules/domain-test/domain-test.module';
-import { JobsModule } from './modules/jobs/jobs.module';
-import { CandidateRegistrationModule } from './modules/registration/candidateRegistration/candidateRegistration.module';
-import { EmployerRegistrationModule } from './modules/registration/employer-registration/employer-registration.module';
-import { WalletModule } from './modules/wallet/wallet.module';
-import { ProfileModule } from './modules/profile/profile.module';
-import { ReferModule } from './modules/refer/refer.module';
-import { VideoChatModule } from './modules/video-chat/video-chat.module';
-import { PronunciationModule } from './modules/pronunciation/pronunciation.module';
-import { LanguageAssessmentModule } from './modules/language-assessment/language-assessment.module';
+import { DomainTestModule } from './modules/sidenav/assessment/assessment-dialog/domain-test/domain-test.module';
+import { JobsModule } from './modules/sidenav/jobs/jobs.module';
+import { CandidateRegistrationModule } from './modules/home/registration/candidateRegistration/candidateRegistration.module';
+import { EmployerRegistrationModule } from './modules/home/registration/employer-registration/employer-registration.module';
+import { WalletModule } from './modules/sidenav/wallet/wallet.module';
+import { ProfileModule } from './modules/sidenav/profile/profile.module';
+import { ReferModule } from './modules/sidenav/refer/refer.module';
+import { VideoChatModule } from './modules/sidenav/video-chat/video-chat.module';
+import { LanguageAssessmentModule } from './modules/sidenav/assessment/assessment-dialog/language-assessment/language-assessment.module';
+import { DevelopmentTestingModule } from './modules/sidenav/development-testing/development-testing.module';
+import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
 
 
 @NgModule({
@@ -67,8 +68,11 @@ import { LanguageAssessmentModule } from './modules/language-assessment/language
     EmployerRegistrationModule,
     VideoChatModule,
     WalletModule,
-    PronunciationModule,
-    LanguageAssessmentModule
+    LanguageAssessmentModule,
+    DevelopmentTestingModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],

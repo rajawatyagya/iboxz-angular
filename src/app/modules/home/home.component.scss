@@ -8,6 +8,31 @@ body{
   margin: 2rem;
 }
 
+.logo-front-page {
+  height: auto;
+}
+
+.top-container {
+  margin: 1rem;
+  display: flex;
+}
+
+.button-container {
+  margin: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo-container {
+  margin: 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.custom-button {
+  margin: 1rem 1rem;
+}
+
 .card-layout {
   min-width: 18rem;
   min-height: 12rem;

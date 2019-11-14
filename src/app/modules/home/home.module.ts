@@ -6,7 +6,7 @@ import { HomeComponent } from './home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDialogModule,
   MatFormFieldModule,
   MatInputModule, MatProgressSpinnerModule,
   MatSelectModule,
@@ -17,6 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HomeComponent],
+  exports: [
+    HomeComponent
+  ],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -28,7 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ]
 })
 export class HomeModule { }

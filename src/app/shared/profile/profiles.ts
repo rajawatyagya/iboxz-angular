@@ -4,8 +4,8 @@ export const PROFILES: Profile[] = [
   {
     id: 1,
     title: 'Ms.',
-    firstname: 'Sumegha',
-    lastname: 'Thakur',
+    firstName: 'Sumegha',
+    lastName: 'Thakur',
     image: '/assets/images/sumegha.jpg',
     designation: 'Associate / Sr. Associate',
     mobile: '(989) 933-7908',
@@ -38,7 +38,8 @@ export const PROFILES: Profile[] = [
       company: 'Teleperformance',
       current: true,
       duration: 'Mar-2017 To Till now',
-      skillSet: '',
+      implementedSkills: '',
+      acquiredSkills: '',
       summary: 'TC- Technical Support',
       title: 'Associate / Sr. Associate'
     }],
@@ -48,10 +49,10 @@ export const PROFILES: Profile[] = [
       city: 'Delhi',
       country: 'India',
       state: 'Delhi',
-      zipcode: 110017
+      zipCode: 110017
     }],
     facebook: 'https://www.facebook.com/sumegha',
     twitter: 'https://twitter.com/sumegha',
-    linkedin: 'https://www.linkedin.com/in/sumegha/'
+    linkedIn: 'https://www.linkedin.com/in/sumegha/'
   },
 ];

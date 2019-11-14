@@ -8,5 +8,5 @@ export class TeamMember {
   featured: boolean;
   facebook: string;
   twitter: string;
-  linkedin: string;
+  linkedIn: string;
 }

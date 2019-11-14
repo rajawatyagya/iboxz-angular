@@ -11,7 +11,7 @@ export const MEMBERS: TeamMember[] = [
     featured: false,
     facebook: 'https://www.facebook.com/rohitsinha0807',
     twitter: '',
-    linkedin: 'https://www.linkedin.com/in/rohit-sinha-2275a99/'
+    linkedIn: 'https://www.linkedin.com/in/rohit-sinha-2275a99/'
   },
   {
     id: '1',
@@ -23,18 +23,18 @@ export const MEMBERS: TeamMember[] = [
     featured: false,
     facebook: 'https://www.facebook.com/yagya.bits',
     twitter: 'https://twitter.com/rajawat_yagya',
-    linkedin: 'https://www.linkedin.com/in/yagyarajawat/'
+    linkedIn: 'https://www.linkedin.com/in/yagyarajawat/'
   },
   {
     id: '2',
-    name: 'Vikram Singh',
-    image: '/assets/images/vikram.jpg',
+    name: 'Richa Arya',
+    image: '/assets/images/richa.png',
     designation: 'Chief Operations Officer',
     abbr: 'Founder & COO',
     description: 'All the operational stuff!',
     featured: false,
-    facebook: '',
+    facebook: 'https://www.facebook.com/richa.arya.26',
     twitter: '',
-    linkedin: ''
+    linkedIn: 'https://www.linkedin.com/in/richa-arya-445a20b3/'
   }
 ];

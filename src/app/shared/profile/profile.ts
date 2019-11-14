@@ -5,8 +5,8 @@ import {Address} from '../address';
 export class Profile {
   id: number;
   title: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   image: string;
   designation: string;
   description: string;
@@ -23,5 +23,5 @@ export class Profile {
   resume: string;
   facebook: string;
   twitter: string;
-  linkedin: string;
+  linkedIn: string;
 }

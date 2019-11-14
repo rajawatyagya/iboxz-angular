@@ -1,0 +1,29 @@
+<mat-toolbar>
+  Login
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+
+<!--<p>{{ user | json }}</p>-->
+
+<form novalidate [formGroup]="authForm" (submit)="saveForm()">     <!--novalidate to skip the html form validation and use angular form validation-->
+  <mat-dialog-content>
+    <p>
+      <mat-form-field class="container">  <!-- to group set of form elements-->
+        <input matInput placeholder="Username" type="text" formControlName="username" required>
+        <!--<mat-error *ngIf="username.errors?.required">Username is required</mat-error>-->
+      </mat-form-field>
+      <mat-form-field class="container">  <!-- to group set of form elements-->
+        <input matInput placeholder="Password" type="password" formControlName="password" required>
+        <!--<mat-error *ngIf="password.errors?.required">Password is required</mat-error>-->
+      </mat-form-field>
+      <!--<mat-checkbox class="container" name="remember">Remember Me</mat-checkbox>-->
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <span class="flex-spacer"></span>
+    <button mat-button type="submit" class="background-primary text-floral-white"
+            [disabled]="formDisabled()">Login</button>
+  </mat-dialog-actions>
+</form>

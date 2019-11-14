@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { LoginComponent } from '../login/login.component';
+import { CookieService } from 'ngx-cookie-service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,13 +10,19 @@ import { LoginComponent } from '../login/login.component';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    private auth: AuthService
+  ) { }
 
   ngOnInit() {
-  }
-
-  openLoginForm() {
-    this.dialog.open(LoginComponent, {width: '550px', height: '450px'});   // the component is supplied to act as the view of the dialog
+    if (this.auth.isUserAuthenticated()) {
+      /*this.router.navigate([{
+        outlets: {
+          sidenavOutlet: ['dashboard']
+        }}], {
+        relativeTo: this.route
+      });*/
+    }
   }
 
   sideNavToggle(sidenav) {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as RecordRTC from 'recordrtc';
 import {Observable, Subject} from 'rxjs';
 import * as moment from 'moment';
-import { isNullOrUndefined } from 'util';
+import {error, isNullOrUndefined} from 'util';
 
 interface RecordedAudioOutput {
   blob: Blob;
@@ -21,6 +21,7 @@ export class AudioRecordingService {
   private recorded = new Subject<any>();
   private recordingTime = new Subject<string>();
   private recordingFailed = new Subject<string>();
+  private blob;
 
   constructor() { }
 
@@ -37,6 +38,10 @@ export class AudioRecordingService {
     return this.recordingFailed.asObservable();
   }
 
+  getRecBlob() {
+    return this.recorded;
+  }
+
   startRecording() {
 
     if (this.recorder) {
@@ -48,19 +53,21 @@ export class AudioRecordingService {
     navigator.mediaDevices.getUserMedia({ audio: true }).then(s => {
       this.stream = s;
       this.record();
-    }).catch(error => {
-      this.recordingFailed.next();
+    }).catch(err => {
+      this.recordingFailed.next(err);
     });
   }
 
   private record() {
-
     this.recorder = new RecordRTC.StereoAudioRecorder(this.stream, {
       type: 'audio',
       mimeType: 'audio/wav',
       // audioBitsPerSecond: 19200,
       // desiredSampRate: 48 * 1000,
       // bufferSize: 4096
+      bufferSize: 16384,
+      sampleRate: 44100,
+
     });
 
     this.recorder.record();
@@ -72,7 +79,7 @@ export class AudioRecordingService {
         const time = this.toString(diffTime.minutes()) + ':' + this.toString(diffTime.seconds());
         this.recordingTime.next(time);
       },
-      1000
+      10000
     );
   }
 
@@ -88,13 +95,13 @@ export class AudioRecordingService {
   }
 
   stopRecording() {
-
     if (this.recorder) {
       this.recorder.stop((blob) => {
         if (this.startTime) {
           const wavName = encodeURIComponent('audio_' + new Date().getTime() + '.wav');
           this.stopMedia();
-          this.recorded.next({ blob, title: wavName });
+          this.recorded.next({blob, title: wavName});
+          this.blob = blob;
         }
       }, () => {
         this.stopMedia();

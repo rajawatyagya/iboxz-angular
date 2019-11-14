@@ -9,6 +9,7 @@ import { MatSidenavModule,
 import { RouterModule } from '@angular/router';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {SidenavRoutingModule} from './sidenav-routing.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     RouterModule,
     MatListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SidenavRoutingModule
   ],
   bootstrap: [SidenavComponent]
 })

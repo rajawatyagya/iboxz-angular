@@ -58,4 +58,11 @@ export class ApiService {
       {headers: this.getAuthHead()}
     );
   }
+
+  getUserData() {
+    const token = this.cookieService.get('auth-token');
+    return this.httpClient.get(
+      `${this.baseUrl}api/users`
+    );
+  }
 }

@@ -1,6 +1,20 @@
 <div class="container "
      fxLayout="column"
      fxLayoutGap="10px">
+
+  <div fxFlex>
+    <div class="top-container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
+      <div class="logo-container" fxFlex="40">
+        <img src="assets/images/logo.png" class="logo-front-page" alt="logo">
+      </div>
+      <div class="button-container" fxFlex="60">
+        <button mat-button class="custom-button primary-iboxz text-floral-white" (click)="openLoginForm()">Login</button>
+        <span style="display: flex; align-items: center; justify-content: center;"><i>or</i></span>
+        <button mat-button class="custom-button primary-iboxz text-floral-white" (click)="openRegisterForm()">Register</button>
+      </div>
+    </div>
+  </div>
+
   <div class="home-container" fxFlex fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap="10px">
     <div *ngFor="let overview of overviews">
       <mat-card class="card-layout" fxLayoutAlign="center center">
@@ -86,35 +100,9 @@
     </div>
   </div>
 
-  <div fxFlex>
-    <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
-      <div fxFlex="40" class="container" >
-        <img src="/assets/images/hp.png" height="380rem">
-      </div>
-      <div fxFlex="60" >
-        <h1>Referral Business: Partner us!</h1>
-        <ul>
-          <li>Introduce Candidates and Earn.</li>
-          <li>Upto <strong  class="custom-color">80%</strong> Revenue Share.</li>
-          <li>Introduce Referral Partners and Earn.</li>
-          <li><strong  class="custom-color">5%</strong> of total Revenue done by introduced Partners.</li>
-          <li>New source of income.</li>
-          <li>Social applause from your people you introduce to iboxz.</li>
-          <li>A Referral partner has to be from Information Technology &amp; Services domain or Outsourcing domain.</li>
-          <li>A Referral partner will never charge or take any fee from any Candidate.</li>
-          <li>A Referral partner can start referring from anytime.</li>
-          <li>All paperwork and agreement signing to be completed within 7 days of onboarding.</li>
-          <li>Referral amount will always be displayed against the Job Opening.</li>
-          <li>Dedicated account manager and backend operations support team.</li>
-          <li>All the timely updates.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
 
   <div fxFlex>
-    <h1>Team iboxz</h1>
+    <h1 style="margin-left: 2rem">Team iboxz</h1>
     <div *ngIf="members">
       <div  fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap="10px">
         <div *ngFor="let member of members">
@@ -124,8 +112,8 @@
           <div class="team-container" fxFlex="auto">
             <h3 class="custom-color">{{member.name}}</h3>
             <p>{{member.abbr}}</p>
-            <a mat-icon-button class="btn-facebook" href="{{member.facebook}}"><i class="fa fa-facebook fa-lg"></i></a>
-            <a mat-icon-button class="btn-linkedin" href="{{member.linkedin}}"><i class="fa fa-linkedin fa-lg"></i></a>
+            <a mat-icon-button class="btn-facebook" href="{{member.facebook}}" title="Facebook"><i class="fa fa-facebook fa-lg"></i></a>
+            <a mat-icon-button class="btn-linkedin" href="{{member.linkedIn}}" title="LinkedIn"><i class="fa fa-linkedin fa-lg"></i></a>
             <a mat-icon-button class="btn-twitter" href="{{member.twitter}}" title="Twitter"><i class="fa fa-twitter fa-lg"></i></a>
           </div>
         </div>
@@ -138,7 +126,7 @@
     </div>
   </div>
 
-  <div id="contact" fxFlex>
+  <!--<div id="contact" fxFlex>
     <h1>Contact Us</h1>
     <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
       <div fxFlex="70">
@@ -147,14 +135,14 @@
         <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
           <p>
             <mat-form-field class="half-width team-container">
-              <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
-              <mat-error *ngIf="feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched">
+              <input matInput formControlName="firstName" placeholder="First Name" type="text" required>
+              <mat-error *ngIf="feedbackForm.get('firstName').hasError('required') && feedbackForm.get('firstName').touched">
                 First Name is required
               </mat-error>
             </mat-form-field>
             <mat-form-field class="half-width team-container">
-              <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
-              <mat-error *ngIf="feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched">
+              <input matInput formControlName="lastName" placeholder="Last Name" type="text" required>
+              <mat-error *ngIf="feedbackForm.get('lastName').hasError('required') && feedbackForm.get('lastName').touched">
                 Last Name is required
               </mat-error>
             </mat-form-field>
@@ -173,7 +161,7 @@
               </mat-error>
             </mat-form-field>
           </p>
-          <table class="form-size team-container">   <!-- these elements are hard to position without a table -->
+          <table class="form-size team-container">   &lt;!&ndash; these elements are hard to position without a table &ndash;&gt;
             <td>
               <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
             </td>
@@ -215,5 +203,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>

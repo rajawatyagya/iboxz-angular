@@ -3,18 +3,15 @@
   <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sideNavToggle(sidenav)">
     <mat-icon>menu</mat-icon>
   </button>
-  <a routerLink="/home"><span><img class="logo-image" src="assets/images/logo.png"></span></a>
+  <a routerLink="/navigation"><span><img class="logo-image" src="assets/images/logo.png"></span></a>
   <span class="flex-spacer"></span>
-  <a mat-button class="customfont"><i class="fa fa-user-o" aria-hidden="true" (click)="openLoginForm()"></i></a>
+  <a routerLink="/profile"><span>Profile</span></a>
 </mat-toolbar>
 <!-- Hearer Toolbar End -->
 
 <mat-sidenav-container>
   <mat-sidenav [opened]='isLargeScreen()' [mode]="isLargeScreen() ? 'side' : 'over'" #sidenav fixedInViewport>
     <mat-nav-list>
-      <mat-list-item class="sidenav-link" routerLinkActive="active-link">
-        <h4 matLine routerLink="/home" (click)="isLargeScreen() ? null : sideNavToggle(sidenav)"><i class="fa fa-home" aria-hidden="true"></i> About Us</h4>
-      </mat-list-item>
       <mat-list-item class="sidenav-link" routerLinkActive="active-link">
         <h4 matLine routerLink="/dashboard" (click)="isLargeScreen() ? null : sideNavToggle(sidenav)"><i class="fa fa-line-chart" aria-hidden="true"></i>  Dashboard</h4>
       </mat-list-item>
@@ -45,25 +42,6 @@
   <mat-sidenav-content>
 
     <router-outlet></router-outlet>
-
-    <!-- Footer -->
-    <div class="container footer"
-         fxLayout="row wrap"
-         fxLayout.lt-md="column"
-         fxLayoutAlign="center center"
-         fxLayoutGap="10px">
-      <div fxFlex="100" fxFlex.gt-sm="45">
-        <div style="text-align:center">
-          <a mat-icon-button class="btn-facebook" href="https://www.facebook.com/iboxz.in/"><i class="fa fa-facebook fa-lg"></i></a>
-          <a mat-icon-button class="btn-linkedin" href="https://www.linkedin.com/company/iboxz/"><i class="fa fa-linkedin fa-lg"></i></a>
-          <a mat-icon-button class="btn-twitter" href="https://twitter.com/iboxz2" title="Twitter"><i class="fa fa-twitter fa-lg"></i></a>
-          <!--<a mat-icon-button class="btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a>-->
-          <a mat-icon-button class="btn-mail" href="mailto:hiring@iboxz.in"><i class="fa fa-envelope-o fa-lg"></i></a>
-          <a mat-icon-button class="btn-phone" href="tel:18005720720"><i class="fa fa-phone fa-lg"></i></a>
-        </div>
-      </div>
-    </div>
-    <!-- Footer End -->
 
   </mat-sidenav-content>
 </mat-sidenav-container>

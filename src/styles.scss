@@ -32,6 +32,11 @@ textarea {
 .container {
   margin: 2rem;
   display: flex;
+  justify-content: center;
+}
+
+.primary-iboxz {
+  background-color: $primary-color!important;
 }
 
 .background-primary {

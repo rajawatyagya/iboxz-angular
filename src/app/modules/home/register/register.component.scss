@@ -1,0 +1,19 @@
+@import "../../../../theming/variables";
+
+@mixin myPanel()
+{
+  .my-panel .mat-dialog-container {
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 5px;
+  }
+}
+
+.mat-toolbar {
+  background-color: $navbar-color;
+  color: white;
+}
+
+.radio-margin {
+  margin-right: 4rem;
+}

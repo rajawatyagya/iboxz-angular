@@ -13,7 +13,7 @@ export const PROFILES: Profile[] = [
     currentSalary: '0',
     expectedSalary: '0',
     source: 'iboxz',
-    dob: '28/10/1992',
+    dateOfBirth: '28/10/1992',
     resume: '/assets/resumes/sumegha.docx',
     description: 'TC- Technical Support',
     education: [{

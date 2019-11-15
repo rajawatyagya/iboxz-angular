@@ -5,7 +5,7 @@ import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
-import { FormControl, FormGroup} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 interface TokenObject {
   token: string;
@@ -19,38 +19,35 @@ interface TokenObject {
 })
 export class LoginComponent implements OnInit {
 
-  authForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
-  });
+  authForm: FormGroup;
 
-  user = {username: '', password: '', remember: false};
 
   constructor(
     public dialogRef: MatDialogRef<LoginComponent>,
     public dialog: MatDialog,
     private apiService: ApiService,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
     ) { }
 
   ngOnInit() {
+    this.authForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      remember: false
+    });
   }
 
   onSubmit() {
-    console.log('User: ', this.user);
-    this.dialogRef.close();
-  }
-
-  saveForm() {
     this.loginUser();
+    this.dialogRef.close();
   }
 
   loginUser() {
     this.apiService.loginUser(this.authForm.value).subscribe(
       (result: TokenObject) => {
-        this.cookieService.set('auth-token', result.token);
-        this.cookieService.set('username', this.user.username);
+        this.cookieService.set('auth_token', result.token);
         this.router.navigate(['/navigation']);
         this.dialogRef.close();
       },

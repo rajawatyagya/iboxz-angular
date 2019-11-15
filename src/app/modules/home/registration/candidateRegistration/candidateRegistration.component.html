@@ -72,10 +72,10 @@
                 </mat-option>
               </mat-select>
               <mat-form-field class=" half-width reg-container">
-                <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Date of Birth" type="text" required>
+                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" placeholder="Date of Birth" type="text" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-                <mat-error *ngIf="registrationForm.get('dob').hasError('required') && registrationForm.get('dob').touched">
+                <mat-error *ngIf="registrationForm.get('dateOfBirth').hasError('required') && registrationForm.get('dateOfBirth').touched">
                   Date of birth is required
                 </mat-error>
               </mat-form-field>
@@ -222,7 +222,8 @@
           </p>
         </div>
         <mat-action-row>
-          <button type="button" mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="">
+            Save</button>
           <button type="button" mat-button class="custom-button background-primary text-floral-white">Reset</button>
           <span class="flex-spacer"></span>
           <button type="button" mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>

@@ -11,7 +11,7 @@ import {
   MatInputModule, MatRadioModule,
   MatToolbarModule
 } from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +26,8 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     MatCheckboxModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    ReactiveFormsModule
   ]
 })
 export class RegisterModule { }

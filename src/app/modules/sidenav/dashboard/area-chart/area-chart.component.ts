@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {AreaChartData} from '../../../../shared/areaChartData';
 import { Chart } from 'chart.js';
 
@@ -11,14 +11,16 @@ import { angularMath } from 'angular-ts-math';
 })
 export class AreaChartComponent implements OnInit {
   data: [];
-  testData: number[] = [];
+  testData: number[];
   chart = [];
   labels = [];
   backgroundColor = [];
 
   // TODO: last five + next five projections
 
-  constructor() { }
+  constructor(
+    private elementRef: ElementRef
+  ) { }
 
   ngOnInit() {
     this.testData = this.createTestData(4.5);
@@ -26,7 +28,7 @@ export class AreaChartComponent implements OnInit {
     this.chart = this.createChart();
   }
 
-  createTestData(initialSalary: number) {
+  createTestData(initialSalary: number): number[] {
     const test: number[] = [];
     for (let i = 0; i <= 4; i++) {
       if (i > 0 && i !== 3) {
@@ -47,10 +49,11 @@ export class AreaChartComponent implements OnInit {
   }
 
   createChart(): Chart {
-    return new Chart('canvas-area', {
+   /* const htmlRef = this.elementRef.nativeElement.querySelector(`#canvas-area`);*/
+    return new Chart('', {
       type: 'area',
       data: {
-        labels: this.labels,
+        /*labels: this.labels,*/
         datasets: [
           {
             label: 'Salary Projection',

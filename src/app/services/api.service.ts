@@ -38,7 +38,7 @@ export class ApiService {
   }
 
   getAuthHeaders() {
-    const token = this.cookieService.get('auth-token');
+    const token = this.cookieService.get('auth_token');
     return new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Token ${token}`
@@ -46,7 +46,7 @@ export class ApiService {
   }
 
   getAuthHead() {
-    const token = this.cookieService.get('auth-token');
+    const token = this.cookieService.get('auth_token');
     return new HttpHeaders({
       Authorization: `Token ${token}`
     });
@@ -60,9 +60,19 @@ export class ApiService {
   }
 
   getUserData() {
-    const token = this.cookieService.get('auth-token');
+    const token = this.cookieService.get('auth_token');
     return this.httpClient.get(
-      `${this.baseUrl}api/users`
+      `${this.baseUrl}api/users`,
+      {headers: this.getAuthHeaders()}
+    );
+  }
+
+  saveUserAddressData(data) {
+    const body = JSON.stringify(data);
+    return this.httpClient.post(
+      `${this.baseUrl}api/`,
+      body,
+      {headers: this.getAuthHeaders()}
     );
   }
 }

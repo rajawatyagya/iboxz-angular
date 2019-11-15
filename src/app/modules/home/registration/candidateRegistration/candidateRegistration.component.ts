@@ -112,7 +112,7 @@ export class CandidateRegistrationComponent implements OnInit {
       experience:         this.fb.array([]),
       email:              ['', Validators.required],
       mobile:             ['', Validators.required],
-      dob:                ['', Validators.required],
+      dateOfBirth:                ['', Validators.required],
       currentSalary:      ['', Validators.required],
       expectedSalary:     ['', Validators.required],
       panNumber:          ['', Validators.required],
@@ -145,6 +145,11 @@ export class CandidateRegistrationComponent implements OnInit {
       twitter:            '',
       linkedIn:           ''
     });
+  }
+
+  saveAddress() {
+    const addressData = this.registrationForm.get('address') as FormGroup;
+
   }
 
   onSubmit() {

@@ -15,7 +15,7 @@ export class Profile {
   experience: Experience[];
   email: string;
   mobile: string;
-  dob: string;
+  dateOfBirth: string;
   source: string;
   currentSalary: string;
   expectedSalary: string;

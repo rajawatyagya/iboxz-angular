@@ -10,8 +10,19 @@
 }
 
 .mat-toolbar {
-  background-color: $navbar-color;
+  background-color: white;
+  color: $primary-color;
+}
+
+.toolbar-button {
+  font-size: 150%;
+  background-color: white;
+}
+
+.toolbar-button:hover {
+  font-size: 170%;
   color: white;
+  background-color: $accent-color;
 }
 
 .radio-margin {

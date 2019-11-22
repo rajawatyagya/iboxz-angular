@@ -1,7 +1,7 @@
 <mat-toolbar>
-  Login
+  <span style="font-weight: bold">Login</span>
   <span class="flex-spacer"></span>
-  <button mat-button mat-dialog-close>&times;</button>
+  <button mat-button mat-dialog-close class="toolbar-button">&times;</button>
 </mat-toolbar>
 
 <!--<p>{{ user | json }}</p>-->
@@ -21,9 +21,9 @@
     </p>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close class="background-primary text-floral-white">Cancel</button>
     <span class="flex-spacer"></span>
-    <button mat-button type="submit" class="background-primary text-floral-white"
+    <button mat-button type="submit" class="primary-iboxz text-floral-white"
             [disabled]="formDisabled()">Login</button>
   </mat-dialog-actions>
 </form>

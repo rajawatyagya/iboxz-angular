@@ -4,10 +4,13 @@ import {ApiService} from '../../../services/api.service';
 import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
 
 interface UserObject {
   id: number;
   username: string;
+  email: string;
+  user_type: string;
 }
 
 interface TokenObject {
@@ -24,16 +27,12 @@ export class RegisterComponent implements OnInit {
 
   userForm: FormGroup;
 
-  userData = { username: '',
-          password: '',
-          otp: '',
-          type: ''};
-
   constructor(
     public dialogRef: MatDialogRef<RegisterComponent>,
     public dialog: MatDialog,
     private apiService: ApiService,
     private cookieService: CookieService,
+    private alertService: ToastrService,
     private router: Router,
     private fb: FormBuilder
   ) { }
@@ -42,8 +41,9 @@ export class RegisterComponent implements OnInit {
     this.userForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
-      otp:      [0, Validators.required],
-      type:     ['', Validators.required]
+      re_password: ['', Validators.required],
+      email: ['', Validators.required],
+      user_type:     ['', Validators.required]
     });
   }
 
@@ -55,19 +55,8 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     this.apiService.registerUser(this.userForm.value).subscribe(
       (result: UserObject) => {
-        const loginForm = this.fb.group({
-          username: this.userForm.value.username,
-          password: this.userForm.value.password
-        });
-        this.apiService.loginUser(loginForm).subscribe(
-          (res: TokenObject) => {
-            this.cookieService.set('auth_token', res.token);
-            this.cookieService.set('user_id', String(res.id));
-          }
-        );
-        if (this.userForm.value.type === 'client') {
-          this.router.navigate(['/employerRegistration']);
-        } else { this.router.navigate(['/candidateRegistration']); }
+        this.cookieService.set('user_name', result.username);
+        this.alertService.success('Account Creation Successful.\nPlease, check for verification email.', 'Alina:');
         this.dialogRef.close();
       },
       error => {
@@ -82,9 +71,11 @@ export class RegisterComponent implements OnInit {
       &&
       this.userForm.value.password.length > 0
       &&
-      this.userForm.value.otp.length === 4
+      this.userForm.value.re_password.length > 0
       &&
-      this.userForm.value.type.length > 0
+      this.userForm.value.password === this.userForm.value.re_password
+      &&
+      this.userForm.value.user_type.length > 0
     );
   }
 

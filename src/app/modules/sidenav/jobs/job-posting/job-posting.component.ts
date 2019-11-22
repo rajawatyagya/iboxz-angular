@@ -50,9 +50,7 @@ export class JobPostingComponent implements OnInit {
   createSkillSet(item: string): FormGroup {
     return this.fb.group({
       name:           [item, Validators.maxLength(25)],
-      beginner:       false,
-      intermediate:   false,
-      advanced:       false
+      proficiency:    ''
     });
   }
 

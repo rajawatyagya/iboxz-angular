@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 interface TokenObject {
-  token: string;
+  auth_token: string;
 }
 
 
@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
   loginUser() {
     this.apiService.loginUser(this.authForm.value).subscribe(
       (result: TokenObject) => {
-        this.cookieService.set('auth_token', result.token);
+        this.cookieService.set('auth_token', result.auth_token);
+        this.cookieService.set('user_name', this.authForm.value.username);
         this.router.navigate(['/navigation']);
         this.dialogRef.close();
       },

@@ -32,6 +32,7 @@ import { VideoChatModule } from './modules/sidenav/video-chat/video-chat.module'
 import { LanguageAssessmentModule } from './modules/sidenav/assessment/assessment-dialog/language-assessment/language-assessment.module';
 import { DevelopmentTestingModule } from './modules/sidenav/development-testing/development-testing.module';
 import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
+import {ActivationModule} from './static/activation/activation.module';
 
 
 @NgModule({
@@ -43,9 +44,9 @@ import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/materia
     AppRoutingModule,
     ToastrModule.forRoot(
       {
-        timeOut: 7000,
-        positionClass: 'toast-bottom-right'
-      }
+        timeOut: 0,
+        positionClass: 'toast-bottom-right',
+      },
     ),
     NgxdModule,
     AlinaModule,
@@ -72,7 +73,8 @@ import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/materia
     DevelopmentTestingModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    ActivationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

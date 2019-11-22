@@ -87,12 +87,14 @@ mat-list-item {
 }
 
 @mixin footer-margin($pad-up-down, $pad-left-right) {
-  margin: 0px auto;
+  margin: 0 auto;
   padding: $pad-up-down $pad-left-right;
 }
 
 .footer{
   @include footer-margin(20px, 0px);
+  position: absolute;
+  bottom: 0;
 }
 
 @media screen and (max-width: 900px) {

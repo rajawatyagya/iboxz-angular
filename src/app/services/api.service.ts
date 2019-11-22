@@ -23,7 +23,7 @@ export class ApiService {
   loginUser(authData) {
     const body = JSON.stringify(authData);
     return this.httpClient.post(
-      `${this.baseUrl}auth/`,
+      `${this.baseUrl}api/auth/token/login/`,
       body,
       {headers: this.headers}
     );
@@ -32,7 +32,7 @@ export class ApiService {
   registerUser(authData) {
     const body = JSON.stringify(authData);
     return this.httpClient.post(
-      `${this.baseUrl}api/users/`, body,
+      `${this.baseUrl}api/auth/users/`, body,
       {headers: this.headers}
     );
   }
@@ -59,6 +59,14 @@ export class ApiService {
     );
   }
 
+  activateUser(data) {
+    const body = JSON.stringify(data);
+    return this.httpClient.post(
+      `${this.baseUrl}api/auth/users/activation/`, body,
+      {headers: this.headers}
+    );
+  }
+
   getUserData() {
     const token = this.cookieService.get('auth_token');
     return this.httpClient.get(
@@ -74,5 +82,18 @@ export class ApiService {
       body,
       {headers: this.getAuthHeaders()}
     );
+  }
+
+  getCircularReplacer() {
+    const seen = new WeakSet();
+    return (key, value) => {
+      if (typeof value === 'object' && value !== null) {
+        if (seen.has(value)) {
+          return;
+        }
+        seen.add(value);
+      }
+      return value;
+    };
   }
 }

@@ -72,15 +72,17 @@
                   </span>
                 </span>
             <span *ngIf="skill.value.name" >
-              <label>Beginner
-                <input class="lang-checkbox" type="checkbox" formControlName="beginner">
-              </label>
-              <label>Intermediate
-                <input class="lang-checkbox" type="checkbox" formControlName="intermediate">
-              </label>
-              <label>Advanced
-                <input class="lang-checkbox" type="checkbox" formControlName="advanced">
-              </label>
+              <mat-radio-group formControlName="proficiency">
+                      <mat-radio-button value="beginner">
+                        Beginner
+                      </mat-radio-button>
+                      <mat-radio-button value="intermediate">
+                        Intermediate
+                      </mat-radio-button>
+                      <mat-radio-button value="advanced">
+                        Advanced
+                      </mat-radio-button>
+                    </mat-radio-group>
             </span>
           </div>
         </div>

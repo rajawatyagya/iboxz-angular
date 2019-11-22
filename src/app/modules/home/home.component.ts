@@ -52,11 +52,11 @@ export class HomeComponent implements OnInit {
   }
 
   openLoginForm() {
-    this.dialog.open(LoginComponent, {width: '550px', height: '350px'});   // the component is supplied to act as the view of the dialog
+    this.dialog.open(LoginComponent, {width: '35rem', height: '25rem'});   // the component is supplied to act as the view of the dialog
   }
 
   openRegisterForm() {
-    this.dialog.open(RegisterComponent, {width: '650px', height: '550px'});   // the component is supplied to act as the view of the dialog
+    this.dialog.open(RegisterComponent, {width: '42rem', height: '33rem'});   // the component is supplied to act as the view of the dialog
   }
 
   createForm() {

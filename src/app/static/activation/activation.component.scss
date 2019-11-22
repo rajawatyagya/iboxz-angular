@@ -1,0 +1,32 @@
+@import "../../../theming/variables";
+
+.wrapper {
+  text-align: center;
+}
+
+.custom-button {
+  margin: 1rem 1rem;
+  width: 20rem;
+  height: 4.5rem;
+  line-height: 3.5rem;
+  font-size: 130%;
+  color: floralwhite!important;
+  background-color: $background-dark!important;
+}
+
+.custom-button:disabled {
+  margin: 1rem 1rem;
+  width: 20rem;
+  height: 4.5rem;
+  line-height: 3.5rem;
+  font-size: 130%;
+  color: floralwhite!important;
+  background-color: dimgrey!important;
+  cursor: not-allowed;
+}
+
+.logo-container {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}

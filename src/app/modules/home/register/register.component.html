@@ -1,7 +1,7 @@
 <mat-toolbar>
-  Register
+  <span style="font-weight: bold">Register</span>
   <span class="flex-spacer"></span>
-  <button mat-button mat-dialog-close>&times;</button>
+  <button mat-button mat-dialog-close class="toolbar-button">&times;</button>
 </mat-toolbar>
 
 <form novalidate [formGroup]="userForm" (ngSubmit)="onSubmit()">     <!--novalidate to skip the html form validation and use angular form validation-->
@@ -12,24 +12,32 @@
         <!--<mat-error *ngIf="username.errors?.required">Username is required</mat-error>-->
       </mat-form-field>
       <mat-form-field class="container">  <!-- to group set of form elements-->
+        <input matInput placeholder="Email" type="email" formControlName="email">
+        <!--<mat-error *ngIf="username.errors?.required">Username is required</mat-error>-->
+      </mat-form-field>
+      <mat-form-field class="container">  <!-- to group set of form elements-->
         <input matInput placeholder="Password" type="password" formControlName="password">
         <!--<mat-error *ngIf="password.errors?.required">Password is required</mat-error>-->
       </mat-form-field>
       <mat-form-field class="container">  <!-- to group set of form elements-->
-        <input matInput placeholder="Otp" type="otp" formControlName="otp">
-        <!--<mat-error *ngIf="otp.errors?.required">Otp is required</mat-error>-->
+        <input matInput placeholder="Confirm Password" type="password" formControlName="re_password">
+        <!--<mat-error *ngIf="password.errors?.required">Password is required</mat-error>-->
       </mat-form-field>
-      <mat-radio-group class="container" formControlName="type">
+<!--      <mat-form-field class="container">  &lt;!&ndash; to group set of form elements&ndash;&gt;-->
+<!--        <input matInput placeholder="Otp" type="otp" formControlName="otp">-->
+<!--        &lt;!&ndash;<mat-error *ngIf="otp.errors?.required">Otp is required</mat-error>&ndash;&gt;-->
+<!--      </mat-form-field>-->
+      <mat-radio-group class="container" formControlName="user_type">
         <mat-radio-button class="radio-margin" value="candidate">Job Seeker</mat-radio-button>
         <mat-radio-button class="radio-margin" value="client">Employer</mat-radio-button>
       </mat-radio-group>
     </p>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close class="background-primary text-floral-white">Cancel</button>
     <span class="flex-spacer"></span>
-    <button mat-button type="submit" class="background-primary text-floral-white"
-            [disabled]="formDisabled()" [routerLink]="userData.type === ">
+    <button mat-button type="submit" class="primary-iboxz text-floral-white"
+            [disabled]="formDisabled()">
       Register</button>
   </mat-dialog-actions>
 </form>

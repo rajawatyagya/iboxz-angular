@@ -1,0 +1,11 @@
+<div>
+  <div class="wrapper logo-container">
+    <img src="assets/images/logo.png" class="logo-front-page" alt="logo">
+  </div>
+  <p class="wrapper">Click the button to activate your account.</p>
+  <div class="wrapper">
+    <button type="button" [disabled]="buttonDisabled" mat-button class="custom-button" (click)="activateNow()">
+      Activate your account
+    </button>
+  </div>
+</div>

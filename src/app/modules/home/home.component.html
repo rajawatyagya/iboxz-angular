@@ -132,7 +132,7 @@
       <div fxFlex="70">
         <h3>We'd Love to Hear From You!</h3>
         <p>Write us an email and we'll get back to you.</p>
-        <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+        <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onCandidateSubmit()">
           <p>
             <mat-form-field class="half-width team-container">
               <input matInput formControlName="firstName" placeholder="First Name" type="text" required>
@@ -204,4 +204,23 @@
       </div>
     </div>
   </div>-->
+
+  <!-- Footer -->
+  <div class="container footer"
+       fxLayout="row wrap"
+       fxLayout.lt-md="column"
+       fxLayoutAlign="center center"
+       fxLayoutGap="10px">
+    <div fxFlex="100" fxFlex.gt-sm="45">
+      <div style="text-align:center">
+        <a mat-icon-button class="btn-facebook" href="https://www.facebook.com/iboxz.in/"><i class="fa fa-facebook fa-lg"></i></a>
+        <a mat-icon-button class="btn-linkedin" href="https://www.linkedin.com/company/iboxz/"><i class="fa fa-linkedin fa-lg"></i></a>
+        <a mat-icon-button class="btn-twitter" href="https://twitter.com/iboxz2" title="Twitter"><i class="fa fa-twitter fa-lg"></i></a>
+        <!--<a mat-icon-button class="btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a>-->
+        <a mat-icon-button class="btn-mail" href="mailto:hiring@iboxz.in"><i class="fa fa-envelope-o fa-lg"></i></a>
+        <a mat-icon-button class="btn-phone" href="tel:01204323673"><i class="fa fa-phone fa-lg"></i></a>
+      </div>
+    </div>
+  </div>
+  <!-- Footer End -->
 </div>

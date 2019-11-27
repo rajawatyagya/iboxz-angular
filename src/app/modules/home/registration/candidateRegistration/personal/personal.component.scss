@@ -1,0 +1,118 @@
+@import "../../../../../../theming/variables";
+
+body{
+  margin: 2rem;
+}
+
+.custom-color {
+  color: $accent-color;
+}
+
+.custom-container{
+  margin: 20px;
+  display: flex;
+}
+
+.accordion-container {
+  margin: 1.25rem;
+}
+
+.accordion-container-custom {
+  margin-top: 1.25rem;
+}
+
+.reg-container {
+  padding: 1rem 1rem;
+}
+
+.full-width {
+  width: 95%;
+}
+
+.half-width {
+  width: 45%;
+}
+
+.min-width {
+  width: 20.9%;
+}
+
+.form-size {
+  width: 85%;
+}
+
+.custom-button {
+  margin: 1rem 1rem;
+}
+
+.image_responsive {
+  width: 93.5%;
+  height: auto;
+  border:1rem solid dimgrey;
+}
+
+.button-custom {
+  margin: 1rem 1rem;
+  width: 12rem;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  font-size: 130%;
+}
+
+.accordion-container .mat-expansion-panel-content{
+  height: auto !important;
+  visibility: visible !important;
+}
+
+.lang-checkbox {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1.5rem;
+}
+
+.lang-container {
+  display: flex;
+}
+
+.selector {
+  flex: 0.8
+}
+
+.lang-title {
+  margin: 0 0.5rem;
+}
+
+.icon-button {
+  font-size: 1rem;
+  color: $accent-color;
+  box-sizing: border-box;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  margin: 0;
+  min-width: 1rem;
+  line-height: 1rem;
+  padding: 0 0;
+  border-radius: 4px;
+  overflow: visible;
+}
+
+label {
+  margin: 1rem 0;
+}
+
+mat-divider {
+  margin-left: 2.5rem;
+  margin-right: 3.5rem;
+}

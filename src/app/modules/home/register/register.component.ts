@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
         this.dialogRef.close();
       },
       error => {
-        console.log(error);
+        this.alertService.success('There was an error while registering your account.', 'Alina:');
       }
     );
   }

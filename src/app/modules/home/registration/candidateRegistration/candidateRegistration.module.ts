@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { CandidateRegistrationRoutingModule } from './candidateRegistration-routing.module';
 import { CandidateRegistrationComponent } from './candidateRegistration.component';
 import {FlexModule} from '@angular/flex-layout';
@@ -15,13 +14,26 @@ import {
   MatSlideToggleModule,
   MatCardModule,
   MatExpansionModule,
-  MatCheckboxModule, MatDividerModule, MatAutocompleteModule, MatRadioModule
+  MatCheckboxModule,
+  MatDividerModule,
+  MatAutocompleteModule,
+  MatRadioModule,
+  MatListModule,
+  MatSidenavModule
 } from '@angular/material';
+import {AddressModule} from './address/address.module';
+import {ExperienceModule} from './experience/experience.module';
+import {EducationModule} from './education/education.module';
+import {PersonalModule} from './personal/personal.module';
 
 
 @NgModule({
   declarations: [CandidateRegistrationComponent],
   imports: [
+    AddressModule,
+    ExperienceModule,
+    EducationModule,
+    PersonalModule,
     CommonModule,
     CandidateRegistrationRoutingModule,
     FlexModule,
@@ -39,7 +51,9 @@ import {
     FormsModule,
     MatDividerModule,
     MatAutocompleteModule,
-    MatRadioModule
-  ],
- })
+    MatRadioModule,
+    MatListModule,
+    MatSidenavModule
+  ]
+})
 export class CandidateRegistrationModule { }

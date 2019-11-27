@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {ApiService} from './api.service';
 import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
@@ -8,10 +7,10 @@ import {CookieService} from 'ngx-cookie-service';
 export class AuthService {
 
   constructor(
-    private cookieService: CookieService,
+    private cookieService: CookieService
   ) { }
 
-  isUserAuthenticated() {
-    return this.cookieService.get('auth-token') !== null;
+  isLoggedIn() {
+    return this.cookieService.check('auth_token');
   }
 }

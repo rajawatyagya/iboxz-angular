@@ -1,0 +1,361 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h3>Education Details</h3>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-accordion formGroupName="highSchoolForm" class="accordion-container">
+      <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3 class="reg-container">High School</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="courseTitle" placeholder="Course Title" type="text" required>
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="college" placeholder="College" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <span class="reg-container">Duration</span><br>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerFrom" formControlName="startDate" placeholder="Start Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerTo" formControlName="endDate" placeholder="End Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white" >Save</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button type="button" mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion formGroupName="higherSecondaryForm" class="accordion-container">
+      <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3 class="reg-container">Higher Secondary</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="courseTitle">
+            <mat-option *ngFor="let title of higherSecTitle" [value]="title">
+              {{ title }}
+            </mat-option>
+          </mat-select>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="institute" placeholder="Institute / University" type="text" required>
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="college" placeholder="College" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <span class="reg-container">Duration</span><br>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerFrom1" formControlName="startDate" placeholder="Start Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom1"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom1 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerTo1" formControlName="endDate" placeholder="End Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerTo1"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo1 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button type="button" mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion formGroupName="higherSecEqDiplomaForm" class="accordion-container">
+      <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3 class="reg-container">Equivalent Diploma</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="courseTitle">
+            <mat-option *ngFor="let title of diplomaTitle" [value]="title">
+              {{ title }}
+            </mat-option>
+          </mat-select>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="institute" placeholder="Institute / University" type="text" [matAutocomplete]="auto2" required>
+            <mat-autocomplete #auto2="matAutocomplete">
+              <mat-option *ngFor="let institute of filteredHigherSecInstitute | async" [value]="institute">
+                <span>{{institute}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="college" placeholder="College" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <span class="reg-container">Duration</span><br>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerFrom2" formControlName="startDate" placeholder="Start Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom2"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom2 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerTo2" formControlName="endDate" placeholder="End Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerTo2"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo2 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button type="button" mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion formGroupName="graduationFrom" class="accordion-container">
+      <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3 class="reg-container">Graduation</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="courseTitle">
+            <mat-option *ngFor="let title of gradTitle" [value]="title">
+              {{ title }}
+            </mat-option>
+          </mat-select>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="institute" placeholder="Institute / University" type="text" [matAutocomplete]="auto1" required>
+            <mat-autocomplete #auto1="matAutocomplete">
+              <mat-option *ngFor="let institute of filteredGradInstitute | async" [value]="institute">
+                <span>{{institute}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="college" placeholder="College" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <span class="reg-container">Duration</span><br>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerFrom3" formControlName="startDate" placeholder="Start Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom3"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom3 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerTo3" formControlName="endDate" placeholder="End Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerTo3"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo3 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button type="button" mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion formGroupName="postGraduationForm" class="accordion-container">
+      <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3 class="reg-container">Post Graduation</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="courseTitle">
+            <mat-option *ngFor="let title of postGradTitle" [value]="title">
+              {{ title }}
+            </mat-option>
+          </mat-select>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="institute" placeholder="Institute / University" type="text" [matAutocomplete]="auto3" required>
+            <mat-autocomplete #auto3="matAutocomplete">
+              <mat-option *ngFor="let institute of filteredPostGradInstitute | async" [value]="institute">
+                <span>{{institute}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="college" placeholder="College" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <span class="reg-container">Duration</span><br>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerFrom4" formControlName="startDate" placeholder="Start Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom4"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom4 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerTo4" formControlName="endDate" placeholder="End Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerTo4"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo4 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button type="button" mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion formGroupName="otherDiplomaFrom" class="accordion-container">
+      <mat-expansion-panel [expanded]="step === 7" (opened)="setStep(7)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3 class="reg-container">Other Diploma Qualification</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="courseTitle">
+            <mat-option *ngFor="let title of diplomaTitle" [value]="title">
+              {{ title }}
+            </mat-option>
+          </mat-select>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="institute" placeholder="Institute / University" type="text" [matAutocomplete]="auto4" required>
+            <mat-autocomplete #auto4="matAutocomplete">
+              <mat-option *ngFor="let institute of filteredOtherDiplomaInstitute | async" [value]="institute">
+                <span>{{institute}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="college" placeholder="College" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <span class="reg-container">Duration</span><br>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerFrom5" formControlName="startDate" placeholder="Start Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom5"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom5 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerTo5" formControlName="endDate" placeholder="End Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerTo5"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo5 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button type="button" mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion formGroupName="otherQualificationFrom" class="accordion-container">
+      <mat-expansion-panel [expanded]="step === 8" (opened)="setStep(8)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3 class="reg-container">Any Other Qualification</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-select placeholder="Course Title" class="half-width reg-container" formControlName="courseTitle">
+            <mat-option *ngFor="let title of otherQualTitle" [value]="title">
+              {{ title }}
+            </mat-option>
+          </mat-select>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="department" placeholder="Specialization Or Major Subject" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="institute" placeholder="Institute / University" type="text" [matAutocomplete]="auto5" required>
+            <mat-autocomplete #auto5="matAutocomplete">
+              <mat-option *ngFor="let institute of filteredOtherQualInstitute | async" [value]="institute">
+                <span>{{institute}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="college" placeholder="College" type="text" required>
+          </mat-form-field>
+        </p>
+        <p>
+          <span class="reg-container">Duration</span><br>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerFrom6" formControlName="startDate" placeholder="Start Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom6"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom6 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerTo6" formControlName="endDate" placeholder="End Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerTo6"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo6 startView="multi-year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button type="button" mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>

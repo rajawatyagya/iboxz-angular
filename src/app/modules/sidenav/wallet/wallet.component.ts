@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ToastrService} from 'ngx-toastr';
 import {flyInOut} from '../../../animations/app.animation';
 
 @Component({
@@ -17,10 +16,9 @@ import {flyInOut} from '../../../animations/app.animation';
 })
 export class WalletComponent implements OnInit {
 
-  constructor(private alertService: ToastrService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.alertService.success('Wallet initialized', 'Alina');
   }
 
 }

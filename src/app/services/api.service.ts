@@ -4,10 +4,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { CookieService } from 'ngx-cookie-service';
 
+interface UserObj {
+  user_type: string;
+  email: string;
+  id: string;
+  username: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  private username = '';
 
   baseUrl = 'http://127.0.0.1:8000/';
 
@@ -37,7 +45,26 @@ export class ApiService {
     );
   }
 
-  getAuthHeaders() {
+  getUserName() {
+    if (this.cookieService.get('user_name')) {
+      this.username =  this.cookieService.get('user_name');
+    } else {
+      this.getUser().subscribe(
+        (result: UserObj) => {
+          this.username = result.username;
+        }
+      );
+    }
+    return this.username;
+  }
+
+  getUser() {
+    return this.httpClient.get(
+      `${this.baseUrl}api/auth/users/me`,
+      {headers: this.getAuthHeaderWithJson()});
+  }
+
+  getAuthHeaderWithJson() {
     const token = this.cookieService.get('auth_token');
     return new HttpHeaders({
       'Content-Type': 'application/json',
@@ -45,7 +72,7 @@ export class ApiService {
     });
   }
 
-  getAuthHead() {
+  getAuthHeaderWithoutJson() {
     const token = this.cookieService.get('auth_token');
     return new HttpHeaders({
       Authorization: `Token ${token}`
@@ -55,7 +82,7 @@ export class ApiService {
   saveAudioFile(data) {
     return this.httpClient.post(
       `${this.baseUrl}api/evaluation/save_audio/`, data,
-      {headers: this.getAuthHead()}
+      {headers: this.getAuthHeaderWithoutJson()}
     );
   }
 
@@ -67,33 +94,43 @@ export class ApiService {
     );
   }
 
-  getUserData() {
-    const token = this.cookieService.get('auth_token');
-    return this.httpClient.get(
-      `${this.baseUrl}api/users`,
-      {headers: this.getAuthHeaders()}
-    );
-  }
-
   saveUserAddressData(data) {
     const body = JSON.stringify(data);
     return this.httpClient.post(
       `${this.baseUrl}api/`,
       body,
-      {headers: this.getAuthHeaders()}
+      {headers: this.getAuthHeaderWithJson()}
     );
   }
 
-  getCircularReplacer() {
-    const seen = new WeakSet();
-    return (key, value) => {
-      if (typeof value === 'object' && value !== null) {
-        if (seen.has(value)) {
-          return;
-        }
-        seen.add(value);
-      }
-      return value;
-    };
+  uploadProfilePicture(data) {
+    return this.httpClient.post(
+      `${this.baseUrl}api/users/${this.getUserName()}/save_profile_picture/`, data,
+      {headers: this.getAuthHeaderWithoutJson()}
+    );
+  }
+
+  saveCandidateProfile(data) {
+    const body = JSON.stringify(data);
+    return this.httpClient.post(
+      `${this.baseUrl}api/candidate/save_candidate/`, body,
+      {headers: this.getAuthHeaderWithJson()}
+    );
+  }
+
+  saveLanguage(data) {
+    const body = JSON.stringify(data);
+    return this.httpClient.post(
+      `${this.baseUrl}api/languages/save_languages/`, body,
+      {headers: this.getAuthHeaderWithJson()}
+    );
+  }
+
+  saveAddress(data) {
+    const body = JSON.stringify(data);
+    return this.httpClient.post(
+      `${this.baseUrl}api/address/`, body,
+      {headers: this.getAuthHeaderWithoutJson()}
+    );
   }
 }

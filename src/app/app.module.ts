@@ -33,6 +33,8 @@ import { LanguageAssessmentModule } from './modules/sidenav/assessment/assessmen
 import { DevelopmentTestingModule } from './modules/sidenav/development-testing/development-testing.module';
 import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import {ActivationModule} from './static/activation/activation.module';
+import {PageNotFoundModule} from './static/page-not-found/page-not-found.module';
+import {OnlyLoggedInUserGuard} from './guards/only-logged-in-user.guard';
 
 
 @NgModule({
@@ -74,9 +76,10 @@ import {ActivationModule} from './static/activation/activation.module';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    ActivationModule
+    ActivationModule,
+    PageNotFoundModule
   ],
-  providers: [],
+  providers: [OnlyLoggedInUserGuard],
   bootstrap: [AppComponent],
   entryComponents: [
     LoginComponent,

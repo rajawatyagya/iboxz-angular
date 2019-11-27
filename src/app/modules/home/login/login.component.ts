@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
 
 interface TokenObject {
   auth_token: string;
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
     private apiService: ApiService,
     private cookieService: CookieService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertService: ToastrService
     ) { }
 
   ngOnInit() {
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
         this.dialogRef.close();
       },
       error => {
-        console.log(error);
+        this.alertService.success('There was an error while logging in.', 'Alina:');
       }
     );
   }

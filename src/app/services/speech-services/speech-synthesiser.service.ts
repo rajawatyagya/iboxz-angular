@@ -13,7 +13,7 @@ export class SpeechSynthesiserService {
   initSynthesis(): void {
     this.message = new SpeechSynthesisUtterance();
     this.message.volume = 1;
-    this.message.rate = 1;
+    this.message.rate = 0.85;
     this.message.pitch = 0.2;
   }
 

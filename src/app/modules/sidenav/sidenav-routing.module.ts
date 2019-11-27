@@ -9,9 +9,9 @@ import { JobsComponent } from './jobs/jobs.component';
 import { JobPostingComponent } from './jobs/job-posting/job-posting.component';
 import { ReferComponent } from './refer/refer.component';
 import { WalletComponent } from './wallet/wallet.component';
-import { AlinaComponent } from './alina/alina.component';
 import { VideoChatComponent } from './video-chat/video-chat.component';
 import { DevelopmentTestingComponent } from './development-testing/development-testing.component';
+import {PageNotFoundComponent} from '../../static/page-not-found/page-not-found.component';
 import {OnlyLoggedInUserGuard} from '../../guards/only-logged-in-user.guard';
 
 
@@ -19,14 +19,10 @@ const routes: Routes = [
   {
     path: '',
     component: SidenavComponent,
-
     children: [
       {
         path: 'dashboard',
-        component: DashboardComponent,
-        canActivate: [
-          OnlyLoggedInUserGuard
-        ],
+        component: DashboardComponent
       },
       {
         path: 'profile',
@@ -60,7 +56,8 @@ const routes: Routes = [
       },
       {
         path: 'videoChat',
-        component: VideoChatComponent
+        component: VideoChatComponent,
+        canActivate: [OnlyLoggedInUserGuard]
       },
       {
         path: 'testing',

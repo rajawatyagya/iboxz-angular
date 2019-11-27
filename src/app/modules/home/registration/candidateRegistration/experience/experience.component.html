@@ -1,0 +1,183 @@
+<mat-card class="accordion-container-custom">
+  <mat-card-header>
+    <mat-card-title>
+      <h3>Experience -- {{totalYears}} Years {{totalMonth}} Months</h3>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content >
+    <mat-accordion formArrayName="experience" class="accordion-container">
+      <mat-expansion-panel *ngFor="let item of experience.controls; let i = index;"
+                           [formGroupName]="i" [expanded]="step === i + 9" (opened)="setStep(i + 9)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3 *ngIf="item.value.company" class="reg-container">{{item.value.company}} ({{item.value.startDate | date}} - {{item.value.endDate | date}})
+              {{ item.value.duration}} Months</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="title" placeholder="Designation" type="text">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="company" placeholder="Company Name" type="text">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-slide-toggle class=" half-width reg-container" formControlName="current" (toggleChange)="currentExp(i)">Current?</mat-slide-toggle>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="industry" placeholder="Industry" type="text">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="department" placeholder="Department" type="text">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="functionalArea" placeholder="Functional Area" type="text">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="role" placeholder="Role" type="text">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="scope" placeholder="Scope" type="text">
+          </mat-form-field>
+        </p>
+
+        <div formArrayName="candidateSkillSetForm">
+          <mat-form-field class="half-width reg-container">
+            <input #implementedSkill matInput placeholder="Skill-Sets implemented" type="text">
+          </mat-form-field>
+          <button type="button" class="icon-button"
+                  (click)="addImplementedSkillSet(implementedSkill.value, 'implemented', i); implementedSkill.value = '';">
+            <i class="fa fa-plus-square-o"></i></button>
+          <div class="lang-container reg-container full-width"
+               *ngFor="let skill of skillsArray(i).controls; let j = index;"
+               [formGroupName]="j">
+                  <span *ngIf="skill.value.name" class="selector lang-checkbox lang-container">
+                    <span class="selector">
+                      {{skill.value.name}}
+                    </span>
+                    <span>
+                      <button type="button" class="icon-button"
+                              (click)="deleteImpSkill(i , j)"><i class="fa fa-minus-square-o"></i></button>
+                    </span>
+                  </span>
+            <span *ngIf="skill.value.name">
+                    <mat-radio-group formControlName="proficiency">
+                      <mat-radio-button value="beginner">
+                        Beginner
+                      </mat-radio-button>
+                      <mat-radio-button value="intermediate">
+                        Intermediate
+                      </mat-radio-button>
+                      <mat-radio-button value="advanced">
+                        Advanced
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </span>
+          </div>
+        </div>
+
+        <div formArrayName="candidateSkillSetForm">
+          <mat-form-field class="half-width reg-container">
+            <input #acquiredSkill matInput placeholder="Skill-Sets acquired" type="text">
+          </mat-form-field>
+          <button type="button" class="icon-button" (click)="addAcquiredSkillSet(acquiredSkill.value, 'acquired', i); acquiredSkill.value = '';"><i class="fa fa-plus-square-o"></i></button>
+          <div class="lang-container reg-container full-width" *ngFor="let skill of skillsArray(i).controls; let k = index;"
+               [formGroupName]="k">
+                  <span *ngIf="skill.value.name" class="selector lang-checkbox lang-container">
+                    <!--<mat-divider *ngIf="k===0"></mat-divider>-->
+                    <span class="selector">
+                      {{skill.value.name}}
+                    </span>
+                    <span>
+                      <button type="button" class="icon-button" (click)="deleteAcqSkill(i , k)"><i class="fa fa-minus-square-o"></i></button>
+                    </span>
+                  </span>
+            <span *ngIf="skill.value.name" >
+                    <mat-radio-group formControlName="proficiency">
+                      <mat-radio-button value="beginner">
+                        Beginner
+                      </mat-radio-button>
+                      <mat-radio-button value="intermediate">
+                        Intermediate
+                      </mat-radio-button>
+                      <mat-radio-button value="advanced">
+                        Advanced
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </span>
+          </div>
+        </div>
+
+        <p>
+          <span class="reg-container">Duration</span><br>
+          <mat-form-field class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerFrom8" formControlName="startDate" placeholder="Start Date" type="text" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom8"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom8 startView="year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field *ngIf="!item.value.current" class=" half-width reg-container">
+            <input matInput [matDatepicker]="pickerTo8" formControlName="endDate" placeholder="End Date" type="text" required
+                   (dateInput)="calculateDuration(item)">
+            <mat-datepicker-toggle matSuffix [for]="pickerTo8"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo8 startView="year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field *ngIf="item.value.current" class=" half-width reg-container">
+            <input matInput formControlName="noticePeriod" placeholder="Notice Period" type="text">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="half-width reg-container">
+            <input matInput formControlName="salary" placeholder="Annual Salary INR (₹)" type="number" pattern="\d*" min=50000 step=1000>
+          </mat-form-field>
+        </p>
+        <p class="full-width reg-container">
+          <span>Documents Available</span><br>
+          <label>Offer Letter
+            <input class="lang-checkbox" type="checkbox" formControlName="offerLetter">
+          </label>
+          <label>Last three months Salary Slip
+            <input class="lang-checkbox" type="checkbox" formControlName="salarySlip">
+          </label>
+          <label>Experience or Relieving Letter
+            <input class="lang-checkbox" type="checkbox" formControlName="expOrRelLetter">
+          </label>
+          <label>Resignation Acceptance Letter
+            <input class="lang-checkbox" type="checkbox" formControlName="resignAccept">
+          </label>
+          <label>Promotion Letter
+            <input class="lang-checkbox" type="checkbox" formControlName="promotionLetter">
+          </label>
+        </p>
+        <p>
+          <mat-form-field class="full-width reg-container">
+            <textarea matInput formControlName="summary" placeholder="Describe your Role" type="text" rows="12"></textarea>
+          </mat-form-field>
+        </p>
+        <button type="button" mat-button class="background-primary text-floral-white" (click)="deleteExperienceGroup(i)">Delete</button>
+        <mat-action-row>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Save</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white">Reset</button>
+          <span class="flex-spacer"></span>
+          <button type="button" mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
+          <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-card-actions class="custom-button">
+      <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="addExperience()">Add Experience</button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>

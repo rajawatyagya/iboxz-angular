@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -11,17 +9,11 @@ import {AuthService} from '../../services/auth.service';
 export class SidenavComponent implements OnInit {
 
   constructor(
-    private auth: AuthService
+    private cookieService: CookieService,
   ) { }
 
   ngOnInit() {
-    if (this.auth.isUserAuthenticated()) {
-      /*this.router.navigate([{
-        outlets: {
-          sidenavOutlet: ['dashboard']
-        }}], {
-        relativeTo: this.route
-      });*/
+    if (this.cookieService.get('auth-token') !== null) {
     }
   }
 

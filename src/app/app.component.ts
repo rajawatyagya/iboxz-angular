@@ -10,7 +10,7 @@ import {environment} from '../environments/environment';
 })
 export class AppComponent implements OnInit {
   public version: string;
-  private title: Title;
+  title = 'iboxz';
   authentication = false;
 
   constructor(
@@ -22,7 +22,5 @@ export class AppComponent implements OnInit {
     if (authToken) {
       this.authentication = true;
     }
-    this.version = environment.version; // <-- Consume the version number from environment!
-    this.title.setTitle(`iboxz v${this.version}`); // <-- Also, show the version number in the title.
   }
 }

@@ -1,3 +1,8 @@
+interface Courses {
+  courseTitle: string;
+  courseType: string;
+}
+
 export const INSTITUTES = [
   'AJAY BINAY INSTITUTE OF TECHNOLOGY - CUTTACK',
   'ASIAN SCHOOL OF CYBER LAWS - PUNE',
@@ -3887,4 +3892,35 @@ export const GRADSUBJECTS = [
   'WIRELESS TECHNOLOGIES',
   'ZOOLOGY',
   'OTHERS'
+];
+export const COURSES: Courses[] = [
+  {
+    courseTitle: 'High School',
+    courseType: 'high_school'
+  },
+  {
+    courseTitle: 'Higher Secondary',
+    courseType: 'higher_sec'
+  },
+  {
+    courseTitle: 'Equivalent Diploma',
+    courseType: 'higher_sec_eq_diploma'
+  },
+  {
+    courseTitle: 'Graduation',
+    courseType: 'graduation'
+  },
+  {
+    courseTitle: 'Post Graduation',
+    courseType: 'post_graduation'
+  },
+  {
+    courseTitle: 'Other Diploma Qualification',
+    courseType: 'other_diploma'
+  },
+  {
+    courseTitle: 'Any Other Qualification',
+    courseType: 'other_qualification'
+  },
+
 ];

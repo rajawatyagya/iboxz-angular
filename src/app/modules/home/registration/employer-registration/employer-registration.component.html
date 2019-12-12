@@ -1,5 +1,5 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
-  <form novalidate [formGroup]="registrationForm" #employerForm="ngForm" (ngSubmit)="onSubmit()">
+  <form novalidate [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <mat-card class="accordion-container">
       <mat-card-header>
         <mat-card-title>
@@ -11,22 +11,6 @@
       </mat-card-header>
       <mat-card-content>
         <div class="container" fxLayout="column wrap" fxLayout.gt-sm="row"  fxLayoutAlign="center center">
-          <div fxFlex="30">
-            <div>
-              <i class="image-holder fa fa-user-o"></i>
-              <div>
-                <table>
-                  <td>
-                    <button mat-button class="background-primary flex-spacer text-floral-white">Upload Image</button>
-                  </td>
-                  <td>
-                    <button mat-button class="background-primary flex-spacer text-floral-white">Delete</button>
-                  </td>
-                </table>
-              </div>
-            </div>
-          </div>
-
           <div fxFlex="70">
             <p>
               <mat-form-field class="half-width reg-container">
@@ -74,115 +58,55 @@
               </mat-form-field>
             </p>
           </div>
+          <div fxFlex="30">
+            <div>
+              <img class="image_responsive" src="../../../../../assets/images/placeholders/fa-user.png" *ngIf="!imageUrl" alt="Place Holder">
+              <img class="image_responsive" *ngIf="imageUrl" [src]="imageUrl" style="max-width: 33rem" alt="Profile Picture">
+              <input style="display: none" accept="image/*" type="file" (change)="fileProgress($event)" #fileInput/>
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <button type="button" mat-button class="background-primary text-floral-white" (click)="fileInput.click()">
+                  Select Profile Picture</button>
+                <button type="button" mat-button class="background-primary text-floral-white" (click)="saveProfilePicture()">
+                  Save</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <!--<div class="custom-container" formGroupName="billingAddress">
-          <span class="reg-container">Company Address</span>
+        <mat-accordion class="accordion-container" formGroupName="address">
+          <mat-panel-title>
+            <h3>Address Details</h3>
+          </mat-panel-title>
           <p>
             <mat-form-field class="half-width reg-container">
-              <input matInput formControlName="addressLine1" placeholder="Address line 1" type="text" required>
+              <input matInput formControlName="addressLine1" placeholder="Address Line 1" type="text">
             </mat-form-field>
             <mat-form-field class="half-width reg-container">
-              <input matInput formControlName="addressLine2" placeholder="Address line 2" type="text">
+              <input matInput formControlName="addressLine2" placeholder="Address Line 2" type="text">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="city" placeholder="City" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="state" placeholder="State" type="text" >
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="half-width reg-container">
-              <input matInput formControlName="city" placeholder="City" type="text" required>
-            </mat-form-field>
-            <mat-form-field class="half-width reg-container">
-              <input matInput formControlName="state" placeholder="State" type="text">
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field class="half-width reg-container">
-              <input matInput formControlName="zipCode" placeholder="Zip Code" type="number" min="100000" required>
+              <input matInput formControlName="zipCode" placeholder="Pin Code" type="text">
             </mat-form-field>
             <mat-form-field class="half-width reg-container">
               <input matInput formControlName="country" placeholder="Country" type="text">
             </mat-form-field>
           </p>
-        </div>-->
-        <mat-accordion class="accordion-container">
-
-          <mat-expansion-panel formGroupName="address" [expanded]="true">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <h3>Address Details</h3>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div formGroupName="companyAddress">
-              <h3>Company Address</h3>
-              <p>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="addressLine1" placeholder="Address Line 1" type="text">
-                </mat-form-field>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="addressLine2" placeholder="Address Line 2" type="text">
-                </mat-form-field>
-              </p>
-
-              <p>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="city" placeholder="City" type="text">
-                </mat-form-field>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="state" placeholder="State" type="text" >
-                </mat-form-field>
-              </p>
-              <p>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="zipCode" placeholder="Pin Code" type="text">
-                </mat-form-field>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="country" placeholder="Country" type="text">
-                </mat-form-field>
-              </p>
-            </div>
-            <p>
-              <label>
-                <input type="checkbox" formControlName="checked"> Company Address is Billing Address Also?
-              </label>
-              <!--<mat-checkbox  (click)="checkedOn()" class="half-width reg-container">Present Address is Permanent Address Also?</mat-checkbox>-->
-            </p>
-            <div formGroupName="billingAddress" *ngIf="!registrationForm.controls['address'].value.checked">
-              <h3>Billing Address</h3>
-              <p>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="addressLine1" placeholder="Address Line 1" type="text">
-                </mat-form-field>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="addressLine2" placeholder="Address Line 2" type="text">
-                </mat-form-field>
-              </p>
-
-              <p>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="city" placeholder="City" type="text">
-                </mat-form-field>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="state" placeholder="State" type="text" >
-                </mat-form-field>
-              </p>
-              <p>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="zipCode" placeholder="Pin Code" type="text">
-                </mat-form-field>
-                <mat-form-field class="half-width reg-container">
-                  <input matInput formControlName="country" placeholder="Country" type="text">
-                </mat-form-field>
-              </p>
-            </div>
-            <mat-action-row>
-              <button mat-button class="custom-button background-primary text-floral-white">Save</button>
-              <button mat-button class="custom-button background-primary text-floral-white">Reset</button>
-            </mat-action-row>
-          </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
       <mat-divider></mat-divider>
       <mat-card-actions class="reg-container action-custom">
+        <button mat-button type="button" class="background-primary text-floral-white button-custom">Reset</button>
         <button mat-button type="submit" class="background-primary text-floral-white button-custom">Submit</button>
-        <button mat-button class="background-primary text-floral-white button-custom">Reset</button>
       </mat-card-actions>
     </mat-card>
   </form>

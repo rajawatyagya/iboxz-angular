@@ -1,80 +1,82 @@
-<mat-accordion class="accordion-container">
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <form novalidate [formGroup]="addressForm" (ngSubmit)="onAddressSubmit()">
+    <mat-accordion class="accordion-container">
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3>Address Details</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div formGroupName="presentAddress">
+          <h3>Present Address</h3>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="addressLine1" placeholder="Address Line 1" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="addressLine2" placeholder="Address Line 2" type="text">
+            </mat-form-field>
+          </p>
 
-  <mat-expansion-panel formGroupName="address" [expanded]="step === 1" (opened)="setStep(1)">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <h3>Address Details</h3>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <div formGroupName="presentAddress">
-      <h3>Present Address</h3>
-      <p>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="addressLine1" placeholder="Address Line 1" type="text">
-        </mat-form-field>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="addressLine2" placeholder="Address Line 2" type="text">
-        </mat-form-field>
-      </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="city" placeholder="City" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="state" placeholder="State" type="text" >
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="zipCode" placeholder="Pin Code" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="country" placeholder="Country" type="text">
+            </mat-form-field>
+          </p>
+        </div>
+        <p>
+          <label>
+            <input type="checkbox" (change)="isSelected($event)"> Present Address is Permanent Address Also?
+          </label>
+          <!--<mat-checkbox  (click)="checkedOn()" class="half-width reg-container">Present Address is Permanent Address Also?</mat-checkbox>-->
+        </p>
+        <div *ngIf="!checked" formGroupName="permanentAddress">
+          <h3>Permanent Address</h3>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="addressLine1" placeholder="Address Line 1" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="addressLine2" placeholder="Address Line 2" type="text">
+            </mat-form-field>
+          </p>
 
-      <p>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="city" placeholder="City" type="text">
-        </mat-form-field>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="state" placeholder="State" type="text" >
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="zipCode" placeholder="Pin Code" type="text">
-        </mat-form-field>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="country" placeholder="Country" type="text">
-        </mat-form-field>
-      </p>
-    </div>
-    <p>
-      <label>
-        <input type="checkbox" formControlName="checked"> Present Address is Permanent Address Also?
-      </label>
-      <!--<mat-checkbox  (click)="checkedOn()" class="half-width reg-container">Present Address is Permanent Address Also?</mat-checkbox>-->
-    </p>
-    <div formGroupName="permanentAddress" *ngIf="!registrationForm.controls['address'].value.checked">
-      <h3>Permanent Address</h3>
-      <p>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="addressLine1" placeholder="Address Line 1" type="text">
-        </mat-form-field>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="addressLine2" placeholder="Address Line 2" type="text">
-        </mat-form-field>
-      </p>
-
-      <p>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="city" placeholder="City" type="text">
-        </mat-form-field>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="state" placeholder="State" type="text" >
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="zipCode" placeholder="Pin Code" type="text">
-        </mat-form-field>
-        <mat-form-field class="half-width reg-container">
-          <input matInput formControlName="country" placeholder="Country" type="text">
-        </mat-form-field>
-      </p>
-    </div>
-    <mat-action-row>
-      <button type="button" mat-button class="custom-button background-primary text-floral-white" >
-        Save</button>
-      <button type="button" mat-button class="custom-button background-primary text-floral-white">Reset</button>
-      <span class="flex-spacer"></span>
-      <button type="button" mat-button color="warn" class="custom-button" (click)="prevStep()">Previous</button>
-      <button type="button" mat-button class="custom-button background-primary text-floral-white" (click)="nextStep()">Next</button>
-    </mat-action-row>
-  </mat-expansion-panel>
-</mat-accordion>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="city" placeholder="City" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="state" placeholder="State" type="text" >
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="zipCode" placeholder="Pin Code" type="text">
+            </mat-form-field>
+            <mat-form-field class="half-width reg-container">
+              <input matInput formControlName="country" placeholder="Country" type="text">
+            </mat-form-field>
+          </p>
+        </div>
+        <mat-action-row>
+          <button type="button" mat-button class="button-custom background-primary text-floral-white">
+            Reset</button>
+          <span class="flex-spacer"></span>
+          <button type="submit" mat-button class="background-primary text-floral-white button-custom">
+            Save</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
+</div>

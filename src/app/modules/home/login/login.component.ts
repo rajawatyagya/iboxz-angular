@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
       (result: TokenObject) => {
         this.cookieService.set('auth_token', result.auth_token);
         this.cookieService.set('user_name', this.authForm.value.username);
-        this.router.navigate(['/navigation']);
         this.dialogRef.close();
       },
       error => {

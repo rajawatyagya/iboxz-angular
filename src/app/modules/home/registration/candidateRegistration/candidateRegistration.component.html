@@ -1,15 +1,40 @@
 <mat-sidenav-container>
-
-  <mat-sidenav #candSideNav [opened]="isLargeScreen()" mode="side" fixedInViewport>
-    <mat-nav-list>
+  <mat-sidenav #candSideNav [opened]="isLargeScreen()" mode="side" fixedInViewport="true">
+    <mat-nav-list class="nav-list">
       <mat-list-item>
-        Personal Details
+        <img class="logo-res" src="../../../../../assets/images/logo.png">
+      </mat-list-item>
+      <mat-divider class="logo-divider"></mat-divider>
+      <mat-list-item (click)="setStep(0)">
+        <div class="item-text">
+          <span>Personal Details</span>
+          <i class="fa fa-th" aria-hidden="true"></i>
+        </div>
+      </mat-list-item>
+      <mat-list-item (click)="setStep(1)">
+        <div class="item-text">
+          <span>Address Details</span>
+          <i class="fa fa-th" aria-hidden="true"></i>
+        </div>
+      </mat-list-item>
+      <mat-list-item (click)="setStep(2)">
+        <div class="item-text">
+          <span>Education Details</span>
+          <i class="fa fa-th" aria-hidden="true"></i>
+        </div>
+      </mat-list-item>
+      <mat-list-item (click)="setStep(3)">
+        <div class="item-text">
+          <span>Experience Details</span>
+          <i class="fa fa-th" aria-hidden="true"></i>
+        </div>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
-
-<mat-sidenav-content>
-  <app-personal></app-personal>
-</mat-sidenav-content>
-
+  <mat-sidenav-content>
+    <app-personal *ngIf="step === 0" (getStep)="setStep($event)" [userId]="user.id"></app-personal>
+    <app-address *ngIf="step === 1" (getStep)="setStep($event)" [userId]="user.id"></app-address>
+    <app-education *ngIf="step === 2" (getStep)="setStep($event)" [userId]="user.id"></app-education>
+    <app-experience *ngIf="step === 3" [userId]="user.id"></app-experience>
+  </mat-sidenav-content>
 </mat-sidenav-container>

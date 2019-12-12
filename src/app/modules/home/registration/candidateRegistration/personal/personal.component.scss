@@ -83,7 +83,7 @@ body{
 }
 
 .icon-button {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: $accent-color;
   box-sizing: border-box;
   position: relative;
@@ -110,9 +110,4 @@ body{
 
 label {
   margin: 1rem 0;
-}
-
-mat-divider {
-  margin-left: 2.5rem;
-  margin-right: 3.5rem;
 }

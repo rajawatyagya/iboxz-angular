@@ -94,15 +94,6 @@ export class ApiService {
     );
   }
 
-  saveUserAddressData(data) {
-    const body = JSON.stringify(data);
-    return this.httpClient.post(
-      `${this.baseUrl}api/`,
-      body,
-      {headers: this.getAuthHeaderWithJson()}
-    );
-  }
-
   uploadProfilePicture(data) {
     return this.httpClient.post(
       `${this.baseUrl}api/users/${this.getUserName()}/save_profile_picture/`, data,
@@ -118,6 +109,14 @@ export class ApiService {
     );
   }
 
+  saveEmployerProfile(data) {
+    const body = JSON.stringify(data);
+    return this.httpClient.post(
+      `${this.baseUrl}api/recruiter/save_employer/`, body,
+      {headers: this.getAuthHeaderWithJson()}
+    );
+  }
+
   saveLanguage(data) {
     const body = JSON.stringify(data);
     return this.httpClient.post(
@@ -129,8 +128,24 @@ export class ApiService {
   saveAddress(data) {
     const body = JSON.stringify(data);
     return this.httpClient.post(
-      `${this.baseUrl}api/address/`, body,
-      {headers: this.getAuthHeaderWithoutJson()}
+      `${this.baseUrl}api/address/save_address/`, body,
+      {headers: this.getAuthHeaderWithJson()}
+    );
+  }
+
+  saveEducation(data) {
+    const body = JSON.stringify(data);
+    return this.httpClient.post(
+      `${this.baseUrl}api/education/save_education/`, body,
+      {headers: this.getAuthHeaderWithJson()}
+    );
+  }
+
+  saveExperience(data) {
+    const body = JSON.stringify(data);
+    return this.httpClient.post(
+      `${this.baseUrl}api/experience/save_experience/`, body,
+      {headers: this.getAuthHeaderWithJson()}
     );
   }
 }

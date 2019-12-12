@@ -1,23 +1,28 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Profile} from '../../../../../shared/profile/profile';
 import {GENDER, LANGUAGES, NAMETITLE} from '../../../../../shared/Constants';
 import {ApiService} from '../../../../../services/api.service';
 import {ToastrService} from 'ngx-toastr';
-
-interface User {
-  id: string;
-  user_type: string;
-  email: string;
-  username: string;
-}
+import {flyInOut} from '../../../../../animations/app.animation';
 
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
-  styleUrls: ['./personal.component.scss']
+  styleUrls: ['./personal.component.scss'],
+  // tslint:disable-next-line:no-host-metadata-property
+  host: {
+    '[@flyInOut]': 'true',
+    style: 'display: block;'
+  },
+  animations: [
+    flyInOut()
+  ]
 })
 export class PersonalComponent implements OnInit {
+
+  @Input() userId: string;
+  @Output() public getStep = new EventEmitter<number>();
   imageUrl: any;
   fileData: File = null;
   registrationForm: FormGroup;
@@ -26,8 +31,6 @@ export class PersonalComponent implements OnInit {
   genderType =      GENDER;
   nameTitle =       NAMETITLE;
   languages =       LANGUAGES;
-
-  user: User;
 
   step = 0;
   last = 0;
@@ -43,11 +46,6 @@ export class PersonalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiService.getUser().subscribe(
-      (result: User) => {
-        this.user = result;
-      }
-    );
     this.createForm();
   }
 
@@ -114,8 +112,7 @@ export class PersonalComponent implements OnInit {
 
   onCandidateSubmit() {
     this.registrationForm.patchValue({
-      user: this.user.id,
-      dateOfBirth: '1994-03-14'
+      user: this.userId
     });
     this.saveProfilePicture();
     this.apiService.saveCandidateProfile(this.registrationForm.value).subscribe(
@@ -128,7 +125,7 @@ export class PersonalComponent implements OnInit {
 
   onLanguageSubmit() {
     this.languageForm.patchValue({
-      user:       this.user.id,
+      user:       this.userId,
     });
     this.apiService.saveLanguage(this.languageForm.value).subscribe(
       (result) => {
@@ -140,6 +137,7 @@ export class PersonalComponent implements OnInit {
   submitForm() {
     this.onCandidateSubmit();
     this.onLanguageSubmit();
+    this.getStep.emit(1);
   }
 
   addLanguage(item): void {

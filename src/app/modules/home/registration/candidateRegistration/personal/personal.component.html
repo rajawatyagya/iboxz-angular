@@ -1,7 +1,7 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
   <form novalidate [formGroup]="registrationForm" (ngSubmit)="onCandidateSubmit()">
     <mat-accordion class="accordion-container">
-      <mat-expansion-panel disabled expanded>
+      <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3>Personal Details</h3>
@@ -78,7 +78,7 @@
 
           <div fxFlex="30">
             <div>
-              <img class="image_responsive" src="../../../../../assets/images/placeholders/fa-user.png" *ngIf="!imageUrl" alt="Place Holder">
+              <img class="image_responsive" src="../../../../../../assets/images/placeholders/fa-user.png" *ngIf="!imageUrl" alt="Place Holder">
               <img class="image_responsive" *ngIf="imageUrl" [src]="imageUrl" style="max-width: 33rem" alt="Profile Picture">
               <input style="display: none" accept="image/*" type="file" (change)="fileProgress($event)" #fileInput/>
               <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -144,10 +144,13 @@
           <mat-panel-title>
             <h3>Languages Known</h3>
           </mat-panel-title>
+          <mat-panel-description>
+            <p>You can select to a maximum of 10 languages</p>
+          </mat-panel-description>
         </mat-expansion-panel-header>
         <div class="full-width lang-container" formArrayName="languageArray">
           <div class="selector">
-            <mat-select placeholder="Languages Known (max 10)" class="full-width reg-container" >
+            <mat-select placeholder="Select Languages Known (max 10)" class="full-width reg-container" >
               <mat-option *ngFor="let lang of languages" (click)="addLanguage(lang)" [disabled]="language.length >= 10">
                 {{ lang }}
               </mat-option>

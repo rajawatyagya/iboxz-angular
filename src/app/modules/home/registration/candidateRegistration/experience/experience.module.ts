@@ -11,13 +11,20 @@ import {
   MatSlideToggleModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import {FlexModule} from '@angular/flex-layout';
+import {ExpPopupComponent} from './exp-popup/exp-popup.component';
+import {ExpPopupModule} from './exp-popup/exp-popup.module';
 
 
 
 @NgModule({
-  declarations: [ExperienceComponent],
+    declarations: [ExperienceComponent],
+    exports: [
+        ExperienceComponent
+    ],
   imports: [
     CommonModule,
+    ExpPopupModule,
     MatCardModule,
     MatExpansionModule,
     ReactiveFormsModule,
@@ -26,7 +33,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatSlideToggleModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatButtonModule
-  ]
+    MatButtonModule,
+    FlexModule
+  ],
+  entryComponents: [ExpPopupComponent]
 })
 export class ExperienceModule { }

@@ -42,13 +42,14 @@ mat-list-item {
 
 .sidenav-link {
   text-decoration: none;
-  color: white;
+  color: black;
   font-size: 125%;
 }
 
 .active-link {
   background-color: black;
   font-weight: bold !important;
+  color: white;
   border: none;
 
   i {

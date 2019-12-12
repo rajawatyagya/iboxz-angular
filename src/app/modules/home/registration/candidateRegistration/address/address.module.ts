@@ -3,18 +3,23 @@ import { CommonModule } from '@angular/common';
 import { AddressComponent } from './address.component';
 import {MatButtonModule, MatExpansionModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import {FlexModule} from '@angular/flex-layout';
 
 
 
 @NgModule({
-  declarations: [AddressComponent],
+    declarations: [AddressComponent],
+    exports: [
+        AddressComponent
+    ],
   imports: [
     CommonModule,
     MatExpansionModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    FlexModule
   ]
 })
 export class AddressModule { }

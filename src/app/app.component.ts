@@ -9,7 +9,6 @@ import {environment} from '../environments/environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public version: string;
   title = 'iboxz';
   authentication = false;
 

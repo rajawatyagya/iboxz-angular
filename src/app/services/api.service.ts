@@ -17,7 +17,7 @@ interface UserObj {
 export class ApiService {
   private username = '';
 
-  baseUrl = 'http://127.0.0.1:8000/';
+  baseUrl = 'http://api.iboxz.in/alina/';
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export class ApiService {
   loginUser(authData) {
     const body = JSON.stringify(authData);
     return this.httpClient.post(
-      `${this.baseUrl}api/auth/token/login/`,
+      `${this.baseUrl}auth/token/login/`,
       body,
       {headers: this.headers}
     );
@@ -40,7 +40,7 @@ export class ApiService {
   registerUser(authData) {
     const body = JSON.stringify(authData);
     return this.httpClient.post(
-      `${this.baseUrl}api/auth/users/`, body,
+      `${this.baseUrl}auth/users/`, body,
       {headers: this.headers}
     );
   }
@@ -60,7 +60,7 @@ export class ApiService {
 
   getUser() {
     return this.httpClient.get(
-      `${this.baseUrl}api/auth/users/me`,
+      `${this.baseUrl}auth/users/me`,
       {headers: this.getAuthHeaderWithJson()});
   }
 
@@ -81,7 +81,7 @@ export class ApiService {
 
   saveAudioFile(data) {
     return this.httpClient.post(
-      `${this.baseUrl}api/evaluation/save_audio/`, data,
+      `${this.baseUrl}evaluation/save_audio/`, data,
       {headers: this.getAuthHeaderWithoutJson()}
     );
   }
@@ -89,14 +89,14 @@ export class ApiService {
   activateUser(data) {
     const body = JSON.stringify(data);
     return this.httpClient.post(
-      `${this.baseUrl}api/auth/users/activation/`, body,
+      `${this.baseUrl}auth/users/activation/`, body,
       {headers: this.headers}
     );
   }
 
   uploadProfilePicture(data) {
     return this.httpClient.post(
-      `${this.baseUrl}api/users/${this.getUserName()}/save_profile_picture/`, data,
+      `${this.baseUrl}users/${this.getUserName()}/save_profile_picture/`, data,
       {headers: this.getAuthHeaderWithoutJson()}
     );
   }
@@ -104,7 +104,7 @@ export class ApiService {
   saveCandidateProfile(data) {
     const body = JSON.stringify(data);
     return this.httpClient.post(
-      `${this.baseUrl}api/candidate/save_candidate/`, body,
+      `${this.baseUrl}candidate/save_candidate/`, body,
       {headers: this.getAuthHeaderWithJson()}
     );
   }
@@ -112,7 +112,7 @@ export class ApiService {
   saveEmployerProfile(data) {
     const body = JSON.stringify(data);
     return this.httpClient.post(
-      `${this.baseUrl}api/recruiter/save_employer/`, body,
+      `${this.baseUrl}recruiter/save_employer/`, body,
       {headers: this.getAuthHeaderWithJson()}
     );
   }
@@ -120,7 +120,7 @@ export class ApiService {
   saveLanguage(data) {
     const body = JSON.stringify(data);
     return this.httpClient.post(
-      `${this.baseUrl}api/languages/save_languages/`, body,
+      `${this.baseUrl}languages/save_languages/`, body,
       {headers: this.getAuthHeaderWithJson()}
     );
   }
@@ -128,7 +128,7 @@ export class ApiService {
   saveAddress(data) {
     const body = JSON.stringify(data);
     return this.httpClient.post(
-      `${this.baseUrl}api/address/save_address/`, body,
+      `${this.baseUrl}address/save_address/`, body,
       {headers: this.getAuthHeaderWithJson()}
     );
   }
@@ -136,7 +136,7 @@ export class ApiService {
   saveEducation(data) {
     const body = JSON.stringify(data);
     return this.httpClient.post(
-      `${this.baseUrl}api/education/save_education/`, body,
+      `${this.baseUrl}education/save_education/`, body,
       {headers: this.getAuthHeaderWithJson()}
     );
   }
@@ -144,7 +144,7 @@ export class ApiService {
   saveExperience(data) {
     const body = JSON.stringify(data);
     return this.httpClient.post(
-      `${this.baseUrl}api/experience/save_experience/`, body,
+      `${this.baseUrl}experience/save_experience/`, body,
       {headers: this.getAuthHeaderWithJson()}
     );
   }

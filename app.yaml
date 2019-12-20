@@ -1,0 +1,10 @@
+#[START runtime]
+runtime: nodejs12
+#[END runtime]
+handlers:
+  - url: /
+    static_files: dist/iboxz-angular/index.html
+    upload: dist/iboxz-angular/index.html
+
+#  - url: /
+#     static_dir: dist/iboxz-angular/
